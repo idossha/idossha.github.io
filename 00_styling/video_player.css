@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
+
+:root {
+    --primary: linear-gradient(135deg, #121212, #2b2b2b, #454545);
+    --secondary: #8b0000;
+    --text: #ffffff;
+    --background-hover: rgba(139, 0, 0, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-direction: column; /* Changed to column for proper layout */
+    align-items: center;
+    background-image: var(--primary);
+    color: var(--text);
+    text-align: center;
+    padding-top: 17vh; /* Adjusted padding to apply only to the top */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+p, h3 {
+    color: #a8a8a8;
+    text-shadow: none;
+}
+
+a,
+.btn {
+    transition: all 300ms ease;
+}
+
+/* Modern Nav Bar Styling */
+
+#desktop-nav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 60px; /* Adjust as necessary */
+    background: var(--primary);
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#desktop-nav .logo {
+    font-size: 2rem;
+    color: var(--text);
+}
+
+#desktop-nav .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+#desktop-nav .nav-links a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+#desktop-nav .nav-links a:hover {
+    color: grey;
+    text-decoration: underline;
+    text-underline-offset: 0.5rem;
+}
+
+
+
+/* Rest of the styling */
+.container {
+    width: 90vw; 
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    text-transform: capitalize;
+    margin-top: 4rem; /* Extra space to account for fixed nav bar height */
+}
+
+
+
+@media screen and (max-width: 990px) {
+    .container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+}
+
+.main-video, .video-playlist {
+    width: 100%;
+    height: 30rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.main-video .title,
+.video-playlist .title {
+    font-size: 1rem;
+    margin: 1rem 0;
+}
+
+.video-playlist .videos {
+    height: 70%;
+    overflow-y: auto;
+}
+
+.video-playlist .videos::-webkit-scrollbar {
+    width: .4rem;
+    background-color: transparent;
+}
+
+.video-playlist .videos::-webkit-scrollbar-thumb {
+    border-radius: .4rem;
+    background-color: var(--secondary);
+}
+
+.video-playlist .videos .video {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    margin-top: 2rem;
+    cursor: pointer;
+    border-radius: .5rem;
+    background-color: transparent;
+    transition: background-color 300ms ease;
+}
+
+.video-playlist .videos .video:hover {
+    background-color: var(--background-hover);
+}
+
+.video-playlist .videos .video.active {
+    background-color: var(--secondary);
+    color: var(--text);
+}
+
+.main-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video img {
+    width: 1rem;
+    height: 1rem;
+    filter: invert(100%);
+    transition: transform 300ms ease;
+}
+
+.video-playlist .videos .video.active img {
+    transform: scale(1.1);
+}
+
+.video p, .video h3 {
+    padding: 0.5rem 1rem;
+    margin-left: 3rem;
+    font-size: 0.8rem;
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <link rel="stylesheet" href="../00_styling/photo_page.css">
+</head>
+<nav id="desktop-nav">
+    <div class="logo">Ido Haber</div>
+    <ul class="nav-links">
+        <li><a href="/index.html#about">About</a></li>
+        <li><a href="/index.html#experience">Experience</a></li>
+        <li><a href="/index.html#projects">Projects</a></li>
+        <li><a href="/index.html#contact">Contact</a></li>
+    </ul> 
+</nav>
+<nav id="hamburger-nav">
+    <div class="logo">Ido Haber</div>
+    <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="menu-links">
+            <li><a href="#about" onclick="toggleMenu()">About</a></li>
+            <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+            <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+<body>
+    <h1>Photo Gallery</h1>
+    <div class="gallery">
+<img src="../02_assets_photos/IDO00236.jpg" alt="Description for IDO00236" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO00393.jpg" alt="Description for IDO00393" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO00458.jpg" alt="Description for IDO00458" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO00539.jpg" alt="Description for IDO00539" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO00542.jpg" alt="Description for IDO00542" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO00583.jpg" alt="Description for IDO00583" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO00863.jpg" alt="Description for IDO00863" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO00939.jpg" alt="Description for IDO00939" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO00958.jpg" alt="Description for IDO00958" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO00962.jpg" alt="Description for IDO00962" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO00983.jpg" alt="Description for IDO00983" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO00988.jpg" alt="Description for IDO00988" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO01079.jpg" alt="Description for IDO01079" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO01114.jpg" alt="Description for IDO01114" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO01150.jpg" alt="Description for IDO01150" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO01171.jpg" alt="Description for IDO01171" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO01195.jpg" alt="Description for IDO01195" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO01563.jpg" alt="Description for IDO01563" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO02306-2.jpg" alt="Description for IDO02306 2" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO02346.jpg" alt="Description for IDO02346" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO02548.jpg" alt="Description for IDO02548" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO02604.jpg" alt="Description for IDO02604" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO02607.jpg" alt="Description for IDO02607" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO02620.jpg" alt="Description for IDO02620" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO02747.jpg" alt="Description for IDO02747" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO02810.jpg" alt="Description for IDO02810" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO02831.jpg" alt="Description for IDO02831" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO02832.jpg" alt="Description for IDO02832" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO02848.jpg" alt="Description for IDO02848" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO02880-2.jpg" alt="Description for IDO02880 2" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO02945.jpg" alt="Description for IDO02945" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO02947.jpg" alt="Description for IDO02947" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03092.jpg" alt="Description for IDO03092" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03242.jpg" alt="Description for IDO03242" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03250.jpg" alt="Description for IDO03250" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03266.jpg" alt="Description for IDO03266" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03285.jpg" alt="Description for IDO03285" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03676.jpg" alt="Description for IDO03676" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03689.jpg" alt="Description for IDO03689" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03703.jpg" alt="Description for IDO03703" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03704.jpg" alt="Description for IDO03704" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03717.jpg" alt="Description for IDO03717" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03808.jpg" alt="Description for IDO03808" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03815.jpg" alt="Description for IDO03815" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03825.jpg" alt="Description for IDO03825" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03833.jpg" alt="Description for IDO03833" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03840.jpg" alt="Description for IDO03840" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03848.jpg" alt="Description for IDO03848" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03868.jpg" alt="Description for IDO03868" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03885.jpg" alt="Description for IDO03885" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03888.jpg" alt="Description for IDO03888" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03932.jpg" alt="Description for IDO03932" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03944.jpg" alt="Description for IDO03944" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO03960.jpg" alt="Description for IDO03960" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04032.jpg" alt="Description for IDO04032" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04283.jpg" alt="Description for IDO04283" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04298.jpg" alt="Description for IDO04298" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04309.jpg" alt="Description for IDO04309" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04319.jpg" alt="Description for IDO04319" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04497.jpg" alt="Description for IDO04497" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04529.jpg" alt="Description for IDO04529" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04654.jpg" alt="Description for IDO04654" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04671.jpg" alt="Description for IDO04671" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04686.jpg" alt="Description for IDO04686" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04844.jpg" alt="Description for IDO04844" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04853.jpg" alt="Description for IDO04853" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04889.jpg" alt="Description for IDO04889" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04921.jpg" alt="Description for IDO04921" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04943.jpg" alt="Description for IDO04943" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO04967.jpg" alt="Description for IDO04967" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO05001.jpg" alt="Description for IDO05001" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO05022.jpg" alt="Description for IDO05022" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO05171.jpg" alt="Description for IDO05171" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO05262.jpg" alt="Description for IDO05262" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO05295.jpg" alt="Description for IDO05295" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO05452.jpg" alt="Description for IDO05452" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO05635.jpg" alt="Description for IDO05635" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO06064.jpg" alt="Description for IDO06064" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO06122.jpg" alt="Description for IDO06122" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO06240.jpg" alt="Description for IDO06240" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO06270.jpg" alt="Description for IDO06270" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO06830.jpg" alt="Description for IDO06830" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO06873.jpg" alt="Description for IDO06873" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO06893.jpg" alt="Description for IDO06893" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO06959.jpg" alt="Description for IDO06959" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO07047.jpg" alt="Description for IDO07047" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO07067.jpg" alt="Description for IDO07067" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO07175.jpg" alt="Description for IDO07175" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO07262.jpg" alt="Description for IDO07262" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO07270.jpg" alt="Description for IDO07270" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO09424.jpg" alt="Description for IDO09424" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO09486.jpg" alt="Description for IDO09486" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO09514.jpg" alt="Description for IDO09514" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO09528.jpg" alt="Description for IDO09528" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO09776.jpg" alt="Description for IDO09776" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO09788.jpg" alt="Description for IDO09788" class="gallery-item" onclick="openModal(this);">
+<img src="../02_assets_photos/IDO09867.jpg" alt="Description for IDO09867" class="gallery-item" onclick="openModal(this);">
+<!-- Image placeholder - images will be inserted here by the script -->
+    </div>
+    <!-- Modal container -->
+    <div id="myModal" class="modal">
+        <!-- Left arrow for navigation -->
+        <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+        <!-- Right arrow for navigation -->
+        <a class="next" onclick="changeImage(1)">&#10095;</a>
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+    <script src="../00_functionality/photo_page.js"></script>
+</body>
+</html>
