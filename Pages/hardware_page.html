@@ -1,40 +1,40 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="../00_styling/hardware_page.css" />
-    <link rel="stylesheet" href="../mediaqueries.css" />
-  </head>
-  <body>
-    <h1>Hardware Shananigans</h1>
-    <p>Feel free to look around</p>
-  </body>
-  <nav id="desktop-nav">
-    <div class="logo">Ido Haber</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-  <nav id="hamburger-nav">
-    <div class="logo">Ido Haber</div>
-    <div class="hamburger-menu">
-      <div class="hamburger-icon" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <ul class="menu-links">
-        <li><a href="#about" onclick="toggleMenu()">About</a></li>
-        <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-        <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-        <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-  <script src="../00_functionality/hardware_page.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Portfolio</title>
+    <link rel="stylesheet" href="../00_styling/hardware_page.css">
+</head>
+<body>
+    <header>
+        <h1>My Technical Projects</h1>
+        <nav>
+            <button class="category-btn" data-category="all">All</button>
+            <button class="category-btn" data-category="mechanical">Psychedelics</button>
+            <button class="category-btn" data-category="electrical">Electrical</button>
+            <button class="category-btn" data-category="civil">Others</button>
+            <!-- Add more categories as needed -->
+        </nav>
+    </header>
+    <main>
+        <div id="project-gallery">
+            <!-- Project 1 -->
+            <div class="project" data-category="mechanical">
+                <img src="project1.jpg" alt="Project 1 Image">
+                <p>Project 1 Description - Mechanical</p>
+            </div>
+            <!-- Project 2 -->
+            <div class="project" data-category="electrical">
+                <img src="project2.jpg" alt="Project 2 Image">
+                <p>Project 2 Description - Electrical</p>
+            </div>
+            <!-- More projects -->
+        </div>
+    </main>
+    <footer>
+        <p>To be continued...</a></p>
+    </footer>
+    <script src="../00_functionality/hardware_page.js"></script>
+</body>
 </html>
