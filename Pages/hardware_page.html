@@ -3,37 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engineering Portfolio</title>
+    <title>Engineering Projects</title>
     <link rel="stylesheet" href="../00_styling/hardware_page.css">
 </head>
 <body>
     <header>
-        <h1>My Technical Projects</h1>
-        <nav>
-            <button class="category-btn" data-category="all">All</button>
-            <button class="category-btn" data-category="mechanical">Psychedelics</button>
-            <button class="category-btn" data-category="electrical">Electrical</button>
-            <button class="category-btn" data-category="civil">Others</button>
-            <!-- Add more categories as needed -->
-        </nav>
+        <h1>My Engineering Projects</h1>
     </header>
-    <main>
-        <div id="project-gallery">
-            <!-- Project 1 -->
-            <div class="project" data-category="mechanical">
-                <img src="project1.jpg" alt="Project 1 Image">
-                <p>Project 1 Description - Mechanical</p>
+    <main id="project-gallery">
+        <!-- Project 1 -->
+        <div class="project" onclick="openProject('project1-details.html')">
+            <img src="project1-thumbnail.jpg" alt="Thumbnail for Project 1">
+            <div class="overlay">
+                <div class="project-info">
+                    <h3>Project 1 Title</h3>
+                    <p>Short description of Project 1...</p>
+                </div>
             </div>
-            <!-- Project 2 -->
-            <div class="project" data-category="electrical">
-                <img src="project2.jpg" alt="Project 2 Image">
-                <p>Project 2 Description - Electrical</p>
-            </div>
-            <!-- More projects -->
         </div>
+        <!-- Project 2 -->
+        <div class="project" onclick="openProject('project2-details.html')">
+            <img src="project2-thumbnail.jpg" alt="Thumbnail for Project 2">
+            <div class="overlay">
+                <div class="project-info">
+                    <h3>Project 2 Title</h3>
+                    <p>Short description of Project 2...</p>
+                </div>
+            </div>
+        </div>
+        <!-- Add more projects as needed -->
     </main>
     <footer>
-        <p>To be continued...</a></p>
     </footer>
     <script src="../00_functionality/hardware_page.js"></script>
 </body>

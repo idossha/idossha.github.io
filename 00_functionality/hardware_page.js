@@ -1,20 +1,12 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const buttons = document.querySelectorAll(".category-btn");
-  const projects = document.querySelectorAll(".project");
+function openProject(url) {
+  window.location.href = url; // Redirects to the project details page
+}
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const category = this.getAttribute("data-category");
-      projects.forEach((project) => {
-        if (
-          project.getAttribute("data-category") === category ||
-          category === "all"
-        ) {
-          project.style.display = "block";
-        } else {
-          project.style.display = "none";
-        }
+document.addEventListener('DOMContentLoaded', function() {
+  const projects = document.querySelectorAll('.project');
+  projects.forEach(project => {
+      project.addEventListener('click', function() {
+          // The redirection is already handled by the openProject function inline in the HTML
       });
-    });
   });
 });
