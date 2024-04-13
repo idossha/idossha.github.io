@@ -14,11 +14,32 @@
         <div class="media-viewer">
             <img id="mediaImage" src="placeholder.jpg" alt="Media Image" style="display: none;">
             <video id="mediaVideo" controls style="display: none;">
-                <source src="sample.mp4" type="video/mp4">
+                <source src="../01_assets_projects/robotic_arm.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
     </div>
     <script src="../00_functionality/robotic_arm.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function loadMedia(type, source) {
+                const image = document.getElementById('mediaImage');
+                const video = document.getElementById('mediaVideo');
+
+                if (type === 'image') {
+                    image.src = source;
+                    image.style.display = 'block';
+                    video.style.display = 'none';
+                } else if (type === 'video') {
+                    video.querySelector('source').src = source;
+                    video.load(); // Necessary to update the video source
+                    video.style.display = 'block';
+                    image.style.display = 'none';
+                }
+            }
+
+            loadMedia('video', '../01_assets_projects/robotic_arm.mp4'); // Adjusted path
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,30 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+.text-viewer, .media-viewer {
+    flex: 1;
+    overflow: hidden;
+}
+
+.text-viewer {
+    border-right: 2px solid #ddd;
+}
+
+.media-viewer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.media-viewer video {
+    max-width: 50%; /* Each video takes up half the viewer */
+    max-height: 100%;
+}
