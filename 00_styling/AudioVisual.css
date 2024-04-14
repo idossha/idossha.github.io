@@ -1,0 +1,53 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f0f0f0; /* A light gray background instead of white */
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.media-viewer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background: #202020; /* A dark background for contrast */
+}
+
+.media-viewer video {
+    display: block;
+    object-fit: cover; /* This will cover the area, cropping the video as needed */
+}
+
+#mediaVideo1 {
+    width: 40%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    box-shadow: 5px 0px 15px rgba(0, 0, 0, 0.5); /* Adds shadow to the right */
+}
+
+#mediaVideo2 {
+    width: 60%;
+    height: 50%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5); /* Adds shadow to the bottom */
+}
+
+#mediaVideo3 {
+    width: 60%;
+    height: 50%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.5); /* Adds shadow to the top */
+}

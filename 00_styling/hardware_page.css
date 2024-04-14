@@ -49,6 +49,7 @@ h1 {
 
 .project:hover .overlay {
   opacity: 1;
+  position: absolute;
 }
 
 .project-info {
