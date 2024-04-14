@@ -2,13 +2,13 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f0f0f0; /* A light gray background instead of white */
 }
 
 .container {
     display: flex;
     flex-wrap: wrap;
     height: 100%;
+    background: #000; /* Set the background to black */
 }
 
 .media-viewer {
@@ -18,12 +18,14 @@ body, html {
     width: 100%;
     align-items: center;
     justify-content: center;
-    background: #202020; /* A dark background for contrast */
 }
 
 .media-viewer video {
     display: block;
-    object-fit: cover; /* This will cover the area, cropping the video as needed */
+    object-fit: contain; /* Ensures no part of the video is cut off */
+    max-width: 100%; /* Maximum width is 100% of its container */
+    max-height: 100%; /* Maximum height is 100% of its container */
+    background: #000; /* Set the video background to black in case there are any letterboxing due to aspect ratio differences */
 }
 
 #mediaVideo1 {
@@ -31,7 +33,7 @@ body, html {
     height: 100%;
     position: absolute;
     left: 0;
-    box-shadow: 5px 0px 15px rgba(0, 0, 0, 0.5); /* Adds shadow to the right */
+    box-shadow: 5px 0px 15px rgba(0, 0, 0, 0.5);
 }
 
 #mediaVideo2 {
@@ -40,7 +42,7 @@ body, html {
     position: absolute;
     right: 0;
     top: 0;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5); /* Adds shadow to the bottom */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 #mediaVideo3 {
@@ -49,5 +51,5 @@ body, html {
     position: absolute;
     right: 0;
     bottom: 0;
-    box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.5); /* Adds shadow to the top */
+    box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.5);
 }

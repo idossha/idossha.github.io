@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document and Media Viewer</title>
+    <link rel="stylesheet" href="../00_styling/professional_vids.css">
+</head>
+<body>
+    <div class="container">
+        <div class="media-viewer">
+            <video id="mediaVideo1" controls>
+                <source src="../01_assets_projects/effectivate_vid1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video id="mediaVideo2" controls>
+                <source src="../01_assets_projects/TDMovieOut_2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video id="mediaVideo3" controls>
+                <source src="../01_assets_projects/effectivate_vid3.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+    <script src="../00_functionality/robotic_arm.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function loadMedia(videoId, source) {
+                const video = document.getElementById(videoId);
+                video.querySelector('source').src = source;
+                video.load(); // Necessary to update the video source
+                video.style.display = 'block';
+            }
+
+            loadMedia('mediaVideo1', '../01_assets_projects/effectivate_vid1.mp4');
+            loadMedia('mediaVideo2', '../01_assets_projects/effectivate_vid2.mp4');
+            loadMedia('mediaVideo3', '../01_assets_projects/effectivate_vid3.mp4');
+        });
+    </script>
+</body>
+</html>
