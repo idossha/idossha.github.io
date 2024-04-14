@@ -9,15 +9,12 @@
 <body>
     <div class="container">
         <div class="text-viewer">
-            <iframe id="textReader" src="../01_assets_projects/Radio-Project.pdf" style="width:100%; height:100%;"></iframe>
+            <iframe id="textReader" src="../01_assets_projects/ECG+Output.pdf" style="width:100%; height:100%;"></iframe>
         </div>
         <div class="media-viewer">
-            <video id="mediaVideo1" controls style="display: none;">
-                <source src="../01_assets_projects/RADIO-1.mov" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <video id="mediaVideo2" controls style="display: none;">
-                <source src="../01_assets_projects/RADIO-2.MOV" type="video/mp4">
+            <img id="mediaImage" src="placeholder.jpg" alt="Media Image" style="display: none;">
+            <video id="mediaVideo" controls style="display: none;">
+                <source src="../01_assets_projects/ECG_signal.mov" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -25,16 +22,28 @@
     <script src="../00_functionality/robotic_arm.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            function loadMedia(videoId, source) {
-                const video = document.getElementById(videoId);
-                video.querySelector('source').src = source;
-                video.load(); // Necessary to update the video source
-                video.style.display = 'block';
+            function loadMedia(type, source) {
+                const image = document.getElementById('mediaImage');
+                const video = document.getElementById('mediaVideo');
+
+                if (type === 'image') {
+                    image.src = source;
+                    image.style.display = 'block';
+                    video.style.display = 'none';
+                } else if (type === 'video') {
+                    video.querySelector('source').src = source;
+                    video.load(); // Necessary to update the video source
+                    video.style.display = 'block';
+                    image.style.display = 'none';
+                }
             }
 
-            loadMedia('mediaPhoto1', '../01_assets_projects/POx.jpeg');
-            loadMedia('mediaVideo2', '../01_assets_projects/RADIO-2.MOV');
+            loadMedia('video', '../01_assets_projects/ECG_signal.mov'); // Adjusted path
         });
     </script>
 </body>
 </html>
+
+
+
+
