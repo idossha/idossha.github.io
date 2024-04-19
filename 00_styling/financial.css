@@ -1,52 +1,44 @@
-body, html {
+body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
-    background: black;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-
-.header, .footer {
-    background: #fff;
-    padding: 10px 0;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
-
-.header h1, .footer p {
-    margin: 0;
-    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height to minimize scrolling */
+    background: #f0f0f0; /* Optional: adds a background color for better visibility */
 }
 
 .container {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    width: 95%; /* Slightly increased to utilize more of the screen */
+    max-width: 2600px; /* Increased maximum width for larger screens */
+}
+
+.header {
+    text-align: center; /* Centers the header text */
+    margin-bottom: 20px; /* Space between header and description */
 }
 
 .media-viewer {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box; /* Include padding and border in the width */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center-align vertically stacked items */
 }
 
-.spreadsheet img {
-    max-height: 90vh; /* Adjust the height to viewport */
-    width: auto;
-    max-width: 100%; /* Make sure it's fully responsive */
-    object-fit: contain;
-    object-position: center;
+.description {
+    text-align: center; /* Centers the text in description */
+    margin-bottom: 20px; /* Space between description and images */
+    max-width: 80vh;
 }
 
+.images {
+    display: flex;
+    justify-content: space-evenly; /* Changes to space-evenly for better distribution of space */
+    width: 100%; /* Allows the image container to expand fully */
+}
 
-@media screen and (max-width: 768px) {
-    .charts img {
-        max-width: 100%; /* Each chart takes full width on smaller screens */
-    }
+.images img {
+    width: auto; /* Auto width to maintain aspect ratio */
+    max-width: 49%; /* Each image can take almost half of the container's width */
+    height: auto; /* Maintain aspect ratio */
 }
