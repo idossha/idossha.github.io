@@ -1,0 +1,32 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center the images vertically */
+    min-height: 100vh; /* Ensure container is at least the height of the viewport */
+    background: #000; /* Set the background to black */
+}
+
+.media-viewer {
+    width: 90vh; /* Set the width based on the height of the viewport */
+    max-width: 100%; /* Ensure that the width does not exceed the width of the screen */
+}
+
+.media-viewer img {
+    width: 100%; /* Image takes the full width of the .media-viewer */
+    max-height: 45vh; /* Each image will take up less than half of the viewport height */
+    object-fit: contain; /* Ensures the entire image is visible */
+    margin-bottom: 5vh; /* Adds space between the images based on viewport height */
+    background: #000; /* Set the image background to black if needed */
+}
+
+/* Remove the bottom margin from the last image */
+.media-viewer img:last-child {
+    margin-bottom: 0;
+}
