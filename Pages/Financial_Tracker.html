@@ -3,28 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document and Media Viewer</title>
+    <title>Professional Document and Media Viewer</title>
     <link rel="stylesheet" href="../00_styling/financial.css">
 </head>
 <body>
+    <header class="header">
+        <h1>Investment Portfolio Automated Tracker</h1>
+    </header>
     <div class="container">
         <div class="media-viewer">
-            <img id="mediaImage1" src="../01_assets_projects/EXCEL_Example.png" alt="Excel Example">
-            <img id="mediaImage2" src="../01_assets_projects/JS_Script.png" alt="JavaScript Script">
+            <div class="spreadsheet">
+                <img id="mediaImage1" src="../01_assets_projects/Financial Assets/all_in_one.png" alt="data">
         </div>
     </div>
-    <script src="../00_functionality/robotic_arm.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            function loadMedia(imageId, source) {
-                const image = document.getElementById(imageId);
-                image.src = source;
-                image.style.display = 'block'; // Ensure the image is visible
-            }
-
-            loadMedia('mediaImage1', '../01_assets_projects/EXCEL_Example.png');
-            loadMedia('mediaImage2', '../01_assets_projects/JS_Script.png');
-        });
-    </script>
 </body>
 </html>
