@@ -16,7 +16,7 @@ body {
 
 .header {
     text-align: center; /* Centers the header text */
-    margin-bottom: 20px; /* Space between header and description */
+    margin-bottom: 100px; /* Space between header and description */
 }
 
 .media-viewer {
@@ -28,7 +28,7 @@ body {
 .description {
     text-align: center; /* Centers the text in description */
     margin-bottom: 20px; /* Space between description and images */
-    max-width: 80vh;
+    max-width: 120vh;
 }
 
 .images {
