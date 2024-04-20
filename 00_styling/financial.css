@@ -11,7 +11,7 @@ body {
 
 .container {
     width: 95%; /* Slightly increased to utilize more of the screen */
-    max-width: 600px; /* Increased maximum width for larger screens */
+    max-width: 3000px; /* Increased maximum width for larger screens */
 }
 
 .header {
