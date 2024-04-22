@@ -34,3 +34,5 @@ document.querySelectorAll('.video-item').forEach(item => {
 
 // Close functionality for the modal
 document.querySelector('.modal .close').addEventListener('click', closeModal);
+
+  
