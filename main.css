@@ -6,11 +6,11 @@ html {
 
 a {
     text-decoration: none;
-    color: red;
+    color: #C41E3A;
 }
 
 a:hover {
-    color: red;
+    color: #C41E3A;
 }
 
 #content {
@@ -51,5 +51,5 @@ a:hover {
 }
 
 .icons a:hover {
-    color: red;
+    color: #C41E3A;
 }

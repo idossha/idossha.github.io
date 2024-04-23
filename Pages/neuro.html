@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Projects</title>
+    <link rel="stylesheet" href="../00_styling/hardware_page.css">
+</head>
+<body>
+    <header>
+        <h1>Projects</h1>
+    </header>
+    <main id="project-gallery">
+        <!-- Project 1 -->
+        <div class="project" onclick="openProject('robotic_arm.html')">
+            <img src="../01_assets_projects/robot.jpg" alt="Thumbnail for Project 1">
+            <div class="overlay">
+                <div class="project-info">
+                    <h3>BME 462: Bioinstrumenetation</h3>
+                    <p>Embedded force sensor for robotic assisted surgery</p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <!-- Project 2 -->
+        <div class="project" onclick="openProject('radio.html')">
+            <img src="../01_assets_projects/radio.jpeg" alt="Thumbnail for Project 2">
+            <div class="overlay">
+                <div class="project-info">
+                    <h3>FM Reciever</h3>
+                    <p>Two custom build FM radios</p>
+                </div>
+            </div>
+        </div>
+        <!-- Project 3 -->
+        <div class="project" onclick="openProject('ECG.html')">
+          <img src="../01_assets_projects/bioinstrument.jpeg" alt="Thumbnail for Project 3">
+          <div class="overlay">
+              <div class="project-info">
+                  <h3>BME 462: Bioinstrumentation</h3>
+                  <p>ECG + Pulse Ox</p>
+              </div>
+          </div>
+      </div>
+      <!-- Project 4 -->
+      <div class="project" onclick="openProject('Zoo400.html')">
+          <img src="../01_assets_projects/psychedelic-review.jpg" alt="Thumbnail for Project 4">
+          <div class="overlay">
+              <div class="project-info">
+                  <h3>Zoology 400: Cellular Neurobiology</h3>
+                  <p>A mini review on 5HT2Ar agonists</p>
+              </div>
+          </div>
+      </div>
+        <!-- Project 5 -->
+      <div class="project" onclick="openProject('BME602.html')">
+        <img src="../01_assets_projects/opto.jpeg" alt="Thumbnail for Project 5">
+        <div class="overlay">
+            <div class="project-info">
+                <h3>BME 602: Neuroengineering</h3>
+                <p>Towards Translational Optogenetics</p>
+            </div>
+        </div>
+      </div>
+        <!-- Add more projects as needed -->
+    </main>
+    <footer>
+    </footer>
+    <script src="../00_functionality/hardware_page.js"></script>
+</body>
+</html>
