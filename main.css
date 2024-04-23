@@ -6,11 +6,11 @@ html {
 
 a {
     text-decoration: none;
-    color: #1565c0;
+    color: red;
 }
 
 a:hover {
-    color: #217ee7;
+    color: red;
 }
 
 #content {
@@ -36,8 +36,8 @@ a:hover {
     padding: 0;
     display: flex;
     justify-content: space-between;
-    width: 90%;
-    max-width: 480px;
+    width: 100%;
+    max-width: 800px;
     margin: 1em auto;
 }
 
@@ -51,5 +51,5 @@ a:hover {
 }
 
 .icons a:hover {
-    color: #1565c0;
+    color: red;
 }
