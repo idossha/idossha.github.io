@@ -150,8 +150,15 @@ a:hover {
   h1 {
     font-size: 3rem;
     text-align: center;
-    padding-bottom: 2vh;
+    padding-top: 1vh;
   }
+
+h2 {
+  font-size: 1rem;
+  text-align: center;
+
+}
+
 
 /* SECTIONS */
 
