@@ -73,6 +73,6 @@ footer {
     position: absolute;
     top: 0;
     right: 0; /* Move the image to the right side */
-    height: 50%; /* Reduce the height by 50% */
-    width: 50%; /* Reduce the width by 50% */
+    height: 100%; /* Reduce the height by 50% */
+    width: 100%; /* Reduce the width by 50% */
 }

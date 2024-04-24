@@ -3,14 +3,14 @@
     "density": 500,
     "color": "#000000",
     "size": {
-      "value": 1,
+      "value": 0.5,
       "random": false
     },
     "movement": {
       "speed": 1,
       "restless": {
         "enabled": false,
-        "value": 10
+        "value": 100
       }
     },
     "interactivity": {
@@ -31,18 +31,18 @@
   "image": {
     "src": {
       "path": "brain-medium.png",
-      "is_external": true
+      "is_external": false
     },
     "size": {
-      "canvas_pct": 60,
+      "canvas_pct": 50,
       "min_px": 150,
       "max_px": 800
     }
   },
   "interactions": {
     "repulse": {
-      "distance": 100,
-      "strength": 200
+      "distance": 50,
+      "strength": 300
     },
     "big_repulse": {
       "distance": 100,
