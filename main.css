@@ -76,3 +76,21 @@ footer {
     height: 100%; /* Reduce the height by 50% */
     width: 100%; /* Reduce the width by 50% */
 }
+
+.home-button {
+    position: absolute; /* Fixed position */
+    top: 40px; /* Distance from the top */
+    left: 40px; /* Distance from the left */
+    font-size: 24px; /* Icon size */
+    color: black; /* Icon color */
+    padding: 10px; /* Padding around the icon */
+    border-radius: 50%; /* Circular button */
+    text-decoration: none; /* Removes underline from the icon */
+    z-index: 1000; /* Makes sure the button is on top */
+    transition: transform 0.5s ease, color 3s ease; /* Smooth transition for transform and color */
+}
+
+.home-button:hover {
+  color: #C41E3A;
+  transform: scale(1.8); /* Enlarge icons on hover */ 
+}
