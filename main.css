@@ -17,7 +17,7 @@ body {
 #content {
     text-align: center;
     max-width: 520px;
-    padding: 80px;
+    padding: 0px;
     line-height: 2em;
 }
 
@@ -68,4 +68,11 @@ footer {
     width: 100%; /* Full width */
     padding: 20px 0; /* Add some padding inside the footer */
     text-align: center;
+}
+#particle-image {
+    position: absolute;
+    top: 0;
+    right: 0; /* Move the image to the right side */
+    height: 50%; /* Reduce the height by 50% */
+    width: 50%; /* Reduce the width by 50% */
 }
