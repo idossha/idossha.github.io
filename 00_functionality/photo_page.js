@@ -20,6 +20,17 @@ function openModal(img) {
     span.onclick = function() {
         modal.style.display = "none";
     }
+
+    // Add keyboard event listener for arrow keys
+    document.addEventListener('keydown', navigateImages);
+}
+
+function navigateImages(event) {
+    if (event.key === "ArrowRight") {
+        changeImage(1); // Next image
+    } else if (event.key === "ArrowLeft") {
+        changeImage(-1); // Previous image
+    }
 }
 
 function changeImage(step) {
@@ -39,3 +50,13 @@ function changeImage(step) {
     modalImg.src = img.src;
     captionText.innerHTML = img.alt;
 }
+
+// Function to remove the event listener when modal is closed
+function closeModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+    document.removeEventListener('keydown', navigateImages);
+}
+
+// Change how the close functionality is bound to the span
+document.getElementsByClassName("close")[0].onclick = closeModal;
