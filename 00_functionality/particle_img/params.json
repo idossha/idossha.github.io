@@ -3,7 +3,7 @@
     "density": 500,
     "color": "#000000",
     "size": {
-      "value": 0.5,
+      "value": 1,
       "random": false
     },
     "movement": {
@@ -30,7 +30,7 @@
   },
   "image": {
     "src": {
-      "path": "brain-medium.png",
+      "path": "../../little_assets/brain-medium.png",
       "is_external": false
     },
     "size": {
