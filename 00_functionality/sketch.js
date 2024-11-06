@@ -1,62 +1,70 @@
-let used_points = [];
-let border = 75;
-let width, height;
+// sketch.js
+
+let audioElement;
+let audioContext;
+let analyser;
+let dataArray;
+let bufferLength;
 
 function setup() {
-  width = windowWidth;
-  height = windowHeight;
-  createCanvas(width, height);
-  background(250);
-  stroke(0);
-  strokeWeight(1);
+  createCanvas(windowWidth, windowHeight);
+  noFill();
 
-  // Increase the border size by 5% of the smaller dimension of the canvas
-  let borderIncrease = min(width, height) * 0.05;
-  border += borderIncrease;  // Increase the existing border
+  // Get the audio element
+  audioElement = document.getElementById('audio');
 
-  // Define initial corner points with updated border
-  let init_points = [
-    [border, border],
-    [width - border, border],
-    [width - border, height - border],
-    [border, height - border]
-  ];
+  // Create an AudioContext
+  audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-  // Store initial points in used_points to extend lines from
-  used_points = [...init_points];
+  // Create a MediaElementSource from the audio element
+  let source = audioContext.createMediaElementSource(audioElement);
 
-  // Define initial directions for line growth
-  let directions = [[1, 1], [-1, 1], [-1, -1], [1, -1]];
+  // Create an analyser node
+  analyser = audioContext.createAnalyser();
+  analyser.fftSize = 256; // Determines the resolution
+  bufferLength = analyser.frequencyBinCount;
+  dataArray = new Uint8Array(bufferLength);
 
-  for (let i = 0; i < init_points.length; i++) {
-    let point = init_points[i];
-    extendLine(point, directions[i]);
-  }
+  // Connect the source to the analyser and to the destination
+  source.connect(analyser);
+  analyser.connect(audioContext.destination);
 }
-
 
 function draw() {
-  // Keep extending lines from random points
-  let index = floor(random(used_points.length));
-  let dirIndex = floor(random(4));
-  let direction = [[1, 1], [-1, 1], [-1, -1], [1, -1]][dirIndex];
-  extendLine(used_points[index], direction);
-}
+  background(0, 0, 0, 50); // Semi-transparent background for a smooth effect
 
-function extendLine(startPoint, direction) {
-  let step = 10; // Distance each line extends per frame
-  let endX = startPoint[0] + step * direction[0];
-  let endY = startPoint[1] + step * direction[1];
+  // Get the frequency data
+  analyser.getByteFrequencyData(dataArray);
 
-  // Check if new point is within the border
-  if (endX > border && endX < width - border && endY > border && endY < height - border) {
-    line(startPoint[0], startPoint[1], endX, endY);
-    used_points.push([endX, endY]); // Add new point to array
+  // Draw the frequency bars
+  let barWidth = (width / bufferLength) * 2.5;
+  let x = 0;
+
+  for (let i = 0; i < bufferLength; i++) {
+    let barHeight = dataArray[i];
+
+    // Increase the height of the bars
+    barHeight *= 2; // Adjust this multiplier to make bars taller or shorter
+
+    // Optional: Color based on frequency
+    let r = barHeight + (25 * (i / bufferLength));
+    let g = 250 * (i / bufferLength);
+    let b = 50;
+
+    fill(r, g, b);
+    rect(x, height - barHeight / 2, barWidth, barHeight / 2);
+
+    x += barWidth + 1;
   }
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  // Re-run setup to reset the drawing when the window is resized
-  setup();
+}
+
+function mousePressed() {
+  // Resume the audio context if it's suspended (required in some browsers)
+  if (audioContext.state === 'suspended') {
+    audioContext.resume();
+  }
 }

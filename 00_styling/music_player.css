@@ -8,7 +8,6 @@
   box-sizing: border-box;
 }
 
-
 body, html {
     font-family: "Poppins", sans-serif;
     height: 100%;
@@ -20,28 +19,14 @@ body, html {
     overflow: hidden; /* Prevents scrollbars if the canvas is larger than the window */
 }
 
-
-/* Additional styles for the canvas created by p5.js */
+/* Canvas styling */
 canvas {
-    display: block; /* Removes any margin/padding around the canvas */
-    position: fixed; /* So it doesn't scroll with the content */
+    display: block;
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: -1; /* Ensures it's behind all other content */
+    z-index: -1;
 }
-
-
-
-.music-container {
-    background-color: white;
-    border-radius: 15px;
-    display: flex;
-    padding: 20px 30px;
-    position: relative;
-    margin: 100px 0;
-    z-index: 10;
-}
-
 
 /* ICONS */
 
@@ -50,26 +35,24 @@ canvas {
   height: 2rem;
 }
 
-
-
 /* FOOTER SECTION */
 footer {
-  height: auto; /* Adjusted from 1vh to auto to contain the content */
-  position: absolute; /* Position it at the bottom */
-  bottom: 0; /* Align to the bottom of the page */
-  width: 100%; /* Make it full width */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  padding: 1rem; /* Add some padding */
+  height: auto;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
 
 footer p {
   text-align: center;
-  width: 100%; /* Ensure the text is full width */
-  margin-top: 1rem; /* Add some space above the text */
+  width: 100%;
+  margin-top: 1rem;
 }
-  
-  /* SPECIFIC STYLING FOR THIS PAGE */
+
+/* MUSIC CONTAINER */
 
 .music-container {
   background-color: white;
@@ -79,12 +62,13 @@ footer p {
   position: relative;
   margin: 100px 0;
   z-index: 10;
-
 }
 
 .img-container {
   position: relative;
   width: 110px;
+  height: 110px; /* Ensure the container is a square */
+  margin: 0 auto; /* Center the container horizontally */
 }
 
 .img-container::after {
@@ -93,25 +77,24 @@ footer p {
   height: 20px;
   width: 20px;
   position: absolute;
-  left: 50%;
-  bottom: 50%;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
   border-radius: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); /* Center the hole */
 }
 
 .img-container img {
-  width: inherit;
-  height: 110px;
+  width: 100%; /* Fill the container */
+  height: 100%; /* Fill the container */
   border-radius: 50%;
   object-fit: cover;
   position: absolute;
-  bottom: 0;
+  top: 0; /* Align to the top */
   left: 0;
 
   animation: rotate 3s linear infinite;
   animation-play-state: paused;
 }
-
 
 .music-container.play .img-container img {
   animation-play-state: running;
@@ -155,6 +138,7 @@ footer p {
 }
 
 .music-info {
+  /* Existing styles */
   border-radius: 15px 15px 0 0;
   position: absolute;
   top: 0;
@@ -164,9 +148,10 @@ footer p {
   transform: translateY(0%);
   padding: 10px 10px 10px 150px;
   transition: transform 0.2s ease-in, opacity 0.2s ease-in;
-  background-color: #906666; /* Removed transparency for solid color */
-
+  background-color: rgba(0, 0, 0, 0.7); /* Updated to semi-transparent black */
+  color: #fff; /* Set text color to white for contrast */
 }
+
 
 .music-info h4 {
   margin: 0;
@@ -177,39 +162,105 @@ footer p {
   transform: translateY(-100%);
 }
 
-/* Ensure the .progress bar fills from left to right */
+/* Progress bar styling */
 .progress-container {
-  background: white;
+  background: #e0e0e0; /* Slightly darker background for contrast */
   border-radius: 5px;
   cursor: pointer;
   margin: 10px 0;
   height: 4px;
   width: 100%;
-  /* Add overflow hidden if not already there */
   overflow: hidden;
+  display: flex; /* Ensure children are laid out horizontally */
+  align-items: center; /* Vertically center the items */
 }
 
 .progress {
   background-color: grey;
   border-radius: 5px;
   height: 100%;
+  width: 0%; /* Ensure initial width is set */
   transition: width 0.1s linear;
 }
 
+/* Time display styling */
+#current-time, #duration {
+  position: absolute; /* Position absolutely within the progress container */
+  top: -20px;         /* Position slightly above the progress bar */
+  font-size: 12px;
+  color: #fff;        /* White text for visibility */
+}
+
+/* Anchor current time to the left */
+#current-time {
+  left: 0;
+}
+
+/* Anchor duration to the right */
+#duration {
+  right: 0;
+}
+
+/* Home button styling */
 .home-button {
-  position: absolute; /* Fixed position */
-  top: 40px; /* Distance from the top */
-  left: 40px; /* Distance from the left */
-  font-size: 24px; /* Icon size */
-  color: black; /* Icon color */
-  padding: 10px; /* Padding around the icon */
-  border-radius: 50%; /* Circular button */
-  text-decoration: none; /* Removes underline from the icon */
-  z-index: 1000; /* Makes sure the button is on top */
-  transition: transform 0.5s ease, color 3s ease; /* Smooth transition for transform and color */
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  font-size: 24px;
+  color: black;
+  padding: 10px;
+  border-radius: 50%;
+  text-decoration: none;
+  z-index: 1000;
+  transition: transform 0.5s ease, color 3s ease;
 }
 
 .home-button:hover {
-color: #C41E3A;
-transform: scale(1.8); /* Enlarge icons on hover */ 
+  color: #C41E3A;
+  transform: scale(1.8);
+}
+
+/* Sidebar for track list */
+.track-list-container {
+  position: absolute;
+  top: 100px;
+  right: 40px;
+  width: 250px;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  z-index: 100;
+}
+
+.track-list-container h2 {
+  margin-bottom: 15px;
+}
+
+#track-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#track-list li {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+#track-list li:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .track-list-container {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    max-height: none;
+    margin-top: 20px;
+  }
 }
