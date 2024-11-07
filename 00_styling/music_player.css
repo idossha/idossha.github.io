@@ -9,46 +9,65 @@
 }
 
 body, html {
-    font-family: "Poppins", sans-serif;
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; /* Prevents scrollbars if the canvas is larger than the window */
+  font-family: "Poppins", sans-serif;
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Keep overflow hidden on desktop */
 }
 
 /* Canvas styling */
 canvas {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
 }
 
-/* ICONS */
+/* Centering the main content */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centers content vertically */
+  height: 100vh; /* Full viewport height */
+  position: relative;
+  text-align: center;
+  padding: 0 20px;
+}
 
-.icon {
-  cursor: pointer;
-  height: 2rem;
+/* Adjusting the h1 */
+.main-content h1 {
+  margin-bottom: 20px;
+}
+
+/* Adjusting the track list container */
+.track-list-container {
+  position: absolute;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%);
+  width: 250px;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  z-index: 100;
 }
 
 /* FOOTER SECTION */
 footer {
-  height: auto;
-  position: absolute;
-  bottom: 0;
   width: 100%;
-  justify-content: center;
-  align-items: center;
   padding: 1rem;
+  position: relative;
+  text-align: center;
 }
 
 footer p {
-  text-align: center;
-  width: 100%;
   margin-top: 1rem;
 }
 
@@ -60,15 +79,14 @@ footer p {
   display: flex;
   padding: 20px 30px;
   position: relative;
-  margin: 100px 0;
   z-index: 10;
 }
 
 .img-container {
   position: relative;
   width: 110px;
-  height: 110px; /* Ensure the container is a square */
-  margin: 0 auto; /* Center the container horizontally */
+  height: 110px;
+  margin: 0 auto;
 }
 
 .img-container::after {
@@ -77,21 +95,20 @@ footer p {
   height: 20px;
   width: 20px;
   position: absolute;
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
+  top: 50%;
+  left: 50%;
   border-radius: 50%;
-  transform: translate(-50%, -50%); /* Center the hole */
+  transform: translate(-50%, -50%);
 }
 
 .img-container img {
-  width: 100%; /* Fill the container */
-  height: 100%; /* Fill the container */
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
   position: absolute;
-  top: 0; /* Align to the top */
+  top: 0;
   left: 0;
-
   animation: rotate 3s linear infinite;
   animation-play-state: paused;
 }
@@ -125,7 +142,6 @@ footer p {
   cursor: pointer;
   padding: 10px;
   margin: 0 100px;
-  padding: 10px;
 }
 
 .action-btn-big {
@@ -138,20 +154,18 @@ footer p {
 }
 
 .music-info {
-  /* Existing styles */
   border-radius: 15px 15px 0 0;
   position: absolute;
   top: 0;
   left: 20px;
-  width: 96%;
+  width: calc(100% - 40px);
   opacity: 0;
   transform: translateY(0%);
   padding: 10px 10px 10px 150px;
   transition: transform 0.2s ease-in, opacity 0.2s ease-in;
-  background-color: rgba(0, 0, 0, 0.7); /* Updated to semi-transparent black */
-  color: #fff; /* Set text color to white for contrast */
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
 }
-
 
 .music-info h4 {
   margin: 0;
@@ -164,31 +178,31 @@ footer p {
 
 /* Progress bar styling */
 .progress-container {
-  background: #e0e0e0; /* Slightly darker background for contrast */
+  background: #e0e0e0;
   border-radius: 5px;
   cursor: pointer;
   margin: 10px 0;
   height: 4px;
   width: 100%;
   overflow: hidden;
-  display: flex; /* Ensure children are laid out horizontally */
-  align-items: center; /* Vertically center the items */
+  position: relative;
 }
 
 .progress {
   background-color: grey;
   border-radius: 5px;
   height: 100%;
-  width: 0%; /* Ensure initial width is set */
+  width: 0%;
   transition: width 0.1s linear;
 }
 
 /* Time display styling */
-#current-time, #duration {
-  position: absolute; /* Position absolutely within the progress container */
-  top: -20px;         /* Position slightly above the progress bar */
+#current-time,
+#duration {
+  position: absolute;
+  top: -20px;
   font-size: 12px;
-  color: #fff;        /* White text for visibility */
+  color: #fff;
 }
 
 /* Anchor current time to the left */
@@ -207,34 +221,20 @@ footer p {
   top: 40px;
   left: 40px;
   font-size: 24px;
-  color: black;
+  color: whitesmoke;
   padding: 10px;
   border-radius: 50%;
   text-decoration: none;
   z-index: 1000;
-  transition: transform 0.5s ease, color 3s ease;
+  transition: transform 0.5s ease, color 0.3s ease;
 }
 
 .home-button:hover {
   color: #C41E3A;
-  transform: scale(1.8);
+  transform: scale(1.2);
 }
 
 /* Sidebar for track list */
-.track-list-container {
-  position: absolute;
-  top: 100px;
-  right: 40px;
-  width: 250px;
-  max-height: 400px;
-  overflow-y: auto;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  z-index: 100;
-}
-
 .track-list-container h2 {
   margin-bottom: 15px;
 }
@@ -255,12 +255,75 @@ footer p {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  body,
+  html {
+    overflow: auto; /* Allow scrolling on mobile */
+  }
+
+  .main-content {
+    height: auto;
+    margin-top: 60px; /* Adjust if needed */
+    padding: 0;
+  }
+
+  .music-container {
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    width: 90%;
+    padding: 20px;
+  }
+
+  .music-info {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    opacity: 1;
+    transform: none;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .music-container.play .music-info {
+    opacity: 1;
+    transform: none;
+  }
+
+  .img-container {
+    margin: 0;
+  }
+
+  .navigation {
+    margin-top: 20px;
+  }
+
+  .action-btn {
+    margin: 10px;
+  }
+
+  .action-btn-big {
+    font-size: 40px;
+  }
+
+  .home-button {
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    padding: 5px;
+  }
+
   .track-list-container {
     position: relative;
     top: auto;
     right: auto;
-    width: 100%;
+    transform: none;
+    width: 90%;
     max-height: none;
     margin-top: 20px;
+  }
+
+  footer {
+    position: relative;
   }
 }

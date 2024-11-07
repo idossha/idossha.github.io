@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Player</title>
     <link rel="stylesheet" href="../00_styling/music_player.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -11,48 +10,46 @@
     <a href="../index.html" class="home-button">
         <i class="fas fa-home"></i>
     </a>    
-    <h1>Mixes</h1>
-    <div class="music-container">
-        <div class="music-info">
-            <h4 id="title"></h4>
-            <div class="progress-container">
-                <span id="current-time">00:00:00</span>
-                <div class="progress"></div>
-                <span id="duration">01:00:00</span>
-            </div>
-            <p id="description"></p> <!-- New: Description element -->
-        </div>
-        <audio src="" id="audio"></audio>
-        <div class="img-container">
-            <img src="" alt="music-cover" id="cover">
-        </div>
-        <div class="navigation">
-            <button id="prev" class="action-btn">
-                <i class="fas fa-backward"></i>
-            </button>
-            <button id="play" class="action-btn action-btn-big">
-                <i class="fas fa-play"></i>
-            </button>
-            <button id="next" class="action-btn">
-                <i class="fas fa-forward"></i>
-            </button>
-            <!-- Volume control (if previously added)
-            <div class="volume-container">
-                <i class="fas fa-volume-down"></i>
-                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
-                <i class="fas fa-volume-up"></i>
-            </div>
-            -->
-        </div>
-    </div>
 
-    <!-- Sidebar for track list -->
-    <div class="track-list-container">
-        <h2>Track List</h2>
-        <ul id="track-list">
-            <!-- Tracks will be dynamically inserted here -->
-        </ul>
+    <!-- Start of main content wrapper -->
+    <div class="main-content">
+        <h1>Mixes</h1>
+        <div class="music-container">
+            <div class="music-info">
+                <h4 id="title"></h4>
+                <div class="progress-container">
+                    <span id="current-time">00:00:00</span>
+                    <div class="progress"></div>
+                    <span id="duration">01:00:00</span>
+                </div>
+                <p id="description"></p>
+            </div>
+            <audio src="" id="audio"></audio>
+            <div class="img-container">
+                <img src="" alt="music-cover" id="cover">
+            </div>
+            <div class="navigation">
+                <button id="prev" class="action-btn">
+                    <i class="fas fa-backward"></i>
+                </button>
+                <button id="play" class="action-btn action-btn-big">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button id="next" class="action-btn">
+                    <i class="fas fa-forward"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Sidebar for track list -->
+        <div class="track-list-container">
+            <h2>Track List</h2>
+            <ul id="track-list">
+                <!-- Tracks will be dynamically inserted here -->
+            </ul>
+        </div>
     </div>
+    <!-- End of main content wrapper -->
 
     <footer>
         <p>Copyright &#169; 2024 Ido Haber.</p>
