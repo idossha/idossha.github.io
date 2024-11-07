@@ -42,7 +42,7 @@ const mixes = [
     {
         title: 'Bedroom Session 002 - Yoshev (AKA Influences)',
         audioSrc: '../03_assets_music_audio/Bedroom Session 002 - Yoshev.mp3',
-        coverSrc: '../03_assets_music_audio/Bedroom Session - Hypnagogia.jpg',
+        coverSrc: '../03_assets_music_audio/yoshev.png',
         description: 'Everything from Jazz to techno and movie soundtracks. This track brought together some of my greatest influences.',
         tracks: [
             'Track 1: coming soon...',
@@ -54,7 +54,7 @@ const mixes = [
     {
         title: 'Bedroom Session 003 - NoName (AKA Jazz Elements)',
         audioSrc: '../03_assets_music_audio/Bedroom Session 003 - Jazz Elements.mp3',
-        coverSrc: '../03_assets_music_audio/Bedroom Session - Hypnagogia.jpg',
+        coverSrc: '../03_assets_music_audio/jazz.png',
         description: 'Recorded on March 1, 2022. Some shit, some Jazz.',
         tracks: [
             'Track 1: coming soon...',
@@ -67,7 +67,7 @@ const mixes = [
     {
         title: 'Bedroom Session 004 - BamBa (AKA PHMT)',
         audioSrc: '../03_assets_music_audio/Bedroom Session 004 - BamBa.mp3',
-        coverSrc: '../03_assets_music_audio/Bedroom Session - Hypnagogia.jpg',
+        coverSrc: '../03_assets_music_audio/PHMT.png',
         description: ' Recorded on March 8, 2022. First "traditional" set where I kept the genre pretty consistent throughout',
         tracks: [
             'Track 1: coming soon...',
@@ -79,7 +79,7 @@ const mixes = [
     {
         title: 'Bedroom Session 005 - Dub Jazz Techno',
         audioSrc: '../03_assets_music_audio/Bedroom Session 005 - Dub Jazz Techno.mp3',
-        coverSrc: '../03_assets_music_audio/Bedroom Session - Hypnagogia.jpg',
+        coverSrc: '../03_assets_music_audio/dubjazz.jpg',
         description: 'Recorded on July 18, 2022. Hybrid mix with Vinyl and DDJ400 for the first time.',
         tracks: [
             'Track 1: coming soon...',
@@ -91,7 +91,7 @@ const mixes = [
     {
         title: 'Bedroom Session 006 - w.t.fM.i.A',
         audioSrc: '../03_assets_music_audio/Bedroom Session 006 - w.t.fM.i.A.mp3',
-        coverSrc: '../03_assets_music_audio/Bedroom Session - Hypnagogia.jpg',
+        coverSrc: '../03_assets_music_audio/wtfmia.png',
         description: ' Recorded on September 6, 2022. Minimal House with surprises. Digital mix.',
         tracks: [
             'Track 1: coming soon...',
@@ -103,7 +103,7 @@ const mixes = [
     {
         title: 'Bedroom Session 007 - AugustAux',
         audioSrc: '../03_assets_music_audio/Bedroom Session 007 - AugustAux.mp3',
-        coverSrc: '../03_assets_music_audio/Bedroom Session - Hypnagogia.jpg',
+        coverSrc: '../03_assets_music_audio/augustaux.jpg',
         description: 'Recorded on Feb 19, 2023 for August Soundtrack.',
         tracks: [
             'Track 1: coming soon...',
@@ -115,7 +115,7 @@ const mixes = [
     {
         title: 'Bedroom Session 008 -Adom',
         audioSrc: '../03_assets_music_audio/Bedroom Session 008 - Adom.mp3',
-        coverSrc: '../03_assets_music_audio/Bedroom Session - Hypnagogia.jpg',
+        coverSrc: '../03_assets_music_audio/adom.png',
         description: 'Recorded on April 25, 2023. Vinyl mix of minimal house',
         tracks: [
             'Track 1: coming soon...',
@@ -127,7 +127,7 @@ const mixes = [
     {
         title: 'Bedroom Session 009 - 400',
         audioSrc: '../03_assets_music_audio/Bedroom Session 009 - 400.mp3',
-        coverSrc: '../03_assets_music_audio/Bedroom Session - Hypnagogia.jpg',
+        coverSrc: '../03_assets_music_audio/400.png',
         description: 'XXXXXXX XXXXXXXX',
         tracks: [
             'Track 1: coming soon...',
