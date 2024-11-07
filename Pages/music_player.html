@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Music Player</title>
+    <!-- Viewport meta tag to ensure mobile devices render the page correctly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../00_styling/music_player.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -22,7 +24,7 @@
                     <div class="progress"></div>
                     <span id="duration">01:00:00</span>
                 </div>
-                <p id="description"></p>
+                <p id="description"></p> <!-- Description element -->
             </div>
             <audio src="" id="audio"></audio>
             <div class="img-container">
@@ -56,7 +58,7 @@
         <p>Disclaimer, I do not own the rights for the individual music tracks.</p>
     </footer>
 
-    <!-- Include p5.js library -->
+    <!-- Include scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="../00_functionality/music_player.js"></script>
     <script src="../00_functionality/sketch.js"></script>
