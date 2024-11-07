@@ -3,313 +3,339 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body, html {
-  font-family: "Poppins", sans-serif;
-  height: 100%;
-  margin: 0;
-  overflow: hidden; /* Keep overflow hidden on desktop */
+    font-family: "Poppins", sans-serif;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
 }
 
 /* Canvas styling */
 canvas {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
 }
 
 /* Centering the main content */
 .main-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; /* Centers content vertically */
-  height: 100vh; /* Full viewport height */
-  position: relative;
-  text-align: center;
-  padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    text-align: center;
+    padding: 0 20px;
 }
 
 /* Adjusting the h1 */
 .main-content h1 {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
+    color: #f0f0f0; /* Off white */
 }
 
-/* Adjusting the track list container */
+/* Track list container */
 .track-list-container {
-  position: absolute;
-  top: 50%;
-  right: 40px;
-  transform: translateY(-50%);
-  width: 250px;
-  max-height: 400px;
-  overflow-y: auto;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  z-index: 100;
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+    width: 250px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    z-index: 100;
 }
 
 .track-list-container h2 {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 #track-list {
-  list-style-type: none;
-  padding: 0;
+    list-style-type: none;
+    padding: 0;
 }
 
 #track-list li {
-  margin-bottom: 10px;
-  cursor: pointer;
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
 #track-list li:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 /* FOOTER SECTION */
 footer {
-  width: 100%;
-  padding: 1rem;
-  position: relative;
-  text-align: center;
+    width: 100%;
+    padding: 1rem;
+    position: relative;
+    text-align: center;
 }
 
 footer p {
-  margin-top: 1rem;
+    margin-top: 1rem;
 }
 
 /* MUSIC CONTAINER */
-
 .music-container {
-  background-color: white;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Center items horizontally */
-  padding: 20px 30px;
-  position: relative;
-  z-index: 10;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent */
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 30px;
+    position: relative;
+    z-index: 10;
 }
 
 .img-container {
-  position: relative;
-  width: 110px;
-  height: 110px;
-  margin: 20px 0; /* Add margin to separate from other elements */
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 20px 0;
 }
 
 .img-container::after {
-  content: '';
-  background-color: white;
-  height: 20px;
-  width: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
+    content: '';
+    background-color: white;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .img-container img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  animation: rotate 3s linear infinite;
-  animation-play-state: paused;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: rotate 3s linear infinite;
+    animation-play-state: paused;
 }
 
 .music-container.play .img-container img {
-  animation-play-state: running;
+    animation-play-state: running;
 }
 
 @keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
 
-  to {
-    transform: rotate(360deg);
-  }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
+/* Control Buttons Styling */
 .navigation {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  margin-top: 20px; /* Add margin to separate from other elements */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    margin-top: 20px;
 }
 
 .action-btn {
-  background-color: white;
-  border: 0;
-  color: #dfdbdf;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 10px;
-  margin: 0 30px; /* Adjusted margin for better spacing */
+    background-color: transparent; /* Remove background */
+    border: none; /* Remove border */
+    color: #f0f0f0; /* Off white for visibility */
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px; /* Keep existing spacing */
+    margin: 0 30px;
+    transition: transform 0.3s ease;
+    transform: scale(1); /* Ensure default scale is 1 */
 }
 
 .action-btn-big {
-  color: #cdc2d0;
-  font-size: 30px;
+    font-size: 30px;
 }
 
-.action-btn:focus {
-  outline: 0;
+/* Hover effect for devices that support hover */
+@media (hover: hover) and (pointer: fine) {
+    .action-btn:hover {
+        transform: scale(1.5); /* Subtle hover effect */
+    }
 }
 
+/* Music Info Styling */
 .music-info {
-  text-align: center;
-  margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .music-info h4 {
-  margin: 0;
+    margin: 0;
+    color: black; /* Adjusted color */
 }
 
 .music-info p {
-  margin-top: 10px;
+    margin-top: 10px;
+    color: black; /* Adjusted color */
 }
 
 /* Progress bar styling */
 .progress-container {
-  background: #e0e0e0;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 10px 0;
-  height: 10px; /* Increased height for better visibility */
-  width: 100%;
-  position: relative;
+    background: #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    height: 10px;
+    width: 100%;
+    position: relative;
 }
 
 .progress {
-  background-color: grey;
-  border-radius: 5px;
-  height: 100%;
-  width: 0%;
-  transition: width 0.1s linear;
+    background-color: grey;
+    border-radius: 5px;
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
 }
 
 /* Time display styling */
 #current-time,
 #duration {
-  position: absolute;
-  top: -20px; /* Position above the progress bar */
-  font-size: 12px;
-  color: #000;
+    position: absolute;
+    top: -20px;
+    font-size: 12px;
+    color: #000;
 }
 
-/* Anchor current time to the left */
 #current-time {
-  left: 0;
+    left: 0;
 }
 
-/* Anchor duration to the right */
 #duration {
-  right: 0;
+    right: 0;
 }
 
 /* ICONS */
-
 .icon {
-  cursor: pointer;
-  height: 2rem;
+    cursor: pointer;
+    height: 2rem;
 }
 
 /* Home button styling */
 .home-button {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  font-size: 24px;
-  color: black;
-  padding: 10px;
-  border-radius: 50%;
-  text-decoration: none;
-  z-index: 1000;
-  transition: transform 0.5s ease, color 0.3s ease;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 24px;
+    color: #f0f0f0; /* Off white */
+    padding: 10px;
+    text-decoration: none;
+    z-index: 1000;
+    transition: transform 0.5s ease, color 0.3s ease;
 }
 
 .home-button:hover {
-  color: #C41E3A;
-  transform: scale(1.2);
+    color: #C41E3A;
+    transform: scale(1.2);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  body,
-  html {
-    overflow: auto; /* Allow scrolling on mobile */
-  }
+    body,
+    html {
+        overflow: auto;
+    }
 
-  .main-content {
-    height: auto;
-    margin-top: 60px;
-    padding: 0;
-  }
+    .main-content {
+        height: auto;
+        padding: 0;
+    }
 
-  .music-container {
-    width: 90%;
-    padding: 20px;
-  }
+    .music-container {
+        width: 90%;
+        padding: 20px;
+    }
 
-  .navigation {
-    margin-top: 20px;
-  }
+    .navigation {
+        margin-top: 20px;
+    }
 
-  .action-btn {
-    margin: 10px;
-  }
+    .action-btn {
+        margin: 10px;
+        padding: 10px; /* Keep existing spacing */
+        font-size: 30px; /* Increase button size for mobile */
+    }
 
-  .action-btn-big {
-    font-size: 40px;
-  }
+    .action-btn-big {
+        font-size: 40px;
+    }
 
-  .home-button {
-    top: 10px;
-    left: 10px;
-    font-size: 20px;
-    padding: 5px;
-  }
+    /* Remove hover effect on touch devices */
+    @media (hover: none) {
+        .action-btn:hover {
+            transform: none;
+        }
 
-  .track-list-container {
-    position: relative;
-    top: auto;
-    right: auto;
-    transform: none;
-    width: 90%;
-    max-height: none;
-    margin-top: 20px;
-  }
+        .action-btn:active {
+            transform: scale(1.2); /* Slight scale on tap */
+        }
+    }
 
-  .progress-container {
-    height: 10px;
-  }
+    /* Adjusted Home Button Styling for Mobile */
+    .home-button {
+        position: relative;
+        top: 10px;
+        left: 10px;
+        font-size: 20px;
+        padding: 5px;
+        z-index: 1000;
+        color: #f0f0f0; /* Off white */
+        text-decoration: none;
+    }
 
-  #current-time,
-  #duration {
-    top: -20px; /* Adjusted position for mobile */
-    font-size: 14px;
-    color: #000;
-  }
+    .home-button:hover {
+        color: #C41E3A;
+        transform: scale(1.2);
+    }
 
-  footer {
-    position: relative;
-  }
+    .track-list-container {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        width: 90%;
+        max-height: none;
+        margin-top: 20px;
+    }
+
+    .progress-container {
+        height: 10px;
+    }
+
+    #current-time,
+    #duration {
+        top: -20px;
+        font-size: 14px;
+        color: #000;
+    }
+
+    footer {
+        position: relative;
+    }
 }

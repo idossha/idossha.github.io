@@ -238,7 +238,6 @@ let isDragging = false;
 
 // Functions to handle dragging
 function startDrag(e) {
-    e.preventDefault();
     isDragging = true;
     updateProgressOnDrag(e);
 }
@@ -249,7 +248,6 @@ function stopDrag() {
 
 function updateProgressOnDrag(e) {
     if (isDragging) {
-        e.preventDefault();
         const width = progressContainer.clientWidth;
         const rect = progressContainer.getBoundingClientRect();
         let offsetX;
@@ -276,6 +274,8 @@ function updateProgressOnDrag(e) {
     }
 }
 
+
+
 // Event listeners
 playBtn.addEventListener("click", () => {
     const isPlaying = musicContainer.classList.contains("play");
@@ -295,7 +295,7 @@ audio.addEventListener("timeupdate", updateProgress);
 // Remove existing progressContainer click listener if desired
 // progressContainer.addEventListener("click", setProgress);
 
-// Add event listeners for dragging
+// Event listeners for dragging
 progressContainer.addEventListener('mousedown', startDrag);
 progressContainer.addEventListener('touchstart', startDrag);
 
@@ -303,7 +303,7 @@ document.addEventListener('mouseup', stopDrag);
 document.addEventListener('touchend', stopDrag);
 
 document.addEventListener('mousemove', updateProgressOnDrag);
-document.addEventListener('touchmove', updateProgressOnDrag);
+document.addEventListener('touchmove', updateProgressOnDrag, { passive: false });
 
 // Optionally keep the click event to allow clicking on the progress bar
 progressContainer.addEventListener("click", setProgress);
