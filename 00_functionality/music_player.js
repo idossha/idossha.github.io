@@ -137,7 +137,6 @@ const mixes = [
         ]
     }
 ];
-
 // Keep track of mixes
 let mixIndex = 0;
 
@@ -148,11 +147,10 @@ function loadMix(mix) {
     title.innerText = mix.title;
     audio.src = mix.audioSrc;
     cover.src = mix.coverSrc;
-    descriptionEl.innerText = mix.description; // Add this line
+    descriptionEl.innerText = mix.description;
     updateTrackList(mix.tracks);
 }
 
-// Update the track list in the sidebar
 function updateTrackList(tracks) {
     const trackList = document.querySelector('#track-list');
     trackList.innerHTML = ''; // Clear existing tracks
@@ -171,15 +169,8 @@ function playSong() {
     playBtn.querySelector('i.fas').classList.add('fa-pause');
 
     audio.play();
-
-    // Commented out to prevent errors
-    // if (audioContext.state === 'suspended') {
-    //     audioContext.resume();
-    // }
 }
 
-
-// Pause the song
 function pauseSong() {
     musicContainer.classList.remove("play");
     playBtn.querySelector('i.fas').classList.add('fa-play');
@@ -188,7 +179,6 @@ function pauseSong() {
     audio.pause();
 }
 
-// Previous mix
 function prevMix() {
     mixIndex--;
     if (mixIndex < 0) {
@@ -198,7 +188,6 @@ function prevMix() {
     playSong();
 }
 
-// Next mix
 function nextMix() {
     mixIndex++;
     if (mixIndex > mixes.length - 1) {
@@ -234,13 +223,57 @@ function formatTime(time) {
     }
     return `${minutes}:${seconds}`;
 }
-// Set progress bar
+
+// Set progress bar on click (you can keep this if you want to allow click-to-seek)
 function setProgress(e) {
     const width = progressContainer.clientWidth;
     const clickX = e.offsetX;
     const duration = audio.duration;
 
     audio.currentTime = (clickX / width) * duration;
+}
+
+// Variables to track dragging
+let isDragging = false;
+
+// Functions to handle dragging
+function startDrag(e) {
+    e.preventDefault();
+    isDragging = true;
+    updateProgressOnDrag(e);
+}
+
+function stopDrag() {
+    isDragging = false;
+}
+
+function updateProgressOnDrag(e) {
+    if (isDragging) {
+        e.preventDefault();
+        const width = progressContainer.clientWidth;
+        const rect = progressContainer.getBoundingClientRect();
+        let offsetX;
+
+        if (e.type.startsWith('touch')) {
+            offsetX = e.touches[0].clientX - rect.left;
+        } else {
+            offsetX = e.clientX - rect.left;
+        }
+
+        if (offsetX < 0) offsetX = 0;
+        if (offsetX > width) offsetX = width;
+
+        const duration = audio.duration;
+
+        audio.currentTime = (offsetX / width) * duration;
+
+        // Update progress bar width
+        const progressPercent = (audio.currentTime / duration) * 100;
+        progress.style.width = `${progressPercent}%`;
+
+        // Update current time display
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+    }
 }
 
 // Event listeners
@@ -259,6 +292,20 @@ nextBtn.addEventListener("click", nextMix);
 
 audio.addEventListener("timeupdate", updateProgress);
 
+// Remove existing progressContainer click listener if desired
+// progressContainer.addEventListener("click", setProgress);
+
+// Add event listeners for dragging
+progressContainer.addEventListener('mousedown', startDrag);
+progressContainer.addEventListener('touchstart', startDrag);
+
+document.addEventListener('mouseup', stopDrag);
+document.addEventListener('touchend', stopDrag);
+
+document.addEventListener('mousemove', updateProgressOnDrag);
+document.addEventListener('touchmove', updateProgressOnDrag);
+
+// Optionally keep the click event to allow clicking on the progress bar
 progressContainer.addEventListener("click", setProgress);
 
 audio.addEventListener("ended", nextMix);

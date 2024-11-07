@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Music Player</title>
-    <!-- Viewport meta tag to ensure mobile devices render the page correctly -->
+    <!-- Viewport meta tag for mobile responsiveness -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to the CSS file -->
     <link rel="stylesheet" href="../00_styling/music_player.css">
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -13,19 +15,22 @@
         <i class="fas fa-home"></i>
     </a>    
 
-    <!-- Start of main content wrapper -->
+    <!-- Main content wrapper -->
     <div class="main-content">
         <h1>Mixes</h1>
         <div class="music-container">
             <div class="music-info">
                 <h4 id="title"></h4>
-                <div class="progress-container">
-                    <span id="current-time">00:00:00</span>
-                    <div class="progress"></div>
-                    <span id="duration">01:00:00</span>
-                </div>
-                <p id="description"></p> <!-- Description element -->
+                <p id="description"></p>
             </div>
+
+            <!-- Moved progress-container outside of music-info -->
+            <div class="progress-container">
+                <span id="current-time">00:00</span>
+                <div class="progress"></div>
+                <span id="duration">00:00</span>
+            </div>
+
             <audio src="" id="audio"></audio>
             <div class="img-container">
                 <img src="" alt="music-cover" id="cover">
@@ -43,7 +48,7 @@
             </div>
         </div>
 
-        <!-- Sidebar for track list -->
+        <!-- Track list -->
         <div class="track-list-container">
             <h2>Track List</h2>
             <ul id="track-list">
@@ -55,7 +60,7 @@
 
     <footer>
         <p>Copyright &#169; 2024 Ido Haber.</p>
-        <p>Disclaimer, I do not own the rights for the individual music tracks.</p>
+        <p>Disclaimer: I do not own the rights for the individual music tracks.</p>
     </footer>
 
     <!-- Include scripts -->
