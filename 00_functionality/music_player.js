@@ -77,7 +77,7 @@ const mixes = [
         ]
     },
     {
-        title: 'Bedroom Session 005 - Dub Jazz Techno',
+        title: 'Bedroom Session 005 - Dub Jazz / House',
         audioSrc: '../03_assets_music_audio/Bedroom Session 005 - Dub Jazz Techno.mp3',
         coverSrc: '../03_assets_music_audio/dubjazz.jpg',
         description: 'Recorded on July 18, 2022. Hybrid mix on technics and DDJ400.',
