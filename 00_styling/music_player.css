@@ -238,6 +238,7 @@ footer p {
     height: 2rem;
 }
 
+
 /* Home button styling */
 .home-button {
     position: absolute;
@@ -256,7 +257,7 @@ footer p {
     transform: scale(1.2);
 }
 
-/* Records button styling (new) */
+/* Records button styling (matching home button, but on the right side) */
 .records-button {
     position: absolute;
     top: 40px;
@@ -273,6 +274,7 @@ footer p {
     color: #C41E3A;
     transform: scale(1.2);
 }
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
