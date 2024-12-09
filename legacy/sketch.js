@@ -1,4 +1,3 @@
-// sketch.js
 
 let audioElement;
 let audioContext;
