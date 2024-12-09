@@ -90,7 +90,7 @@ const mixes = [
     },
     {
         title: 'Bedroom Session 006 - w.t.fM.i.A',
-        audioSrc: '../03_assets_music_audio/Bedroom Session 006 - w.t.fM.i.A.mp3',
+        audioSrc: '../03_assets_music_audio/Bedroom Session 006 - w.T.fM.i.A.mp3',
         coverSrc: '../03_assets_music_audio/wtfmia.png',
         description: ' Recorded on September 6, 2022. Minimal House with surprises. Digital.',
         tracks: [
