@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Records</title>
+  <link rel="stylesheet" href="../00_styling/records.css"/>
+</head>
+<body>
+  <header>
+    <h1>Records</h1>
+    <!-- Subtitle to show how many records are in the collection -->
+    <h2 id="record-count" style="text-align: right; margin-right: 20px;"></h2>
+  </header>
+  
+  <section id="collection-grid" class="collection-grid"></section>
+
+  <!-- Load Papa Parse first -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.1/papaparse.min.js"></script>
+  <!-- Then load your custom JS -->
+  <script src="../00_functionality/records.js"></script>
+</body>
+</html>
+

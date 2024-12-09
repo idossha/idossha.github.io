@@ -1,3 +1,4 @@
+
 /* GENERAL */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
@@ -231,7 +232,7 @@ footer p {
     right: 0;
 }
 
-/* ICONS */
+/* ICON */
 .icon {
     cursor: pointer;
     height: 2rem;
@@ -251,6 +252,24 @@ footer p {
 }
 
 .home-button:hover {
+    color: #C41E3A;
+    transform: scale(1.2);
+}
+
+/* Records button styling (new) */
+.records-button {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 24px;
+    color: #f0f0f0; /* Off white */
+    padding: 10px;
+    text-decoration: none;
+    z-index: 1000;
+    transition: transform 0.5s ease, color 0.3s ease;
+}
+
+.records-button:hover {
     color: #C41E3A;
     transform: scale(1.2);
 }
@@ -278,26 +297,24 @@ footer p {
 
     .action-btn {
         margin: 10px;
-        padding: 10px; /* Keep existing spacing */
-        font-size: 30px; /* Increase button size for mobile */
+        padding: 10px;
+        font-size: 30px;
     }
 
     .action-btn-big {
         font-size: 40px;
     }
 
-    /* Remove hover effect on touch devices */
     @media (hover: none) {
         .action-btn:hover {
             transform: none;
         }
 
         .action-btn:active {
-            transform: scale(1.2); /* Slight scale on tap */
+            transform: scale(1.2);
         }
     }
 
-    /* Adjusted Home Button Styling for Mobile */
     .home-button {
         position: relative;
         top: 10px;
@@ -305,11 +322,28 @@ footer p {
         font-size: 20px;
         padding: 5px;
         z-index: 1000;
-        color: #f0f0f0; /* Off white */
+        color: #f0f0f0;
         text-decoration: none;
     }
 
     .home-button:hover {
+        color: #C41E3A;
+        transform: scale(1.2);
+    }
+
+    /* For mobile, adjust records button similarly */
+    .records-button {
+        position: relative;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        padding: 5px;
+        z-index: 1000;
+        color: #f0f0f0;
+        text-decoration: none;
+    }
+
+    .records-button:hover {
         color: #C41E3A;
         transform: scale(1.2);
     }
@@ -339,3 +373,4 @@ footer p {
         position: relative;
     }
 }
+
