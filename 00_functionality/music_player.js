@@ -16,6 +16,18 @@ const descriptionEl = document.querySelector('#description');
 // Mixes data with track lists
 const mixes = [
     {
+        title: 'IdoHaber Live @ JiggyJamz',
+        audioSrc: '../03_assets_music_audio/IdoHaber_ JiggyJamz_LIVE.mp3',
+        coverSrc: '../03_assets_music_audio/IdoHaber_ JiggyJamz_LIVE.jpg',
+        description: 'Recorded on August 2023. Messing around with new digz',
+        tracks: [
+            'Track 1: coming soon...',
+            'Track 2: coming soon...',
+            'Track 3: coming soon...',
+            // Add more tracks as needed
+        ]
+    },
+    {
         title: 'IdoHaber x GeoffK 2023-06-22',
         audioSrc: '../03_assets_music_audio/IdoHaber x GeoffK 2023-06-22.mp3',
         coverSrc: '../03_assets_music_audio/IdoHaber x GeoffK 2023-06-22.jpg',

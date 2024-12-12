@@ -1,4 +1,3 @@
-
 // records.js
 
 // Path to your CSV file
@@ -11,6 +10,7 @@ function init() {
     dynamicTyping: false,
     complete: function(results) {
       const records = results.data;
+      window.allRecords = records; // Make available globally
       displayRecords(records);
       // Update the subtitle with the count of records
       const countElement = document.getElementById("record-count");
@@ -26,6 +26,7 @@ function init() {
 
 function displayRecords(records) {
   const container = document.getElementById("collection-grid");
+  container.innerHTML = ''; // Clear old entries if any
   
   for (const record of records) {
     const releaseId = record['release_id'];
@@ -96,4 +97,3 @@ function createRecordCard(record, imageUrl) {
 }
 
 init();
-
