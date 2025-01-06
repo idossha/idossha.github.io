@@ -1,33 +1,93 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ido Haber Portfolio</title>
-    <link rel="icon" type="image/png" href="favicon.png" sizes="32x32" />
-    <link rel="stylesheet" href="../main.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.2/css/academicons.min.css" crossorigin="anonymous" />
-
-    <!-- Particles.js CDN -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <meta charset="UTF-8" />
+  <title>Minimalist Portfolio</title>
+  <!-- Link to External CSS -->
+  <link rel="stylesheet" href="../00_styling/neuro.css" />
 </head>
-<a href="../index.html" class="home-button">
-  <i class="fas fa-home"></i>
-</a>    
-<div id="particle-image" data-params-src="../00_functionality/particle_img/params.json"></div>
-<script type="text/javascript" src="../00_functionality/particle_img/particle-image.js" defer></script>
 <body>
-  <canvas></canvas>
-    <section id="content">
-        <h1>Neuro Section</h1>
-        <p>place holder.</p>
-        <p>Place holder</p>
+  
+  <!-- Left Nav -->
+  <nav class="left-nav">
+    <div class="nav-logo">
+      <a href="#">Neuro Projects</a>
+    </div>
+    <ul class="nav-links">
+      <li data-target="section1" class="active-link">TI-CSC</li>
+      <li data-target="section2">fast_ICA</li>
+      <li data-target="section3">auto_viz</li>
+      <li data-target="section4">TI_Montage</li>
+      <li data-target="section5">dwi2dti</li>
+      <li data-target="section5">SW-detect</li>
+      <li data-target="section5">SourceRecon</li>
+    </ul>
+  </nav>
+
+  <!-- Main Content Wrapper -->
+  <main class="content-wrapper">
+    <!-- Project 1 -->
+    <section id="section1" class="content-section active-section">
+      <h1>Temporal Interference Toolbox</h1>
+      <p>
+        The TI-CSC Toolbox designed for advanced simulations and analyses related to Temporal Interference (TI). 
+        It integrates several open-source applications along with custom in-house scripts, providing a robust 
+        platform for academic research. The toolbox is intended strictly for academic, non-profit use.
+        <br><br>
+        Tech Used: Bash, Python, MATLAB, Docker Compose<br>
+        Software: SimNIBS, Gmsh, Freeview, FSL<br>
+        Compatibility: Linux, macOS, Windows
+      </p>
     </section>
+
+    <!-- Project 2 -->
+    <section id="section2" class="content-section">
+      <h1>Independant Component Analysis</h1>
+      <!-- Inserted HTML content starts here -->
+      <div style="margin-top: 1em;">
+
+        <h2>Parallelized Independant Component Analysis</h2>
+        <p>
+          This project is a streamlined, automated pipeline for performing Independent Component 
+          Analysis (ICA) on EEG datasets using the AMICA algorithm.
+        </p>
+        <ul>
+          <br>
+          run_ica.sh: A Bash script that facilitates command-line or HPC batch processing of the <em>do_ica.m</em> script.<br>
+          do_ica.m: A MATLAB script that sets up the environment, initializes EEGLAB, specifies subjects/nights/data, and calls the main ICA routine.
+        </ul>
+         <br>
+
+        <h2>Tech Used</h2>
+        <ul>
+          <li><strong>MATLAB &amp; EEGLAB:</strong> Main environment for EEG data processing, including the <em>runamica15</em> plugin.</li>
+          <li><strong>Shell Scripting (Bash):</strong> Automates execution and HPC integration.</li>
+          <li><strong>Parallel Computing (MATLAB parpool):</strong> Distributes ICA computations across multiple CPU cores.</li>
+          <li><strong>High-Performance Computing (HPC):</strong> Scripts are designed for seamless use on HPC clusters.</li>
+        </ul><br>
+
+        <h2>Adaptation &amp; Modification</h2>
+        <ul>
+          <li><strong>Different ICA Algorithms:</strong> Swap out AMICA for alternatives (e.g., Infomax) by modifying the main function calls.</li>
+          <li><strong>Custom Preprocessing:</strong> Insert filtering, artifact rejection, or channel re-referencing as needed.</li>
+          <li><strong>Workflow Scalability:</strong> Integrate with job schedulers (SLURM, PBS, etc.) for large HPC systems.</li>
+          <li><strong>Other Data Types:</strong> Though designed for EEG, the parallel approach can be adapted to fMRI, MEG, or other signal data requiring decomposition.</li>
+        </ul>
+
+      </div>
+      <!-- Inserted HTML content ends here -->
+    </section>
+
+    <!-- Project 3 -->
+    <section id="section3" class="content-section">
+      <h1>Project 3</h1>
+      <p>
+        An explanation of your third project. Make sure each piece is distinct but consistent.
+      </p>
+    </section>
+  </main>
+
+  <!-- Link to External JS -->
+  <script src="../00_functionality/neuro.js"></script>
 </body>
 </html>
-
