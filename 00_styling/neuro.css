@@ -1,125 +1,289 @@
+
 /* 
   Basic Reset & Typography
   ------------------------ */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    height: 100%;
-    width: 100%;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    background-color: #fafafa;
-    color: #111;
-  }
-  
-  /* 
-    Layout
-    ------------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: #fafafa;
+  color: #111;
+}
+
+/* 
+  Layout
+  ------------------------ */
+body {
+  display: flex;
+  flex-direction: row; /* Default to row for landscape */
+  min-height: 100vh;
+}
+
+/* Navigation */
+.left-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1.5rem;
+  width: 220px; /* Maintains nav width in landscape */
+  background-color: #f5f5f5;
+}
+
+.nav-logo a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #111;
+  transition: color 0.3s;
+}
+
+.nav-logo a:hover {
+  color: #555;
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.nav-links li {
+  cursor: pointer;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.nav-links li:hover {
+  color: #777;
+}
+
+.nav-links li.active-link {
+  color: #111;
+  font-weight: 600;
+}
+
+/* Minimal underline for active link */
+.nav-links li.active-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: #111;
+}
+
+/* 
+  Main Content Wrapper
+  ------------------------ */
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Ensure sections stack vertically */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sections */
+.content-section {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  padding: 4rem 2rem;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.5s ease, transform 0.5s ease, left 0.5s ease;
+}
+
+.content-section.active-section {
+  left: 0;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.content-section h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.content-section p, 
+.content-section ul {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.content-section ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+}
+
+/* ================================
+   SECTION 1: FLEX LAYOUT
+   ================================ */
+
+/* Container for text + carousel in Section 1 */
+.section1-inner {
+  display: flex;
+  flex-direction: row;
+  gap: 4rem; /* Maintains spacing in landscape */
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* Text area in Section 1 */
+.section1-text {
+  flex: 1 1 60%; /* Takes up 60% of the container */
+  max-width: 600px; /* Optional constraint */
+}
+
+/* Carousel area */
+.media-gallery {
+  flex: 1 1 40%; /* Takes up 40% of the container */
+  position: relative;
+  max-width: 600px; /* Ensures it doesn't exceed container */
+  width: auto;
+  text-align: center;
+}
+
+/* Hide all media-item by default except .active */
+.media-item {
+  display: none;
+}
+
+.media-item.active {
+  display: block;
+}
+
+/* Maintain aspect ratio for media */
+.media-gallery img,
+.media-gallery video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Arrows */
+.arrow-left,
+.arrow-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  font-size: 2em;
+  padding: 0.2em 0.5em;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: rgba(221, 221, 221, 0.8);
+  color: #333;
+  transition: background-color 0.3s;
+}
+
+.arrow-left { left: -4rem; }
+.arrow-right { right: -4rem; }
+
+.arrow-left:hover,
+.arrow-right:hover {
+  background-color: rgba(187, 187, 187, 0.8);
+}
+
+/* Description text under each media item */
+.media-description {
+  margin-top: 0.5em;
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* ================================
+   RESPONSIVE / SMALL SCREENS
+   ================================ */
+@media (max-width: 1024px) {
+  /* Optional: Adjust layout for medium screens if needed */
+}
+
+@media (max-width: 768px) {
+  /* Stack body vertically */
   body {
-    display: flex;
-    flex-direction: row;
+    flex-direction: column;
   }
   
-  /* Left Navigation */
+  /* Make nav horizontal at the top */
   .left-nav {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 2rem 1.5rem;
-    width: 200px;  /* adjust as needed */
-    min-width: 160px;
-    /* No strong border or background to keep it minimal */
-  }
-  
-  .nav-logo a {
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: #111;
-    transition: color 0.3s;
-  }
-  
-  .nav-logo a:hover {
-    color: #555;
-  }
-  
-  /* Navigation Links */
-  .nav-links {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-  }
-  
-  .nav-links li {
-    cursor: pointer;
-    font-size: 1rem;
-    position: relative;
-    transition: color 0.3s;
-  }
-  
-  .nav-links li:hover {
-    color: #777;
-  }
-  
-  .nav-links li.active-link {
-    color: #111;
-    font-weight: 600;
-  }
-  
-  /* Minimal underline effect for active link */
-  .nav-links li.active-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
+    flex-direction: row;
     width: 100%;
-    height: 1px;
-    background-color: #111;
+    align-items: center;
+    padding: 1rem;
   }
   
-  /* 
-    Main Content
-    ------------------------ */
+  .nav-logo {
+    margin-bottom: 0;
+    margin-right: 1rem;
+  }
+  
+  .nav-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-left: auto;
+  }
+  
   .content-wrapper {
-    flex: 1;
-    display: flex;
-    position: relative;
-    overflow: hidden; /* We will slide/fade sections in and out */
+    position: static;
+    overflow: visible;
+    flex-direction: column;
   }
   
   .content-section {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    width: 100%;
-    padding: 4rem 2rem;
-    /* Fade & slide transition */
-    opacity: 0;
-    transform: translateX(50px);
-    transition: 
-      opacity 0.5s ease, 
-      transform 0.5s ease, 
-      left 0.5s ease;
-  }
-  
-  .content-section.active-section {
-    left: 0;
+    position: static;
     opacity: 1;
-    transform: translateX(0);
+    transform: none;
+    transition: none;
+    left: auto;
+    width: 100%;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
   }
   
-  .content-section h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+  .section1-inner {
+    flex-direction: column;
+    gap: 1.5rem;
   }
   
-  .content-section p {
-    font-size: 1rem;
-    line-height: 1.6;
-    max-width: 600px;
+  .media-gallery {
+    width: 100%;
+    max-width: 100%;
   }
   
+  .arrow-left { left: 0.5rem; }
+  .arrow-right { right: 0.5rem; }
+}
+
+/* ================================
+   ORIENTATION-BASED RESPONSIVENESS
+   ================================ */
+@media screen and (orientation: portrait) and (min-width: 769px) {
+  .section1-inner {
+    flex-direction: column; /* Stack text above carousel */
+    gap: 1.5rem;
+  }
+  
+  .media-gallery {
+    width: 100%;
+    max-width: 600px; /* Maintain max-width if desired */
+    padding-left: 5rem;
+  }
+  
+  .arrow-left { left: 1rem; }
+  .arrow-right { right: -4rem; }
+}
+

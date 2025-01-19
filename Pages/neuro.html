@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 </head>
 <body>
   
-  <!-- Left Nav -->
+  <!-- Left / Top Navigation -->
   <nav class="left-nav">
     <div class="nav-logo">
       <a href="#">Neuro Projects</a>
@@ -19,75 +20,181 @@
       <li data-target="section3">auto_viz</li>
       <li data-target="section4">TI_Montage</li>
       <li data-target="section5">dwi2dti</li>
-      <li data-target="section5">SW-detect</li>
-      <li data-target="section5">SourceRecon</li>
+      <li data-target="section6">SW-detect</li>
+      <li data-target="section7">SourceRecon</li>
     </ul>
   </nav>
 
   <!-- Main Content Wrapper -->
   <main class="content-wrapper">
+    
     <!-- Project 1 -->
     <section id="section1" class="content-section active-section">
-      <h1>Temporal Interference Toolbox</h1>
-      <p>
-        The TI-CSC Toolbox designed for advanced simulations and analyses related to Temporal Interference (TI). 
-        It integrates several open-source applications along with custom in-house scripts, providing a robust 
-        platform for academic research. The toolbox is intended strictly for academic, non-profit use.
-        <br><br>
-        Tech Used: Bash, Python, MATLAB, Docker Compose<br>
-        Software: SimNIBS, Gmsh, Freeview, FSL<br>
-        Compatibility: Linux, macOS, Windows
-      </p>
+      <div class="section1-inner">
+        
+        <!-- TEXT BLOCK -->
+        <div class="section1-text">
+          <h1>Temporal Interference Toolbox</h1>
+          <p>
+            The TI-CSC Toolbox is designed for advanced simulations and analyses of Temporal Interference (TI) extracranial stimulation. 
+            It integrates several open-source applications along with custom in-house scripts, providing a robust 
+            platform for academic research. The toolbox is intended strictly for academic, non-profit use.
+            <br><br>
+            <strong>Tech Used:</strong> Docker Compose, MATLAB MCC<br>
+            <strong>Written in:</strong> Bash, Python, MATLAB<br>
+            <strong>Software:</strong> SimNIBS, Gmsh, Freeview, FSL<br>
+            <strong>Compatibility:</strong> Linux, macOS, Windows<br>
+            <strong>Status:</strong> Actively maintained
+            <br><br>
+            <strong>Benefits:</strong>
+            <ol>
+              <li>High throughput for large scale clinical studies.</li>
+              <li>Easy customization for different stimulation protocols.</li>    
+              <li>Can be deployed on remote server, and different operating systems.</li>
+              <li>Reproducible.</li>
+              <li>Open source.</li>
+            </ol>
+            <a href="https://github.com/idossha/TI-CSC" target="_blank">Toolbox Codebase</a> 
+            <a href="https://github.com/idossha/TI-CSC_loader" target="_blank">Loader Program</a>
+          </p>
+        </div>
+        
+        <!-- CAROUSEL BLOCK -->
+        <div class="media-gallery">
+          <!-- Left arrow -->
+          <button class="arrow-left" aria-label="Previous">&#10094;</button>
+      
+          <!-- Media Items -->
+          <div class="media-item active">
+            <video src="../05_assets_neuro/ti-csc/TI_analyzer_movie.mov" controls></video>
+            <p class="media-description">
+              Short video showcasing the CLI of loading the toolbox and running the analyzer.
+            </p>
+          </div>
+
+          <div class="media-item">
+            <img src="../05_assets_neuro/ti-csc/mesh.png" alt="Mesh Visualization" />
+            <p class="media-description">
+              Gmsh visualization of the T1 segmentation in mesh format.
+            </p>
+          </div>
+
+          <div class="media-item">
+            <img src="../05_assets_neuro/ti-csc/whole_head_field.png" alt="Whole Head Field" />
+            <p class="media-description">
+              Gmsh visualization of the TI field distribution in the whole head.
+            </p>
+          </div>
+
+          <div class="media-item">
+            <img src="../05_assets_neuro/ti-csc/gm_field.png" alt="Grey Matter Field" />
+            <p class="media-description">
+              TI field distribution and intensity in the grey matter.
+            </p>
+          </div>
+
+          <div class="media-item">
+            <img src="../05_assets_neuro/ti-csc/gm_wm_field.png" alt="Grey and White Matter Field" />
+            <p class="media-description">
+              TI field distribution and intensity in both grey matter and white matter.
+            </p>
+          </div>
+
+          <div class="media-item">
+            <img src="../05_assets_neuro/ti-csc/grey-matter.png" alt="Grey Matter Overlay" />
+            <p class="media-description">
+              TI field distribution and intensity in the GM on top of T1 scan.
+            </p>
+          </div>
+
+          <div class="media-item">
+            <img src="../05_assets_neuro/ti-csc/white-matter.png" alt="White Matter Overlay" />
+            <p class="media-description">
+              TI field distribution and intensity in the WM on top of T1 scan.
+            </p>
+          </div>
+
+          <div class="media-item">
+            <img src="../05_assets_neuro/ti-csc/L_Insula_highlighted_visualization.png" alt="Electrode Montage" />
+            <p class="media-description">
+              Automatic visualization of electrode montage of the simulation.
+            </p>
+          </div>
+
+          <!-- Right arrow -->
+          <button class="arrow-right" aria-label="Next">&#10095;</button>
+        </div><!-- end .media-gallery -->
+      </div><!-- end .section1-inner -->
     </section>
+    <!-- End of Project 1 Section -->
 
     <!-- Project 2 -->
     <section id="section2" class="content-section">
-      <h1>Independant Component Analysis</h1>
-      <!-- Inserted HTML content starts here -->
+      <h1>Independent Component Analysis</h1>
       <div style="margin-top: 1em;">
-
-        <h2>Parallelized Independant Component Analysis</h2>
         <p>
-          This project is a streamlined, automated pipeline for performing Independent Component 
+          This project is a streamlined, automated pipeline for performing extremely high throughput Independent Component 
           Analysis (ICA) on EEG datasets using the AMICA algorithm.
-        </p>
+        </p><br>
+        <strong>Tech Used:</strong>
         <ul>
-          <br>
-          run_ica.sh: A Bash script that facilitates command-line or HPC batch processing of the <em>do_ica.m</em> script.<br>
-          do_ica.m: A MATLAB script that sets up the environment, initializes EEGLAB, specifies subjects/nights/data, and calls the main ICA routine.
-        </ul>
-         <br>
-
-        <h2>Tech Used</h2>
-        <ul>
-          <li><strong>MATLAB &amp; EEGLAB:</strong> Main environment for EEG data processing, including the <em>runamica15</em> plugin.</li>
-          <li><strong>Shell Scripting (Bash):</strong> Automates execution and HPC integration.</li>
-          <li><strong>Parallel Computing (MATLAB parpool):</strong> Distributes ICA computations across multiple CPU cores.</li>
-          <li><strong>High-Performance Computing (HPC):</strong> Scripts are designed for seamless use on HPC clusters.</li>
+          <li>MATLAB Parallel Toolbox: allows for parallel computing based on the number of cores/threads available.</li>
+          <li>EEGLAB & AMICA Plugin: Main environment for EEG data processing.</li>
+          <li>Shell Scripting (Bash): Allows for a simple entry point in remote Linux-based servers.</li>
         </ul><br>
-
-        <h2>Adaptation &amp; Modification</h2>
-        <ul>
-          <li><strong>Different ICA Algorithms:</strong> Swap out AMICA for alternatives (e.g., Infomax) by modifying the main function calls.</li>
-          <li><strong>Custom Preprocessing:</strong> Insert filtering, artifact rejection, or channel re-referencing as needed.</li>
-          <li><strong>Workflow Scalability:</strong> Integrate with job schedulers (SLURM, PBS, etc.) for large HPC systems.</li>
-          <li><strong>Other Data Types:</strong> Though designed for EEG, the parallel approach can be adapted to fMRI, MEG, or other signal data requiring decomposition.</li>
-        </ul>
-
+        <p>
+          <strong>Benefits:</strong>
+          <ul>
+            <li>High Throughput: Can perform ICA on large datasets in parallel.</li>
+            <li>Flexibility: Can be adapted to different high compute algorithms and workflows.</li>
+            <li>Open Source: Codebase is open source and can be used for free (given MATLAB is available).</li>
+          </ul>
+          <a href="https://github.com/idossha/fast_ICA" target="_blank">fast_ICA Codebase</a> 
+          <a href="https://github.com/sccn/eeglab" target="_blank">EEGLAB</a>  
+          <a href="https://www.mathworks.com/products/parallel-computing.html" target="_blank">MATLAB Parallel Computing</a>  
+        </p>
       </div>
-      <!-- Inserted HTML content ends here -->
     </section>
 
     <!-- Project 3 -->
     <section id="section3" class="content-section">
-      <h1>Project 3</h1>
-      <p>
-        An explanation of your third project. Make sure each piece is distinct but consistent.
-      </p>
+      <h1>Automatic Visualizer</h1>
+      <p>...</p>
     </section>
+
+    <section id="section4" class="content-section">
+      <h1>Temporal Interference Montage Profiling</h1>
+      <p>...</p>
+    </section>   
+
+    <section id="section5" class="content-section">
+      <h1>Diffusion Weighted Imaging to Diffusion Tensor Imaging</h1>
+      <p>...</p>
+    </section>
+
+    <section id="section6" class="content-section">
+      <h1>EEG Slow Wave Analysis</h1>
+      <ul>
+        <li>Codebase for the processing and analysis of EEG slow waves.</li>
+        <li>The codebase is designed to be modular and extensible, allowing for easy integration with other data types.</li>
+        <li>Libraries used: MNE, YASA, NumPy, SciPy, Matplotlib, Pandas.</li>
+      </ul>
+    </section>
+
+    <section id="section7" class="content-section">
+      <h1>EEG Source Reconstruction</h1>
+      <ul>
+        <li>Codebase for the reconstruction of EEG sources from EEG recordings.</li>
+        <li>The codebase is designed to be modular and extensible, allowing for easy integration with other data types.</li>
+        <li>Libraries used: Brainstorm, EEGLAB.</li>
+      </ul>
+    </section>
+
   </main>
 
   <!-- Link to External JS -->
   <script src="../00_functionality/neuro.js"></script>
+
 </body>
 </html>
+
