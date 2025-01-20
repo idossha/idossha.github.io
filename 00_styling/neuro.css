@@ -82,6 +82,7 @@ body {
   background-color: #111;
 }
 
+
 /* 
   Main Content Wrapper
   ------------------------ */
@@ -129,11 +130,11 @@ body {
 }
 
 /* ================================
-   SECTION 1: FLEX LAYOUT
+   SECTION INNER: FLEX LAYOUT
    ================================ */
 
-/* Container for text + carousel in Section 1 */
-.section1-inner {
+/* Container for text + carousel in all sections */
+.section-inner {
   display: flex;
   flex-direction: row;
   gap: 4rem; /* Maintains spacing in landscape */
@@ -141,13 +142,13 @@ body {
   justify-content: flex-start;
 }
 
-/* Text area in Section 1 */
-.section1-text {
+/* Text area in all sections */
+.section-text {
   flex: 1 1 60%; /* Takes up 60% of the container */
   max-width: 600px; /* Optional constraint */
 }
 
-/* Carousel area */
+/* Carousel area in all sections */
 .media-gallery {
   flex: 1 1 40%; /* Takes up 40% of the container */
   position: relative;
@@ -254,7 +255,7 @@ body {
     margin-bottom: 2rem;
   }
   
-  .section1-inner {
+  .section-inner {
     flex-direction: column;
     gap: 1.5rem;
   }
@@ -272,7 +273,7 @@ body {
    ORIENTATION-BASED RESPONSIVENESS
    ================================ */
 @media screen and (orientation: portrait) and (min-width: 769px) {
-  .section1-inner {
+  .section-inner {
     flex-direction: column; /* Stack text above carousel */
     gap: 1.5rem;
   }
@@ -280,10 +281,28 @@ body {
   .media-gallery {
     width: 100%;
     max-width: 600px; /* Maintain max-width if desired */
-    padding-left: 5rem;
   }
   
   .arrow-left { left: 1rem; }
   .arrow-right { right: -4rem; }
 }
 
+
+/* Adjusted Home Button */
+.home-button {
+    position: absolute;
+    top: 10px; /* Adjust this value to move the button higher or lower */
+    left: 10px; /* Adjust this value to position it horizontally */
+    font-size: 24px;
+    color: black;
+    padding: 10px;
+    border-radius: 50%;
+    text-decoration: none;
+    z-index: 1000;
+    transition: transform 0.5s ease, color 3s ease;
+}
+
+.home-button:hover {
+  color: #C41E3A;
+  transform: scale(1.8);
+}

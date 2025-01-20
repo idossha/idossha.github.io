@@ -28,16 +28,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   // ================================
-  // 2. Carousel (Media Gallery) Logic
+  // 2. Carousel (Media Gallery) Logic for Multiple Carousels
   // ================================
   
-  // Grab carousel elements (only if they exist on the page)
-  const arrowLeft = document.querySelector('.media-gallery .arrow-left');
-  const arrowRight = document.querySelector('.media-gallery .arrow-right');
-  const mediaItems = document.querySelectorAll('.media-gallery .media-item');
+  // Grab all carousel elements
+  const carousels = document.querySelectorAll('.media-gallery');
 
-  // Only proceed if we actually find .media-gallery in the DOM
-  if (arrowLeft && arrowRight && mediaItems.length > 0) {
+  // Iterate through each carousel and initialize its functionality
+  carousels.forEach((carousel) => {
+    const arrowLeft = carousel.querySelector('.arrow-left');
+    const arrowRight = carousel.querySelector('.arrow-right');
+    const mediaItems = carousel.querySelectorAll('.media-item');
     let currentIndex = 0; // index of the currently displayed media item
 
     // Helper function: Hide all items except the one matching currentIndex
@@ -47,20 +48,24 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
-    // Left arrow -> show previous item
-    arrowLeft.addEventListener('click', () => {
-      currentIndex = (currentIndex === 0) ? mediaItems.length - 1 : currentIndex - 1;
-      showItem(currentIndex);
-    });
-
-    // Right arrow -> show next item
-    arrowRight.addEventListener('click', () => {
-      currentIndex = (currentIndex === mediaItems.length - 1) ? 0 : currentIndex + 1;
-      showItem(currentIndex);
-    });
-
-    // By default, show the first item
+    // Initialize the first media item
     showItem(currentIndex);
-  }
+
+    // Event listener for the left arrow
+    if (arrowLeft) {
+      arrowLeft.addEventListener('click', () => {
+        currentIndex = (currentIndex === 0) ? mediaItems.length - 1 : currentIndex - 1;
+        showItem(currentIndex);
+      });
+    }
+
+    // Event listener for the right arrow
+    if (arrowRight) {
+      arrowRight.addEventListener('click', () => {
+        currentIndex = (currentIndex === mediaItems.length - 1) ? 0 : currentIndex + 1;
+        showItem(currentIndex);
+      });
+    }
+  });
 });
 
