@@ -18,14 +18,8 @@
     </a>   
     </div>
     <ul class="nav-links">
-      <li data-target="section1" class="active-link">TI-CSC</li>
+      <li data-target="section1" class="active-link">TI-Toolbox</li>
       <li data-target="section2">fast_ICA</li>
-      <li data-target="section3">SW-detect</li>
-      <li data-target="section4">EEG-Entrainment</li>
-      <li data-target="section5">dwi2dti</li>
-      <li data-target="section6">SourceRecon</li>
-      <li data-target="section7">auto_visualizer</li>
-      <li data-target="section8">TI_Montage</li>
     </ul>
   </nav>
 
@@ -40,14 +34,14 @@
         <div class="section-text">
           <h1>Temporal Interference Toolbox</h1>
           <p>
-            The TI-CSC Toolbox is designed for advanced simulations and analyses of Temporal Interference (TI) extracranial stimulation. 
+            The TI-Toolbox is designed for advanced simulations and analyses of Temporal Interference (TI) extracranial stimulation. 
             It integrates several open-source applications along with custom in-house scripts, providing a robust 
             platform for academic research. The toolbox is intended strictly for academic, non-profit use.
           </p>
           <p>
-            <strong>Tech Used:</strong> Docker Compose, MATLAB MCC, MeshIO, Numpy<br>
-            <strong>Written in:</strong> Bash, Python, MATLAB<br>
-            <strong>Software:</strong> SimNIBS, Gmsh, Freeview, FSL<br>
+            <strong>Tech Used:</strong> Docker Compose, CircleCI, GitHub Actions<br>
+            <strong>Written in:</strong> Bash, Python<br>
+            <strong>Software:</strong> SimNIBS, Gmsh, FreeSurfer<br>
             <strong>Compatibility:</strong> Linux, macOS, Windows<br>
             <strong>Status:</strong> Actively maintained
           </p>
@@ -60,82 +54,17 @@
               <li>Reproducible.</li>
               <li>Open source.</li>
             </ol>
-          </p>
+          </p><br>
           <p>
-            <a href="https://github.com/idossha/TI-CSC" target="_blank">Toolbox Codebase</a> 
-            <a href="https://github.com/idossha/TI-CSC_loader" target="_blank">Loader Program</a>
+            <a href="https://idossha.github.io/TI-Toolbox/" target="_blank">Toolbox Website</a><br>
+            <a href="https://www.biorxiv.org/content/10.1101/2025.10.06.680781v1" target="_blank">Publication</a> 
           </p>
         </div>
-        
-        <!-- CAROUSEL BLOCK -->
-        <div class="media-gallery">
-          <!-- Left arrow -->
-          <button class="arrow-left" aria-label="Previous">&#10094;</button>
-      
-          <!-- Media Items -->
-          <div class="media-item active">
-            <video src="../05_assets_neuro/ti-csc/TI_analyzer_movie.mov" controls></video>
-            <p class="media-description">
-              Short video showcasing the CLI of loading the toolbox and running the analyzer.
-            </p>
-          </div>
-
-          <div class="media-item">
-            <img src="../05_assets_neuro/ti-csc/mesh.png" alt="Mesh Visualization" />
-            <p class="media-description">
-              Gmsh visualization of the T1 segmentation in mesh format.
-            </p>
-          </div>
-
-          <div class="media-item">
-            <img src="../05_assets_neuro/ti-csc/whole_head_field.png" alt="Whole Head Field" />
-            <p class="media-description">
-              Gmsh visualization of the TI field distribution in the whole head.
-            </p>
-          </div>
-
-          <div class="media-item">
-            <img src="../05_assets_neuro/ti-csc/gm_field.png" alt="Grey Matter Field" />
-            <p class="media-description">
-              TI field distribution and intensity in the grey matter.
-            </p>
-          </div>
-
-          <div class="media-item">
-            <img src="../05_assets_neuro/ti-csc/gm_wm_field.png" alt="Grey and White Matter Field" />
-            <p class="media-description">
-              TI field distribution and intensity in both grey matter and white matter.
-            </p>
-          </div>
-
-          <div class="media-item">
-            <img src="../05_assets_neuro/ti-csc/grey-matter.png" alt="Grey Matter Overlay" />
-            <p class="media-description">
-              TI field distribution and intensity in the GM on top of T1 scan.
-            </p>
-          </div>
-
-          <div class="media-item">
-            <img src="../05_assets_neuro/ti-csc/white-matter.png" alt="White Matter Overlay" />
-            <p class="media-description">
-              TI field distribution and intensity in the WM on top of T1 scan.
-            </p>
-          </div>
-
-          <div class="media-item">
-            <img src="../05_assets_neuro/ti-csc/L_Insula_highlighted_visualization.png" alt="Electrode Montage" />
-            <p class="media-description">
-              Automatic visualization of electrode montage of the simulation.
-            </p>
-          </div>
-
-          <!-- Right arrow -->
-          <button class="arrow-right" aria-label="Next">&#10095;</button>
-        </div><!-- end .media-gallery -->
-      </div><!-- end .section-inner -->
+      </div>
     </section>
     <!-- End of Project 1 Section -->
 
+    <!--Begining of Section 2-->
     <!-- Project 2 -->
     <section id="section2" class="content-section">
       <div class="section-inner">
@@ -164,7 +93,7 @@
             <li>High Throughput: Can perform ICA on large datasets in parallel.</li>
             <li>Flexibility: Can be adapted to different high compute algorithms and workflows.</li>
             <li>Open Source: Codebase is open source and can be used for free (given MATLAB is available).</li>
-          </ul>
+          </ul><br>
           
           <p>
             <a href="https://github.com/idossha/fast_ICA" target="_blank">fast_ICA Codebase</a> 
@@ -195,298 +124,6 @@
     </section>
     <!-- End of Project 2 Section -->
 
-    <!-- Project 3 -->
-    <section id="section3" class="content-section">
-      <div class="section-inner">
-        <div class="section-text">
-          <h1>Slow Wave Detection</h1>
-          <p>
-            In progress.<br>
-            <br>
-            <strong>Tech Used:</strong><br>
-            Python: MNE, YASA, Pandas, Numpy, Jupyter <br>
-            <br>
-              <strong>Benefits:</strong><br>
-            Reduce monkey work for presentations and insure consistency of figures.<br>
-            </p>
-        </div>
-        <div class="media-gallery">
-          <!-- Carousel similar to Section 1 & 2 -->
-          <!-- Add media items here -->
-        </div>
-      </div>
-    </section>
-
-    <!--Begining of Section 4-->
-    <section id="section4" class="content-section">
-        <div class="section-inner">
-          <div class="section-text">
-            <h1>EEG-Entrainment</h1>
-            <p>
-             main description 
-            </p>
-            
-            <p>
-              <strong>Tech Used:</strong>
-            </p>
-            <ul>
-              <li>Tech 1</li>
-              <li>Tech 2</li>
-            </ul>
-
-            <p>
-              <strong>Benefits:</strong>
-            </p>
-            <ul>
-              <li>benifit 1</li>
-              <li>benifit 2</li>
-              <li>Open Source: Codebase
-
-              <p>
-                <a href="https://github.com/idossha/TI-CSC" target="_blank">Toolbox Codebase</a> 
-                <a href="https://github.com/idossha/TI-CSC_loader" target="_blank">Loader Program</a>
-              </p>
-            </div>
-            
-            <!-- CAROUSEL BLOCK -->
-            <div class="media-gallery">
-              <!-- Left arrow -->
-              <button class="arrow-left" aria-label="Previous">&#10094;</button>
-          
-              <!-- Media Items -->
-              <div class="media-item active">
-                <video src="../05_assets_neuro/ti-csc/TI_analyzer_movie.mov" controls></video>
-                <p class="media-description">
-                  Short video showcasing the CLI of loading the toolbox and running the analyzer.
-                </p>
-              </div>
-      </section>   
-
-    <!--Begining of Section 4-->
-    <section id="section5" class="content-section">
-        <div class="section-inner">
-          <div class="section-text">
-            <h1>Diffusion Weighted Imaging: Preprocessing and Tractography</h1> 
-            <p>
-             main description 
-            </p>
-            
-            <p>
-              <strong>Tech Used:</strong>
-            </p>
-            <ul>
-              <li>Tech 1</li>
-              <li>Tech 2</li>
-            </ul>
-
-            <p>
-              <strong>Benefits:</strong>
-            </p>
-            <ul>
-              <li>benifit 1</li>
-              <li>benifit 2</li>
-              <li>Open Source: Codebase
-
-              <p>
-                <a href="https://github.com/idossha/TI-CSC" target="_blank">Toolbox Codebase</a> 
-                <a href="https://github.com/idossha/TI-CSC_loader" target="_blank">Loader Program</a>
-              </p>
-            </div>
-            
-            <!-- CAROUSEL BLOCK -->
-            <div class="media-gallery">
-              <!-- Left arrow -->
-              <button class="arrow-left" aria-label="Previous">&#10094;</button>
-          
-              <!-- Media Items -->
-              <div class="media-item active">
-                <video src="../05_assets_neuro/ti-csc/TI_analyzer_movie.mov" controls></video>
-                <p class="media-description">
-                  Short video showcasing the CLI of loading the toolbox and running the analyzer.
-                </p>
-              </div>
-      </section>
-
-    <!--Begining of Section 6-->
-    <section id="section6" class="content-section">
-        <div class="section-inner">
-          <div class="section-text">
-            <h1>Source Reconstruction</h1>
-            <p>
-             main description 
-            </p>
-            
-            <p>
-              <strong>Tech Used:</strong>
-            </p>
-            <ul>
-              <li>Tech 1</li>
-              <li>Tech 2</li>
-            </ul>
-
-            <p>
-              <strong>Benefits:</strong>
-            </p>
-            <ul>
-              <li>benifit 1</li>
-              <li>benifit 2</li>
-              <li>Open Source: Codebase
-
-              <p>
-                <a href="https://github.com/idossha/TI-CSC" target="_blank">Toolbox Codebase</a> 
-                <a href="https://github.com/idossha/TI-CSC_loader" target="_blank">Loader Program</a>
-              </p>
-            </div>
-            
-            <!-- CAROUSEL BLOCK -->
-            <div class="media-gallery">
-              <!-- Left arrow -->
-              <button class="arrow-left" aria-label="Previous">&#10094;</button>
-          
-              <!-- Media Items -->
-              <div class="media-item active">
-                <video src="../05_assets_neuro/ti-csc/TI_analyzer_movie.mov" controls></video>
-                <p class="media-description">
-                  Short video showcasing the CLI of loading the toolbox and running the analyzer.
-                </p>
-              </div>
-      </section>
-
-    <!--Begining of Section 7-->
-    <section id="section7" class="content-section">
-        <div class="section-inner">
-          <div class="section-text">
-            <h1>Auto-Visualzer</h1>
-            <p>
-             main description 
-            </p>
-            
-            <p>
-              <strong>Tech Used:</strong>
-            </p>
-            <ul>
-              <li>Tech 1</li>
-              <li>Tech 2</li>
-            </ul>
-
-            <p>
-              <strong>Benefits:</strong>
-            </p>
-            <ul>
-              <li>benifit 1</li>
-              <li>benifit 2</li>
-              <li>Open Source: Codebase
-
-              <p>
-                <a href="https://github.com/idossha/TI-CSC" target="_blank">Toolbox Codebase</a> 
-                <a href="https://github.com/idossha/TI-CSC_loader" target="_blank">Loader Program</a>
-              </p>
-            </div>
-            
-            <!-- CAROUSEL BLOCK -->
-            <div class="media-gallery">
-              <!-- Left arrow -->
-              <button class="arrow-left" aria-label="Previous">&#10094;</button>
-          
-              <!-- Media Items -->
-              <div class="media-item active">
-                <video src="../05_assets_neuro/ti-csc/TI_analyzer_movie.mov" controls></video>
-                <p class="media-description">
-                  Short video showcasing the CLI of loading the toolbox and running the analyzer.
-                </p>
-              </div>
-      </section>
-
-
-    <!--Begining of Section 8-->
-    <section id="section8" class="content-section">
-        <div class="section-inner">
-          <div class="section-text">
-            <h1>TI-Montage</h1>
-            <p>
-             main description 
-            </p>
-            
-            <p>
-              <strong>Tech Used:</strong>
-            </p>
-            <ul>
-              <li>Tech 1</li>
-              <li>Tech 2</li>
-            </ul>
-
-            <p>
-              <strong>Benefits:</strong>
-            </p>
-            <ul>
-              <li>benifit 1</li>
-              <li>benifit 2</li>
-              <li>Open Source: Codebase
-
-              <p>
-                <a href="https://github.com/idossha/TI-CSC" target="_blank">Toolbox Codebase</a> 
-                <a href="https://github.com/idossha/TI-CSC_loader" target="_blank">Loader Program</a>
-              </p>
-            </div>
-            
-            <!-- CAROUSEL BLOCK -->
-            <div class="media-gallery">
-              <!-- Left arrow -->
-              <button class="arrow-left" aria-label="Previous">&#10094;</button>
-          
-              <!-- Media Items -->
-              <div class="media-item active">
-                <video src="../05_assets_neuro/ti-csc/TI_analyzer_movie.mov" controls></video>
-                <p class="media-description">
-                  Short video showcasing the CLI of loading the toolbox and running the analyzer.
-                </p>
-              </div>
-      </section>
-
-    <!--Begining of Section 9-->
-    <section id="section9" class="content-section">
-        <div class="section-inner">
-          <div class="section-text">
-            <h1>TITLE</h1>
-            <p>
-             main description 
-            </p>
-            
-            <p>
-              <strong>Tech Used:</strong>
-            </p>
-            <ul>
-              <li>Tech 1</li>
-              <li>Tech 2</li>
-            </ul>
-
-            <p>
-              <strong>Benefits:</strong>
-            </p>
-            <ul>
-              <li>benifit 1</li>
-              <li>benifit 2</li>
-              <li>Open Source: Codebase
-
-              <p>
-                <a href="https://github.com/idossha/TI-CSC" target="_blank">Toolbox Codebase</a> 
-                <a href="https://github.com/idossha/TI-CSC_loader" target="_blank">Loader Program</a>
-              </p>
-            </div>
-            
-            <!-- CAROUSEL BLOCK -->
-            <div class="media-gallery">
-              <!-- Left arrow -->
-              <button class="arrow-left" aria-label="Previous">&#10094;</button>
-          
-              <!-- Media Items -->
-              <div class="media-item active">
-                <video src="../05_assets_neuro/ti-csc/TI_analyzer_movie.mov" controls></video>
-                <p class="media-description">
-                  Short video showcasing the CLI of loading the toolbox and running the analyzer.
-                </p>
-              </div>
-      </section>
 
 
     <!-- More section can come below ensure they have a similar structure if they include media galleries -->
