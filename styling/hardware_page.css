@@ -23,12 +23,15 @@ header, footer {
   overflow: hidden; /* Keep everything within bounds */
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  aspect-ratio: 9 / 12; /* Set consistent aspect ratio for all project cards */
 }
 
 .project img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: cover; /* Zoom and crop images to fill the container */
+  object-position: center; /* Center the image within the crop */
   transition: transform 0.5s ease; /* Smooth transition for zoom effect */
 }
 
