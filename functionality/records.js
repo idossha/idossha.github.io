@@ -1,7 +1,7 @@
 // records.js
 
 // Path to your CSV file
-const CSV_URL = "../04_assets_records/idohaber-collection-20241208-1829.csv";
+const CSV_URL = "../assets/records/idohaber-collection-20241208-1829.csv";
 
 function init() {
   Papa.parse(CSV_URL, {
@@ -32,7 +32,7 @@ function displayRecords(records) {
     const releaseId = record['release_id'];
     if (!releaseId) continue;
 
-    const imagePath = `../04_assets_records/imgs/${releaseId}.jpg`;
+    const imagePath = `../assets/records/${releaseId}.jpg`;
     const card = createRecordCard(record, imagePath);
     container.appendChild(card);
   }
