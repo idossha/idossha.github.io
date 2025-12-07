@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document and Media Viewer</title>
-    <link rel="stylesheet" href="../00_styling/radio_page.css">
+    <link rel="stylesheet" href="../styling/radio_page.css">
 </head>
 <body>
     <div class="container">
         <div class="text-viewer">
-            <iframe id="textReader" src="../01_assets_projects/Radio-Project.pdf" style="width:100%; height:100%;"></iframe>
+            <iframe id="textReader" src="../assets/projects/Radio-Project.pdf" style="width:100%; height:100%;"></iframe>
         </div>
         <div class="media-viewer">
             <video id="mediaVideo1" controls style="display: none;">
-                <source src="../01_assets_projects/RADIO-1.mov" type="video/mp4">
+                <source src="../assets/projects/RADIO-1.mov" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <video id="mediaVideo2" controls style="display: none;">
-                <source src="../01_assets_projects/RADIO-2.MOV" type="video/mp4">
+                <source src="../assets/projects/RADIO-2.MOV" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
     </div>
-    <script src="../00_functionality/robotic_arm.js"></script>
+    <script src="../functionality/robotic_arm.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             function loadMedia(videoId, source) {
@@ -32,8 +32,8 @@
                 video.style.display = 'block';
             }
 
-            loadMedia('mediaVideo1', '../01_assets_projects/RADIO-1.mov');
-            loadMedia('mediaVideo2', '../01_assets_projects/RADIO-2.MOV');
+            loadMedia('mediaVideo1', '../assets/projects/RADIO-1.mov');
+            loadMedia('mediaVideo2', '../assets/projects/RADIO-2.MOV');
         });
     </script>
 </body>
