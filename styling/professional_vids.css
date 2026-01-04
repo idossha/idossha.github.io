@@ -9,6 +9,7 @@ body, html {
     flex-wrap: wrap;
     height: 100%;
     background: #000; /* Set the background to black */
+    position: relative;
 }
 
 .media-viewer {
@@ -18,6 +19,7 @@ body, html {
     width: 100%;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .media-viewer video {

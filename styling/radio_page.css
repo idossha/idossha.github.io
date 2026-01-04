@@ -21,11 +21,14 @@ body, html {
 
 .media-viewer {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: 10px;
 }
 
 .media-viewer video {
     max-width: 50%; /* Each video takes up half the viewer */
     max-height: 100%;
+    flex: 1;
 }
