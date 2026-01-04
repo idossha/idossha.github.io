@@ -222,12 +222,8 @@ video {
     display: block;
 }
 
+/* Close button styles inherited from common.css */
 .close {
-    position: absolute;
     top: 20px;
     right: 20px;
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
 }

@@ -35,17 +35,7 @@ body {
   background-color: #f5f5f5;
 }
 
-.nav-logo a {
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-decoration: none;
-  color: #111;
-  transition: color 0.3s;
-}
-
-.nav-logo a:hover {
-  color: #555;
-}
+/* Button styles inherited from common.css */
 
 /* Navigation Links */
 .nav-links {
@@ -188,29 +178,7 @@ body {
   object-fit: cover;
 }
 
-/* Arrows */
-.arrow-left,
-.arrow-right {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  font-size: 2em;
-  padding: 0.2em 0.5em;
-  border-radius: 50%;
-  cursor: pointer;
-  background-color: rgba(221, 221, 221, 0.8);
-  color: #333;
-  transition: background-color 0.3s;
-}
-
-.arrow-left { left: -4rem; }
-.arrow-right { right: -4rem; }
-
-.arrow-left:hover,
-.arrow-right:hover {
-  background-color: rgba(187, 187, 187, 0.8);
-}
+/* Arrow button styles inherited from common.css */
 
 /* Description text under each media item */
 .media-description {
@@ -302,21 +270,4 @@ body {
 }
 
 
-/* Adjusted Home Button */
-.home-button {
-    position: absolute;
-    top: 10px; /* Adjust this value to move the button higher or lower */
-    left: 10px; /* Adjust this value to position it horizontally */
-    font-size: 24px;
-    color: black;
-    padding: 10px;
-    border-radius: 50%;
-    text-decoration: none;
-    z-index: 1000;
-    transition: transform 0.5s ease, color 3s ease;
-}
-
-.home-button:hover {
-  color: #C41E3A;
-  transform: scale(1.8);
-}
+/* Home button styles now in common.css */

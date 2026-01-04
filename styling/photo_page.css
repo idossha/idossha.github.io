@@ -154,72 +154,9 @@ body, html {
   height: 150px;
 }
 
-/* The Close Button */
-.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
+/* Modal navigation button styles inherited from common.css */
 
-/* Navigation buttons inside the modal */
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -50px;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  transition: 0.6s ease;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.next {
-  right: 0;
-}
-
-.prev {
-  left: 0;
-}
-
-.prev:hover,
-.next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
-.close:hover,
-.close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* Adjusted Home Button */
-.home-button {
-    position: absolute;
-    top: 10px; /* Adjust this value to move the button higher or lower */
-    left: 10px; /* Adjust this value to position it horizontally */
-    font-size: 24px;
-    color: black;
-    padding: 10px;
-    border-radius: 50%;
-    text-decoration: none;
-    z-index: 1000;
-    transition: transform 0.5s ease, color 3s ease;
-}
-
-.home-button:hover {
-  color: #C41E3A;
-  transform: scale(1.8);
-}
+/* Home button styles now in common.css */
 
 footer {
   text-align: center;
