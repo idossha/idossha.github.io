@@ -1,3 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap");
+body {
+    font-family: "Poppins", system-ui, -apple-system, sans-serif;
+}
+
 /*
   Common Styles - Shared across all pages
   ========================================
@@ -55,6 +60,74 @@
 .records-button:hover {
     color: #C41E3A;
     transform: scale(1.3);
+}
+
+/* ========================================
+   PROJECT PAGE HEADER
+   ======================================== */
+
+.project-page {
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    background-color: #0b0c0f;
+    color: #f8fafc;
+}
+
+.project-page .project-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1.75rem 2.5rem 1.5rem;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+    text-align: center;
+}
+
+.project-page .project-title {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #0f172a;
+}
+
+.project-page .project-subtitle {
+    margin: 0.5rem 0 0;
+    color: rgba(15, 23, 42, 0.7);
+    max-width: 60ch;
+    font-size: 1rem;
+}
+
+.project-page .project-home-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    color: #e2e8f0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.3s ease, color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.project-page .project-home-link:hover {
+    color: #ffffff;
+    border-color: rgba(226, 232, 240, 0.7);
+    background-color: rgba(148, 163, 184, 0.12);
+    transform: translateY(-1px);
+}
+
+.project-page .container {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+}
+
+.project-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* ========================================

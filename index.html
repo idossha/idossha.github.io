@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.2/css/academicons.min.css" crossorigin="anonymous" />
 
@@ -29,25 +28,124 @@
 <body>
   <canvas></canvas>
     <section id="content">
-        <img src="assets/misc/image_profile.jpg" alt="Ido Haber" class="avatar" />
-        <h1>Hi, I'm Ido Haber</h1>
-      <p>
-      As a Graduate Research Assistant at the University of Wisconsin–Madison with over five years of research experience, I have developed a strong background in neuroengineering, with an emphasis on brain–computer interfaces and data analysis. I am driven by a lifelong learning mindset and a genuine enthusiasm for advancing neuroscience through technology.
-      <br>
-      <br>In my free time I enjoy developing tools for other researchres, surfing, Jiu-Jitsu, and playing music.
-      </p>
-      <p>Feel free to get in touch</p>
-        <ul class="icons">
-            <li><a href="https://centerforsleepandconsciousness.psychiatry.wisc.edu/people/ido-haber/" title="Institutional website"><i class="fas fa-university"></i></a></li>
-            <li><a href="https://github.com/idossha" title="GitHub"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/ido-haber-ab8416151/" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://scholar.google.com/citations?user=qeaEN0cAAAAJ&hl=en" title="Google Scholar"><i class="ai ai-google-scholar"></i></a></li>
-            <li><a href="Pages/cv.html" title="CV"><i class="ai ai-cv"></i></a></li>
-            <li><a href="Pages/photo_page.html" title="Photo Album"><i class="fas fa-photo-film"></i></a></li>
-            <li><a href="Pages/music_player.html" title="Music Player"><i class="fas fa-music"></i></a></li>
-            <li><a href="Pages/projects_page.html" title="My Projects"><i class="fas fa-tools"></i></a></li>
-            <li><a href="Pages/neuro.html" title="Neuroscience"><i class="fa-solid fa-brain"></i></a></li>
-        </ul>
+        <div class="intro-layout">
+            <section class="project-list">
+              <h2>Projects</h2>
+              <ul class="project-items">
+                <li>
+                  <a class="project-item" href="https://idossha.github.io/TI-Toolbox/" target="_blank" rel="noopener noreferrer">
+                    <span class="project-title">TI-Toolbox <i class="fa-solid fa-arrow-up-right-from-square project-ext-icon" aria-hidden="true"></i></span>
+                    <span class="project-desc">Published Paper in Brain Stimulation Journal.</span>
+                    <span class="project-tags">Neuro • Python • Docker</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="project-item" href="https://github.com/idossha/fast_ICA" target="_blank" rel="noopener noreferrer">
+                    <span class="project-title">Fast ICA <i class="fa-solid fa-arrow-up-right-from-square project-ext-icon" aria-hidden="true"></i></span>
+                    <span class="project-desc">High-throughput ICA pipeline for EEG.</span>
+                    <span class="project-tags">Neuro • MATLAB • Parallelization</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="project-item" href="Pages/ECG.html">
+                    <span class="project-title">ECG</span>
+                    <span class="project-desc">Built, designed, and tested an ECG/Pulse Ox system.</span>
+                    <span class="project-tags">Hardware • BME</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="project-item" href="Pages/radio.html">
+                    <span class="project-title">FM Receiver</span>
+                    <span class="project-desc">Built two custom low-cost FM receivers at home.</span>
+                    <span class="project-tags">Hardware • RF</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="project-item" href="Pages/robotic_arm.html">
+                    <span class="project-title">Force Sensor Project</span>
+                    <span class="project-desc">A conceptualized embedded force sensor for robotic-assisted surgery.</span>
+                    <span class="project-tags">Hardware • BME</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="project-item" href="Pages/BME640.html">
+                    <span class="project-title">Product Ecosystem</span>
+                    <span class="project-desc">Hazard analysis and VC pitch for a biomedical product.</span>
+                    <span class="project-tags">Entrepreneurship • BME</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="project-item" href="Pages/BME550.html">
+                    <span class="project-title">BioMEMS</span>
+                    <span class="project-desc">Microfluidic device for neuronal axon networks.</span>
+                    <span class="project-tags">Research • BME</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="project-item" href="Pages/BME602.html">
+                    <span class="project-title">Neuroengineering</span>
+                    <span class="project-desc">Survey of light-induced neuromodulation advances.</span>
+                    <span class="project-tags">Neuro • BME</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="project-item" href="https://idossha.github.io/EasyMusic/" target="_blank" rel="noopener noreferrer">
+                    <span class="project-title">EasyMusic <i class="fa-solid fa-arrow-up-right-from-square project-ext-icon" aria-hidden="true"></i></span>
+                    <span class="project-desc">Open-source Electron app for music downloads.</span>
+                    <span class="project-tags">App • Electron</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="project-item" href="Pages/Zoo400.html">
+                    <span class="project-title">Cellular Neurobiology Review</span>
+                    <span class="project-desc">Mini review on 5HT2A receptor agonists.</span>
+                    <span class="project-tags">Neuro • Writing</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="project-item" href="Pages/posters.html">
+                    <span class="project-title">Academic Posters</span>
+                    <span class="project-desc">Poster collection from past research.</span>
+                    <span class="project-tags">Research • Communication</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="project-item" href="Pages/AudioVisualization.html">
+                    <span class="project-title">Audio Visualization</span>
+                    <span class="project-desc">Audio-reactive visual experiments.</span>
+                    <span class="project-tags">Creative • TouchDesigner</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="project-item" href="Pages/professional_vids.html">
+                    <span class="project-title">Effectivate Videos</span>
+                    <span class="project-desc">Marketing and sales video production.</span>
+                    <span class="project-tags">Media • Production</span>
+                  </a>
+                </li>
+              </ul>
+            </section>
+
+            <div class="hero">
+              <img src="assets/misc/image_profile.jpg" alt="Ido Haber" class="avatar" />
+              <h1>Hi, I'm Ido Haber</h1>
+              <p>
+              As a Graduate Research Assistant at the University of Wisconsin–Madison with over five years of research experience, I have developed a strong background in neuroengineering, with an emphasis on brain–computer interfaces and data analysis. I am driven by a lifelong learning mindset and a genuine enthusiasm for advancing neuroscience through technology.
+              <br>
+              <br>In my free time I enjoy developing tools for other researchres, surfing, Jiu-Jitsu, and playing music.
+              </p>
+              <p>Feel free to get in touch</p>
+              <ul class="icons">
+                  <li><a href="https://centerforsleepandconsciousness.psychiatry.wisc.edu/people/ido-haber/" title="Institutional website"><i class="fas fa-university"></i></a></li>
+                  <li><a href="https://github.com/idossha" title="GitHub"><i class="fab fa-github"></i></a></li>
+                  <li><a href="https://www.linkedin.com/in/ido-haber-ab8416151/" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+                  <li><a href="https://scholar.google.com/citations?user=qeaEN0cAAAAJ&hl=en" title="Google Scholar"><i class="ai ai-google-scholar"></i></a></li>
+                  <li><a href="Pages/cv.html" title="CV"><i class="ai ai-cv"></i></a></li>
+                  <li><a href="Pages/photo_page.html" title="Photo Album"><i class="fas fa-photo-film"></i></a></li>
+                  <li><a href="Pages/music_player.html" title="Music Player"><i class="fas fa-music"></i></a></li>
+              </ul>
+            </div>
+        </div>
     </section>
 </body>
 <footer>

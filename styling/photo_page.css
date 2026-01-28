@@ -50,6 +50,30 @@ body, html {
   height: 100%;
 }
 
+.page-loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.96);
+  z-index: 2000;
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+.page-loader--hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-text {
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #111827;
+}
+
 /* Gallery styles */
 
 .gallery {
@@ -58,6 +82,14 @@ body, html {
   width: 100%;
   max-width: none;
   margin: auto;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.photo-ready .gallery {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .gallery-item {
