@@ -3,79 +3,126 @@ var images = Array.from(document.getElementsByClassName('gallery-item'));
 
 var placeholderSrc = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
 
-function setupLazyLoading() {
-    images.forEach(function(img) {
-        if (!img.dataset.src) {
-            img.dataset.src = img.src;
-            img.src = placeholderSrc;
-        }
-        img.classList.add("lazy");
-        img.loading = "lazy";
-        img.decoding = "async";
-    });
+var photoDims = null;
 
-    if (!("IntersectionObserver" in window)) {
-        images.forEach(loadImage);
+function loadPhotoDims() {
+    // Optional: used to reserve correct aspect ratio before loading.
+    var url = new URL("../functionality/photo_dims.json", document.baseURI);
+    return fetch(url)
+        .then(function(res) {
+            if (!res.ok) {
+                return null;
+            }
+            return res.json();
+        })
+        .then(function(json) {
+            photoDims = json || null;
+        })
+        .catch(function() {
+            photoDims = null;
+        });
+}
+
+function applyReservedSize(img, src) {
+    if (!img || !src || !photoDims || !photoDims[src]) {
+        return;
+    }
+    var pair = photoDims[src];
+    if (!Array.isArray(pair) || pair.length < 2) {
+        return;
+    }
+    var w = Number(pair[0]);
+    var h = Number(pair[1]);
+    if (!Number.isFinite(w) || !Number.isFinite(h) || w <= 0 || h <= 0) {
         return;
     }
 
-    var observer = new IntersectionObserver(function(entries, obs) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                loadImage(entry.target);
-                obs.unobserve(entry.target);
-            }
-        });
-    }, { rootMargin: "200px 0px", threshold: 0.01 });
+    img.width = w;
+    img.height = h;
+    img.style.aspectRatio = w + " / " + h;
+}
 
+function setupPreloadAll() {
+    // Convert all <img> to placeholder + data-src, then we'll load everything at once.
     images.forEach(function(img) {
-        observer.observe(img);
+        var originalSrc = img.dataset.src || img.getAttribute("src") || img.src;
+        applyReservedSize(img, originalSrc);
+
+        if (!img.dataset.src) {
+            img.dataset.src = originalSrc;
+            img.src = placeholderSrc;
+        }
+
+        img.classList.add("lazy");
+        img.loading = "eager";
+        img.decoding = "async";
     });
 }
 
 function loadImage(img) {
     if (!img || img.dataset.loaded) {
-        return;
+        return Promise.resolve();
     }
 
     var source = img.dataset.src;
     if (!source) {
-        return;
+        return Promise.resolve();
     }
 
-    img.classList.add("loading");
-    img.src = source;
-    img.onload = function() {
-        img.classList.remove("lazy", "loading");
-        img.classList.add("loaded");
-        img.dataset.loaded = "true";
-    };
-    img.onerror = function() {
-        img.classList.remove("loading");
-        img.classList.add("error");
-    };
+    return new Promise(function(resolve) {
+        img.classList.add("loading");
+        img.src = source;
+
+        var done = function() {
+            img.classList.remove("lazy", "loading");
+            img.classList.add("loaded");
+            img.dataset.loaded = "true";
+            resolve();
+        };
+
+        img.onload = function() {
+            // Wait for decode to reduce flicker and keep scroll smooth.
+            if (img.decode) {
+                img.decode().then(done).catch(done);
+            } else {
+                done();
+            }
+        };
+
+        img.onerror = function() {
+            img.classList.remove("loading");
+            img.classList.add("error");
+            resolve();
+        };
+    });
 }
 
 function initPageLoader() {
     var body = document.body;
     var loader = document.querySelector(".page-loader");
     var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var delay = reduceMotion ? 0 : 1800;
+    var fadeDelay = reduceMotion ? 0 : 150;
 
-    window.setTimeout(function() {
-        body.classList.add("photo-ready");
-        if (loader) {
+    body.classList.add("photo-ready");
+    if (loader) {
+        window.setTimeout(function() {
             loader.classList.add("page-loader--hide");
             window.setTimeout(function() {
                 loader.remove();
             }, 900);
-        }
-    }, delay);
+        }, fadeDelay);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    setupLazyLoading();
-    initPageLoader();
+    loadPhotoDims().finally(function() {
+        setupPreloadAll();
+
+        // Load *all* images while the "Loading photo gallery..." overlay is visible.
+        Promise.allSettled(images.map(loadImage)).then(function() {
+            initPageLoader();
+        });
+    });
 });
 
 // Function to open the modal
