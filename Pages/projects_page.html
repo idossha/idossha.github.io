@@ -25,48 +25,73 @@
         <i class="fas fa-home"></i>
     </a>  
     <main id="project-gallery">
-        <!-- Project 1 -->
-        <div class="project" onclick="window.open('https://idossha.github.io/EasyMusic/')">
-            <img src="../assets/projects/EasyMusic_screenshot.png" alt="Thumbnail for Project 1">
+        <!-- Project 1 -->  
+        <div class="project" onclick="openProject('ECG.html')">
+            <img src="../assets/projects/bioinstrument.jpeg" alt="Thumbnail for Project 4">
             <div class="overlay">
                 <div class="project-info">
-                    <h3>EasyMusic</h3>
-                    <p>Open-source Electron app for downloading music from Spotify and YouTube</p>
+                    <h3>BME 462: Bioinstrumentation</h3>
+                    <p>Designed, 
+                    Built, and tested an ECG - Pulse Ox system as part of UW-Madisons's bio-instrumentation course.
+                    </p> 
                 </div>
             </div>
         </div>
-        <!-- Project 2 -->
         <div class="project" onclick="openProject('robotic_arm.html')">
             <img src="../assets/projects/robot.jpg" alt="Thumbnail for Project 2">
             <div class="overlay">
                 <div class="project-info">
                     <h3>BME 462: Bioinstrumenetation</h3>
-                    <p>Embedded force sensor for robotic assisted surgery</p>
+                    <p>Conceptualized, built, and tested an embedded force sensor for robotic assisted surgery</p>
                     <p></p>
                 </div>
             </div>
         </div>
-        <!-- Project 3 -->
         <div class="project" onclick="openProject('radio.html')">
             <img src="../assets/projects/radio.jpeg" alt="Thumbnail for Project 3">
             <div class="overlay">
                 <div class="project-info">
                     <h3>FM Reciever</h3>
-                    <p>Two custom build FM radios</p>
+                    <p>At home, I built two custom, low-cost FM receivers from scratch.</p>
+                </div>
+            </div>
+        </div>     
+        <div class="project" onclick="openProject('BME640.html')">
+            <img src="../assets/projects/patent.jpeg" alt="Thumbnail for Project 9">
+            <div class="overlay">
+                <div class="project-info">
+                    <h3>BME 640: Product Ecosystem</h3>
+                    <p>A semeter-long project that culminated in a Hazard Abalysis & VC Pitch for a biomedical product</p>
                 </div>
             </div>
         </div>
-        <!-- Project 4 -->
-        <div class="project" onclick="openProject('ECG.html')">
-          <img src="../assets/projects/bioinstrument.jpeg" alt="Thumbnail for Project 4">
-          <div class="overlay">
-              <div class="project-info">
-                  <h3>BME 462: Bioinstrumentation</h3>
-                  <p>ECG + Pulse Ox</p>
-              </div>
+        <div class="project" onclick="openProject('BME550.html')">
+            <img src="../assets/projects/biomems.png" alt="Thumbnail for Project 7">
+            <div class="overlay">
+                <div class="project-info">
+                    <h3>BME 550: BioMEMS</h3>
+                    <p>Microfluidic devices to study neuronal axon networks in a biomimetic Alzheimer milieu</p>
+                </div>
+            </div>
           </div>
-      </div>
-      <!-- Project 5 -->
+        <div class="project" onclick="openProject('BME602.html')">
+            <img src="../assets/projects/opto.jpeg" alt="Thumbnail for Project 6">
+            <div class="overlay">
+                <div class="project-info">
+                    <h3>BME 602: Neuroengineering</h3>
+                    <p>A survey of the limitations and advancements in bringing light-induced neuromodulation to the clinic</p>
+                </div>
+            </div>
+        </div>
+        <div class="project" onclick="window.open('https://idossha.github.io/EasyMusic/')">
+            <img src="../assets/projects/EasyMusic_screenshot.png" alt="Thumbnail for Project 1">
+            <div class="overlay">
+                <div class="project-info">
+                    <h3>EasyMusic</h3>
+                    <p>Developed an open-source Electron app that can be deployed on any machine for downloading music from Spotify and YouTube</p>
+                </div>
+            </div>
+        </div>
       <div class="project" onclick="openProject('Zoo400.html')">
           <img src="../assets/projects/psychedelic-review.jpg" alt="Thumbnail for Project 5">
           <div class="overlay">
@@ -76,73 +101,23 @@
               </div>
           </div>
       </div>
-        <!-- Project 6 -->
-      <div class="project" onclick="openProject('BME602.html')">
-        <img src="../assets/projects/opto.jpeg" alt="Thumbnail for Project 6">
-        <div class="overlay">
-            <div class="project-info">
-                <h3>BME 602: Neuroengineering</h3>
-                <p>Towards Translational Optogenetics</p>
-            </div>
-        </div>
-      </div>
-    <!-- Project 7 -->
-      <div class="project" onclick="openProject('BME550.html')">
-        <img src="../assets/projects/biomems.png" alt="Thumbnail for Project 7">
-        <div class="overlay">
-            <div class="project-info">
-                <h3>BME 550: BioMEMS</h3>
-                <p>Microfluidic Device for Neuronal Cultures</p>
-            </div>
-        </div>
-      </div>
-    <!-- Project 8 -->
       <div class="project" onclick="openProject('posters.html')">
         <img src="../assets/projects/cs319.jpeg" alt="Thumbnail for Project 8">
         <div class="overlay">
             <div class="project-info">
                 <h3>Academic Posters</h3>
-                <p>Summary of posters from over the years</p>
+                <p>Academic posters from over the years</p>
             </div>
         </div>
       </div>
-    <!-- Project 9 -->
-    <div class="project" onclick="openProject('BME640.html')">
-        <img src="../assets/projects/patent.jpeg" alt="Thumbnail for Project 9">
-        <div class="overlay">
-            <div class="project-info">
-                <h3>BME 640: Product Ecosystem</h3>
-                <p>Hazard Abalysis & VC Pitch for a biomedical product</p>
-            </div>
-        </div>
-    </div>
+
     <!-- Project 10 -->
     <div class="project" onclick="openProject('AudioVisualization.html')">
         <img src="../assets/projects/personal_vid.png" alt="Thumbnail for Project 10">
         <div class="overlay">
             <div class="project-info">
                 <h3>Audio Sensitive Visualization</h3>
-                <p>Created using TouchDesigner</p>
-            </div>
-        </div>
-    </div>
-    <!-- Project 11 -->
-    <div class="project" onclick="openProject('Financial_Tracker.html')">
-        <img src="../assets/projects/finance_cover.jpg" alt="Thumbnail for Project 11">
-        <div class="overlay">
-            <div class="project-info">
-                <h3>Financial Tracker</h3>
-                <p>Investment portfolio tracker for daily automated documentation</p>
-            </div>
-        </div>
-    </div>
-    <!-- Project 12 -->
-    <div class="project" onclick="openProject('personal_vids.html')">
-        <img src="../assets/projects/the_cha.png" alt="Thumbnail for Project 12">
-        <div class="overlay">
-            <div class="project-info">
-                <h3>Personal Videos</h3>
-                <p>Filmed with Sony a6400 & edited in Final Cut</p>
+                <p>Exploring audio visualization techniques using TouchDesigner</p>
             </div>
         </div>
     </div>
@@ -151,12 +126,11 @@
         <img src="../assets/projects/our_software_tn.png" alt="Thumbnail for Project 13">
         <div class="overlay">
             <div class="project-info">
-                <h3>Professional Videos</h3>
+                <h3>Effectivate</h3>
                 <p>Produced for Effectivate's Marketing & Sales departments</p>
             </div>
         </div>
     </div>
-        <!-- Add more projects as needed -->
     </main>
     <footer>
     </footer>
