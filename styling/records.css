@@ -17,6 +17,14 @@ header h1 {
   margin: 0;
 }
 
+header .home-button {
+  color: #fff;
+}
+
+header .home-button:hover {
+  color: #C41E3A;
+}
+
 #record-count {
   position: absolute;
   right: 20px;
