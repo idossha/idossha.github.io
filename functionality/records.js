@@ -32,7 +32,7 @@ function displayRecords(records) {
     const releaseId = record['release_id'];
     if (!releaseId) continue;
 
-    const imagePath = `../assets/records/imgs/${releaseId}.jpg`;
+    const imagePath = `/assets/records/imgs/${releaseId}.jpg`;
     const card = createRecordCard(record, imagePath);
     container.appendChild(card);
   }

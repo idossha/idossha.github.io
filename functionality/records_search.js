@@ -114,7 +114,7 @@ function showRecordModal(record) {
 
   const releaseId = record['release_id'];
   // Construct image path
-  const imagePath = `../assets/records/imgs/${releaseId}.jpg`;
+  const imagePath = `/assets/records/imgs/${releaseId}.jpg`;
 
   const img = document.createElement('img');
   img.src = imagePath;
