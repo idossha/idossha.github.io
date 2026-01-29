@@ -1,7 +1,15 @@
 // records.js
 
-// Path to your CSV file
+// Path to your CSV file (relative to current page: Pages/records.html)
 const CSV_URL = "../assets/records/idohaber-collection-20241208-1829.csv";
+
+// Image base: root-relative on http(s), relative when opening as file://
+function getRecordsImgBase() {
+  if (window.location.protocol === "file:") {
+    return "../assets/records/imgs/";
+  }
+  return "/assets/records/imgs/";
+}
 
 function init() {
   Papa.parse(CSV_URL, {
@@ -27,12 +35,13 @@ function init() {
 function displayRecords(records) {
   const container = document.getElementById("collection-grid");
   container.innerHTML = ''; // Clear old entries if any
-  
+  const imgBase = getRecordsImgBase();
+
   for (const record of records) {
-    const releaseId = record['release_id'];
+    const releaseId = record['release_id'] != null ? String(record['release_id']).trim() : '';
     if (!releaseId) continue;
 
-    const imagePath = `/assets/records/imgs/${releaseId}.jpg`;
+    const imagePath = imgBase + releaseId + ".jpg";
     const card = createRecordCard(record, imagePath);
     container.appendChild(card);
   }
