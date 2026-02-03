@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Effectivate Videos</title>
     <link rel="stylesheet" href="../styling/common.css">
-    <link rel="stylesheet" href="../styling/professional_vids.css">
+    <link rel="stylesheet" href="../styling/blog_page.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Google tag (gtag.js) -->
@@ -17,45 +17,42 @@
       gtag('config', 'G-724NR57445');
     </script>
 </head>
-<body class="project-page">
-    <header class="project-header">
-        <div>
-            <h1 class="project-title">Effectivate Videos</h1>
-            <p class="project-subtitle">Marketing and sales video production work.</p>
+<body class="blog-page">
+    <main class="blog-container">
+        <article class="blog-card">
+            <div class="container">
+        <div class="media-viewer project-span-all">
+            <div class="page-lede-top">
+                <div>
+                    <h1 class="project-title">Effectivate Videos</h1>
+                    <p class="project-subtitle">Marketing and sales video production work.</p>
+                </div>
+                <a href="../index.html" class="home-button" aria-label="Back to homepage">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                </a>
+            </div>
+            <h2 class="media-title">Summary</h2>
+            <p class="media-description">A selection of marketing/sales videos produced for Effectivate. Embedded below in a clean, responsive layout.</p>
         </div>
-        <a href="../index.html" class="home-button">
-            <i class="fas fa-home"></i>
-        </a>
-    </header>
-    <div class="container">
         <div class="media-viewer">
-            <video id="mediaVideo1" controls>
-                <source src="../assets/projects/professional_vids/effectivate_vid1.mp4" type="video/mp4">
+            <h2 class="media-title">Video 1</h2>
+            <video controls preload="metadata" playsinline>
+                <source src="../assets/projects/professional_vids/effectivate_vid1.mp4#t=0.1" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <video id="mediaVideo2" controls>
-                <source src="../assets/projects/professional_vids/effectivate_vid2.mp4" type="video/mp4">
+            <h2 class="media-title">Video 2</h2>
+            <video controls preload="metadata" playsinline>
+                <source src="../assets/projects/professional_vids/effectivate_vid2.mp4#t=0.1" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <video id="mediaVideo3" controls>
-                <source src="../assets/projects/professional_vids/effectivate_vid3.mp4" type="video/mp4">
+            <h2 class="media-title">Video 3</h2>
+            <video controls preload="metadata" playsinline>
+                <source src="../assets/projects/professional_vids/effectivate_vid3.mp4#t=0.1" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            function loadMedia(videoId, source) {
-                const video = document.getElementById(videoId);
-                video.querySelector('source').src = source;
-                video.load(); // Necessary to update the video source
-                video.style.display = 'block';
-            }
-
-            loadMedia('mediaVideo1', '../assets/projects/professional_vids/effectivate_vid1.mp4');
-            loadMedia('mediaVideo2', '../assets/projects/professional_vids/effectivate_vid2.mp4');
-            loadMedia('mediaVideo3', '../assets/projects/professional_vids/effectivate_vid3.mp4');
-        });
-    </script>
+            </div>
+        </article>
+    </main>
 </body>
 </html>

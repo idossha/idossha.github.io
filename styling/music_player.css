@@ -14,7 +14,10 @@ body, html {
     height: 100%;
     margin: 0;
     overflow: hidden;
-    background: black;
+    background:
+        radial-gradient(1200px 600px at 15% 0%, rgba(248, 113, 113, 0.18), transparent 55%),
+        radial-gradient(900px 500px at 85% 10%, rgba(56, 189, 248, 0.14), transparent 55%),
+        linear-gradient(180deg, #070a12, #0b0c0f 55%, #070a12);
 }
 
 /* Canvas styling */
@@ -38,12 +41,6 @@ canvas {
     position: relative;
     text-align: center;
     padding: 0 20px;
-}
-
-/* Adjusting the h1 */
-.main-content h1 {
-    margin-bottom: 20px;
-    color: #f0f0f0; /* Off white */
 }
 
 /* Track list container */

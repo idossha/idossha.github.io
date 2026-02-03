@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BioMEMS</title>
     <link rel="stylesheet" href="../styling/common.css">
-    <link rel="stylesheet" href="../styling/BME550.css">
+    <link rel="stylesheet" href="../styling/blog_page.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Google tag (gtag.js) -->
@@ -17,24 +17,36 @@
       gtag('config', 'G-724NR57445');
     </script>
 </head>
-<body class="project-page">
-    <header class="project-header">
-        <div>
-            <h1 class="project-title">BioMEMS</h1>
-            <p class="project-subtitle">Microfluidic devices for neuronal axon networks.</p>
+<body class="blog-page">
+    <main class="blog-container">
+        <article class="blog-card">
+            <div class="container">
+        <div class="media-viewer project-span-all">
+            <div class="page-lede-top">
+                <div>
+                    <h1 class="project-title">BioMEMS</h1>
+                    <p class="project-subtitle">Microfluidic devices for neuronal axon networks.</p>
+                </div>
+                <a href="../index.html" class="home-button" aria-label="Back to homepage">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                </a>
+            </div>
+            <h2 class="media-title">Summary</h2>
+            <p class="media-description">Microfluidic device design for neuronal axon networks. The report is embedded below, with supporting simulation/visual material alongside.</p>
         </div>
-        <a href="../index.html" class="home-button">
-            <i class="fas fa-home"></i>
-        </a>
-    </header>
-    <div class="container">
         <div class="text-viewer">
-            <iframe id="textReader" src="../assets/projects/BME550/Final Project - BME 550.pdf" style="width:100%; height:100%;"></iframe>
+            <iframe title="BioMEMS report (PDF)" loading="lazy" src="../assets/projects/BME550/Final Project - BME 550.pdf"></iframe>
+            <p class="embed-fallback"><a href="../assets/projects/BME550/Final Project - BME 550.pdf">Open the PDF in a new tab</a></p>
         </div>
-        <div class="text-viewer">
-            <iframe id="textReader" src="../assets/projects/BME550/BME550.gif" style="width:100%; height:50%;"></iframe>
-            <iframe id="textReader" src="../assets/projects/BME550/BME550_COMSOL.png" style="width:100%; height:50%;"></iframe>
+        <div class="media-viewer">
+            <h2 class="media-title">Supporting visuals</h2>
+            <img loading="lazy" src="../assets/projects/BME550/BME550.gif" alt="BioMEMS supporting animation" />
+            <p class="media-description">Design/process animation (GIF).</p>
+            <img loading="lazy" src="../assets/projects/BME550/BME550_COMSOL.png" alt="COMSOL simulation results for BioMEMS device" />
+            <p class="media-description">COMSOL simulation snapshot.</p>
         </div>
-    </div>
+            </div>
+        </article>
+    </main>
 </body>
 </html>

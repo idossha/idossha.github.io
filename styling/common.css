@@ -68,19 +68,27 @@ body {
 
 .project-page {
     font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-    background-color: #0b0c0f;
+    background:
+        radial-gradient(1200px 600px at 15% 0%, rgba(248, 113, 113, 0.22), transparent 55%),
+        radial-gradient(900px 500px at 85% 10%, rgba(56, 189, 248, 0.18), transparent 55%),
+        linear-gradient(180deg, #070a12, #0b0c0f 55%, #070a12);
     color: #f8fafc;
 }
 
 .project-page .project-header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    padding: 1.75rem 2.5rem 1.5rem;
-    background: #ffffff;
-    border-bottom: 1px solid rgba(15, 23, 42, 0.12);
-    text-align: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 1.15rem 1.5rem;
+    background: rgba(2, 6, 23, 0.72);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    text-align: left;
 }
 
 .project-page .project-title {
@@ -88,12 +96,12 @@ body {
     font-size: 1.75rem;
     font-weight: 600;
     letter-spacing: -0.02em;
-    color: #0f172a;
+    color: #f8fafc;
 }
 
 .project-page .project-subtitle {
     margin: 0.5rem 0 0;
-    color: rgba(15, 23, 42, 0.7);
+    color: rgba(226, 232, 240, 0.82);
     max-width: 60ch;
     font-size: 1rem;
 }
@@ -128,6 +136,24 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+/* Project pages use a header-contained home button (not absolute). */
+.project-page .home-button {
+    position: static;
+    font-size: 20px;
+    color: rgba(248, 250, 252, 0.92);
+    padding: 0.55rem 0.65rem;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    background: rgba(15, 23, 42, 0.35);
+}
+
+.project-page .home-button:hover {
+    color: #ffffff;
+    border-color: rgba(226, 232, 240, 0.55);
+    background: rgba(148, 163, 184, 0.14);
+    transform: translateY(-1px) scale(1.06);
 }
 
 /* ========================================
@@ -293,5 +319,19 @@ body {
 
     .action-btn-big {
         font-size: 40px;
+    }
+
+    .project-page .project-header {
+        position: sticky;
+        padding: 0.95rem 1rem;
+    }
+
+    .project-page .project-title {
+        font-size: 1.35rem;
+    }
+
+    .project-page .project-subtitle {
+        font-size: 0.95rem;
+        margin-top: 0.35rem;
     }
 }

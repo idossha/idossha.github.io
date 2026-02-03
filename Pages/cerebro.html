@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cerebro</title>
     <link rel="stylesheet" href="../styling/common.css">
-    <link rel="stylesheet" href="../styling/radio_page.css">
-    <link rel="stylesheet" href="../styling/cerebro.css">
+    <link rel="stylesheet" href="../styling/blog_page.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Google tag (gtag.js) -->
@@ -18,41 +17,36 @@
       gtag('config', 'G-724NR57445');
     </script>
 </head>
-<body class="project-page cerebro-page">
-    <header class="project-header">
-        <div>
-            <h1 class="project-title">Cerebro</h1>
-            <p class="project-subtitle">3D print project with design documentation and timelapse.</p>
-        </div>
-        <a href="../index.html" class="home-button">
-            <i class="fas fa-home"></i>
-        </a>
-    </header>
-    <div class="container">
-        <div class="text-viewer">
-            <div class="pdf-wrapper">
-                <iframe id="textReader" src="../assets/projects/cerebro/3D_Print.pdf"></iframe>
+<body class="blog-page">
+    <main class="blog-container">
+        <article class="blog-card">
+            <div class="container">
+        <div class="media-viewer project-span-all">
+            <div class="page-lede-top">
+                <div>
+                    <h1 class="project-title">Cerebro</h1>
+                    <p class="project-subtitle">3D print project with design documentation and timelapse.</p>
+                </div>
+                <a href="../index.html" class="home-button" aria-label="Back to homepage">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                </a>
             </div>
+            <h2 class="media-title">Summary</h2>
+            <p class="media-description">3D printing workflow exploration in Bambu Studio (TPU vs PLA), with iterations on orientation, supports, and nozzle choices to improve print quality, efficiency, and cost.</p>
         </div>
-        <div class="media-viewer cerebro-media">
-            <p class="cerebro-prompt">Experimentation in Bambu Studio with different materials TPU and PLA, and optimization of orientation, support and nozzle to increase efficiency, and reduce cost.</p>
-            <video id="mediaVideo1" controls style="display: none;">
-                <source src="../assets/projects/cerebro/3D_timelapse.mp4" type="video/mp4">
+        <div class="text-viewer">
+            <iframe title="Cerebro design documentation (PDF)" loading="lazy" src="../assets/projects/cerebro/3D_Print.pdf"></iframe>
+            <p class="embed-fallback"><a href="../assets/projects/cerebro/3D_Print.pdf">Open the PDF in a new tab</a></p>
+        </div>
+        <div class="media-viewer">
+            <h2 class="media-title">Timelapse</h2>
+            <video controls preload="metadata" playsinline>
+                <source src="../assets/projects/cerebro/3D_timelapse.mp4#t=0.1" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            function loadMedia(videoId, source) {
-                const video = document.getElementById(videoId);
-                video.querySelector('source').src = source;
-                video.load();
-                video.style.display = 'block';
-            }
-
-            loadMedia('mediaVideo1', '../assets/projects/cerebro/3D_timelapse.mp4');
-        });
-    </script>
+            </div>
+        </article>
+    </main>
 </body>
 </html>

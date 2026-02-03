@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homelab: Tailscale + SSHFS</title>
+
+  <link rel="stylesheet" href="../styling/common.css" />
+  <link rel="stylesheet" href="../styling/blog_page.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-724NR57445"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-724NR57445');
+  </script>
+</head>
+<body class="blog-page">
+  <main class="blog-container">
+    <article class="blog-card">
+      <div class="page-lede-top">
+        <div>
+          <h1 class="project-title">Homelab: Tailscale + SSHFS</h1>
+          <p class="project-subtitle">A stable, encrypted link between a home Linux server and a macOS laptop (no port-forwarding).</p>
+        </div>
+        <a href="../index.html" class="home-button" aria-label="Back to homepage">
+          <i class="fas fa-home" aria-hidden="true"></i>
+        </a>
+      </div>
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>
+          The goal was simple: access a Linux server at home from a macOS laptop reliably, even when networks change (coffee shop Wi‑Fi,
+          campus networks, CGNAT at home, etc.). We built it in two layers:
+        </p>
+        <ul>
+          <li><strong>Tailscale</strong>: gives the laptop and the server a private, authenticated, encrypted network (WireGuard-based), so they can always reach each other.</li>
+          <li><strong>SSH + SSHFS</strong>: uses that stable network to log in securely and (optionally) mount a server directory on the Mac like a local folder.</li>
+        </ul>
+
+        <div class="toc" aria-label="Table of contents">
+          <strong>On this page</strong>
+          <ul>
+            <li><a href="#why">Why this approach</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#prereqs">Prerequisites</a></li>
+            <li><a href="#setup-tailscale">Step 1 — Tailscale setup</a></li>
+            <li><a href="#setup-ssh">Step 2 — SSH hardening</a></li>
+            <li><a href="#setup-sshfs">Step 3 — SSHFS mount on macOS</a></li>
+            <li><a href="#replicate">Replication checklist</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="why">
+        <h2>Why this approach</h2>
+        <ul>
+          <li><strong>Reliability</strong>: Tailscale handles NAT traversal and IP changes, so your “server is always there”.</li>
+          <li><strong>Security</strong>: no open inbound ports required; traffic is encrypted end-to-end; access is tied to identity.</li>
+          <li><strong>Convenience</strong>: SSHFS makes remote files feel local (Finder, editors, scripts) without copying back and forth.</li>
+        </ul>
+
+        <div class="callout">
+          <strong>Important note</strong>: SSHFS is great for dev/config files and light workloads. For heavy I/O (large databases, lots of tiny files),
+          prefer running compute on the server or use <span class="inline-code">rsync</span>/<span class="inline-code">scp</span> for bulk transfers.
+        </div>
+      </section>
+
+      <section id="architecture">
+        <h2>Architecture</h2>
+        <p>
+          Once both devices are logged into the same tailnet, the Mac can reach the server via its Tailscale IP (typically <span class="inline-code">100.x.y.z</span>)
+          or a MagicDNS hostname (often something like <span class="inline-code">server-name.tailnet-xyz.ts.net</span>).
+        </p>
+        <pre><code>macOS laptop ──(Tailscale private network)──&gt; Linux server
+                 └── SSH (22) over tailnet
+                     └── SSHFS mount (remote folder appears local)</code></pre>
+      </section>
+
+      <section id="prereqs">
+        <h2>Prerequisites</h2>
+        <ul>
+          <li><strong>Home server</strong>: Linux machine with sudo access.</li>
+          <li><strong>Laptop</strong>: macOS with admin access.</li>
+          <li><strong>Accounts</strong>: a Tailscale account (and both devices authorized on the same tailnet).</li>
+          <li><strong>SSH keys</strong>: an SSH keypair on the Mac (recommended: Ed25519).</li>
+        </ul>
+
+        <h3>Generate an SSH key (macOS)</h3>
+        <pre><code>ssh-keygen -t ed25519 -a 64 -C "homelab-mac" </code></pre>
+      </section>
+
+      <section id="setup-tailscale">
+        <h2>Step 1 — Tailscale setup</h2>
+
+        <h3>Install on Linux server</h3>
+        <p>Install Tailscale using the official instructions for your distro, then authenticate.</p>
+        <pre><code># After install:
+sudo tailscale up
+
+# Confirm it’s connected:
+tailscale status
+tailscale ip -4</code></pre>
+
+        <h3>Install on macOS</h3>
+        <p>Install the Tailscale app on macOS and log into the same tailnet. Confirm you can reach the server.</p>
+        <pre><code># Quick connectivity check:
+ping &lt;server-tailscale-ip-or-magicdns-name&gt;
+ssh &lt;user&gt;@&lt;server-tailscale-ip-or-magicdns-name&gt;</code></pre>
+
+        <div class="callout">
+          <strong>Why this works</strong>: Tailscale gives both machines stable private addresses and handles NAT traversal, so you don’t have to expose
+          your home network with port forwarding.
+        </div>
+      </section>
+
+      <section id="setup-ssh">
+        <h2>Step 2 — SSH hardening (server)</h2>
+        <p>
+          The server should accept key-based logins and avoid password-based access where possible.
+          If you already have SSH set up, treat this as a checklist.
+        </p>
+
+        <h3>Ensure OpenSSH server is installed and running</h3>
+        <pre><code># Ubuntu/Debian:
+sudo apt-get update
+sudo apt-get install -y openssh-server
+sudo systemctl enable --now ssh</code></pre>
+
+        <h3>Add your Mac’s public key to the server</h3>
+        <pre><code># From macOS:
+ssh-copy-id &lt;user&gt;@&lt;server-tailscale-ip-or-magicdns-name&gt;</code></pre>
+
+        <h3>Recommended sshd_config settings</h3>
+        <p>Edit <span class="inline-code">/etc/ssh/sshd_config</span> and consider:</p>
+        <pre><code>PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes
+KbdInteractiveAuthentication no</code></pre>
+        <p>Then restart SSH:</p>
+        <pre><code>sudo systemctl restart ssh</code></pre>
+      </section>
+
+      <section id="setup-sshfs">
+        <h2>Step 3 — SSHFS mount on macOS</h2>
+
+        <h3>Install macFUSE + SSHFS</h3>
+        <p>SSHFS on macOS typically requires macFUSE. One common approach is Homebrew.</p>
+        <pre><code>brew install --cask macfuse
+brew install sshfs</code></pre>
+
+        <h3>Create a mount point</h3>
+        <pre><code>mkdir -p ~/mnt/homelab</code></pre>
+
+        <h3>Mount a server directory</h3>
+        <p>
+          Replace <span class="inline-code">&lt;server&gt;</span>, <span class="inline-code">&lt;user&gt;</span>, and <span class="inline-code">/path/on/server</span>.
+        </p>
+        <pre><code>sshfs \
+  -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 \
+  -o IdentityFile=~/.ssh/id_ed25519 \
+  &lt;user&gt;@&lt;server&gt;:/path/on/server \
+  ~/mnt/homelab</code></pre>
+
+        <h3>Unmount</h3>
+        <pre><code>umount ~/mnt/homelab
+# If that fails on macOS:
+diskutil unmount force ~/mnt/homelab</code></pre>
+      </section>
+
+      <section id="replicate">
+        <h2>Replication checklist</h2>
+        <ol>
+          <li>Install Tailscale on server + Mac, log into same tailnet, verify ping/ssh over tailnet.</li>
+          <li>Enable SSH server on Linux and require key-based auth.</li>
+          <li>Copy Mac public key to the server and verify <span class="inline-code">ssh user@server</span> works without password prompts.</li>
+          <li>Install macFUSE + SSHFS on macOS.</li>
+          <li>Mount the desired server directory with <span class="inline-code">sshfs</span>.</li>
+        </ol>
+        <p class="meta">
+          If you want this to be “set-and-forget”, the next step is automounting on macOS (LaunchAgent) and adding a friendly SSH alias in
+          <span class="inline-code">~/.ssh/config</span>.
+        </p>
+      </section>
+
+      <section id="troubleshooting">
+        <h2>Troubleshooting</h2>
+        <ul>
+          <li><strong>Can’t ping/SSH the server</strong>: confirm both devices show “connected” in Tailscale and are in the same tailnet; check <span class="inline-code">tailscale status</span> on the server.</li>
+          <li><strong>SSH asks for password</strong>: your key may not be installed, permissions may be off, or password auth is still enabled server-side.</li>
+          <li><strong>SSHFS disconnects</strong>: use the reconnect/keepalive options shown above; consider mounting a less busy directory.</li>
+          <li><strong>macFUSE permissions prompts</strong>: approve the system extension in macOS settings if required, then reboot.</li>
+        </ul>
+      </section>
+    </article>
+  </main>
+</body>
+</html>
+

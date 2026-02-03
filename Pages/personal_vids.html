@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document and Media Viewer</title>
-    <link rel="stylesheet" href="../styling/AudioVisual.css">
+    <title>Personal Videos</title>
+    <link rel="stylesheet" href="../styling/common.css">
+    <link rel="stylesheet" href="../styling/blog_page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-724NR57445"></script>
@@ -15,37 +17,47 @@
       gtag('config', 'G-724NR57445');
     </script>
 </head>
-<body>
-    <div class="container">
-        <div class="media-viewer">
-            <video id="mediaVideo1" controls>
-                <source src="../assets/projects/AudioVisualization/TDMovieOut_1.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <video id="mediaVideo2" controls>
-                <source src="../assets/projects/AudioVisualization/TDMovieOut_2.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <video id="mediaVideo3" controls>
-                <source src="../assets/projects/AudioVisualization/TDMovieOut_3.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </div>
-    <script src="../functionality/robotic_arm.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            function loadMedia(videoId, source) {
-                const video = document.getElementById(videoId);
-                video.querySelector('source').src = source;
-                video.load(); // Necessary to update the video source
-                video.style.display = 'block';
-            }
+<body class="blog-page">
+    <main class="blog-container">
+        <article class="blog-card">
+            <div class="page-lede-top">
+                <div>
+                    <h1 class="project-title">Personal Videos</h1>
+                    <p class="project-subtitle">A small set of personal clips and edits.</p>
+                </div>
+                <a href="../index.html" class="home-button" aria-label="Back to homepage">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                </a>
+            </div>
 
-            loadMedia('mediaVideo1', '../assets/projects/AudioVisualization/TDMovieOut_1.mp4');
-            loadMedia('mediaVideo2', '../assets/projects/AudioVisualization/TDMovieOut_2.mp4');
-            loadMedia('mediaVideo3', '../assets/projects/AudioVisualization/TDMovieOut_3.mp4');
-        });
-    </script>
+            <div class="container">
+                <div class="media-viewer project-span-all">
+                    <h2 class="media-title">Summary</h2>
+                    <p class="media-description">Placeholder list—swap the sources below for your preferred personal videos.</p>
+                </div>
+                <div class="media-viewer">
+                    <h2 class="media-title">Clip 1</h2>
+                    <video controls preload="metadata" playsinline>
+                        <source src="../assets/projects/AudioVisualization/TDMovieOut_1.mp4#t=0.1" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="media-viewer">
+                    <h2 class="media-title">Clip 2</h2>
+                    <video controls preload="metadata" playsinline>
+                        <source src="../assets/projects/AudioVisualization/TDMovieOut_2.mp4#t=0.1" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="media-viewer project-span-all">
+                    <h2 class="media-title">Clip 3</h2>
+                    <video controls preload="metadata" playsinline>
+                        <source src="../assets/projects/AudioVisualization/TDMovieOut_3.mp4#t=0.1" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </article>
+    </main>
 </body>
 </html>

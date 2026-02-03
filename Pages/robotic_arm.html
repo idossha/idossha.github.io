@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Force Sensor Project</title>
     <link rel="stylesheet" href="../styling/common.css">
-    <link rel="stylesheet" href="../styling/robotic_arm.css">
+    <link rel="stylesheet" href="../styling/blog_page.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Google tag (gtag.js) -->
@@ -17,49 +17,36 @@
       gtag('config', 'G-724NR57445');
     </script>
 </head>
-<body class="project-page">
-    <header class="project-header">
-        <div>
-            <h1 class="project-title">Force Sensor Project</h1>
-            <p class="project-subtitle">Embedded force sensor for robotic assisted surgery.</p>
+<body class="blog-page">
+    <main class="blog-container">
+        <article class="blog-card">
+            <div class="container">
+        <div class="media-viewer project-span-all">
+            <div class="page-lede-top">
+                <div>
+                    <h1 class="project-title">Force Sensor Project</h1>
+                    <p class="project-subtitle">Embedded force sensor for robotic assisted surgery.</p>
+                </div>
+                <a href="../index.html" class="home-button" aria-label="Back to homepage">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                </a>
+            </div>
+            <h2 class="media-title">Summary</h2>
+            <p class="media-description">Embedded force sensing for robotic-assisted surgery. The report (left) documents requirements, design decisions, prototyping, and evaluation. The demo video (right) shows the final build in operation.</p>
         </div>
-        <a href="../index.html" class="home-button">
-            <i class="fas fa-home"></i>
-        </a>
-    </header>
-    <div class="container">
         <div class="text-viewer">
-            <iframe id="textReader" src="../assets/projects/robotic_arm/robotic_arm_final.pdf" style="width:100%; height:100%;"></iframe>
+            <iframe title="Force Sensor Project report (PDF)" loading="lazy" src="../assets/projects/robotic_arm/robotic_arm_final.pdf"></iframe>
+            <p class="embed-fallback"><a href="../assets/projects/robotic_arm/robotic_arm_final.pdf">Open the PDF in a new tab</a></p>
         </div>
         <div class="media-viewer">
-            <img id="mediaImage" src="placeholder.jpg" alt="Media Image" style="display: none;">
-            <video id="mediaVideo" controls style="display: none;">
-                <source src="../assets/projects/robotic_arm/robotic_arm.mp4" type="video/mp4">
+            <h2 class="media-title">Demo</h2>
+            <video controls preload="metadata" playsinline>
+                <source src="../assets/projects/robotic_arm/robotic_arm.mp4#t=0.1" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
-    </div>
-    <script src="../functionality/robotic_arm.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            function loadMedia(type, source) {
-                const image = document.getElementById('mediaImage');
-                const video = document.getElementById('mediaVideo');
-
-                if (type === 'image') {
-                    image.src = source;
-                    image.style.display = 'block';
-                    video.style.display = 'none';
-                } else if (type === 'video') {
-                    video.querySelector('source').src = source;
-                    video.load(); // Necessary to update the video source
-                    video.style.display = 'block';
-                    image.style.display = 'none';
-                }
-            }
-
-            loadMedia('video', '../assets/projects/robotic_arm/robotic_arm.mp4'); // Adjusted path
-        });
-    </script>
+            </div>
+        </article>
+    </main>
 </body>
 </html>

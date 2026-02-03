@@ -13,6 +13,11 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Poppins", system-ui, -apple-system, sans-serif;
+    color: #f8fafc;
+    background:
+        radial-gradient(1200px 600px at 15% 0%, rgba(248, 113, 113, 0.18), transparent 55%),
+        radial-gradient(900px 500px at 85% 10%, rgba(56, 189, 248, 0.14), transparent 55%),
+        linear-gradient(180deg, #070a12, #0b0c0f 55%, #070a12);
 }
 
 /* Background canvas should not affect layout */
@@ -47,17 +52,18 @@ canvas {
     text-align: left;
     margin: 0.5em 0 2em;
     padding: 1.25em 1.5em;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(226, 232, 240, 0.12);
     border-radius: 14px;
-    background: #fff; /* fully opaque background */
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
     flex: 1 1 0;
     max-height: 54vh; /* ~10% shorter project pane */
     overflow-y: auto;
     padding-left: 1em;
     direction: rtl;
     scrollbar-width: thin;
-    scrollbar-color: rgba(30, 41, 59, 0.35) transparent;
+    scrollbar-color: rgba(226, 232, 240, 0.28) transparent;
     scrollbar-gutter: stable;
 }
 
@@ -70,24 +76,52 @@ canvas {
 }
 
 .project-list::-webkit-scrollbar-thumb {
-    background: #1e293b38;
+    background: rgba(226, 232, 240, 0.18);
     border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.55);
-    box-shadow: inset 0 0 0 1px rgba(30, 41, 59, 0.08);
+    border: 2px solid rgba(2, 6, 23, 0.55);
+    box-shadow: inset 0 0 0 1px rgba(226, 232, 240, 0.08);
 }
 
 .project-list::-webkit-scrollbar-thumb:hover {
-    background: rgba(30, 41, 59, 0.35);
+    background: rgba(226, 232, 240, 0.28);
 }
 
 .project-list > * {
     direction: ltr;
 }
 
-.project-list h2 {
+.project-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
     margin: 0 0 0.75em;
+}
+
+.project-list-header h2 {
+    margin: 0;
     font-size: 1.2em;
     font-weight: 600;
+}
+
+.blog-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(196, 30, 58, 0.04);
+    color: rgba(15, 23, 42, 0.8);
+    transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.blog-link:hover {
+    color: #C41E3A;
+    border-color: rgba(196, 30, 58, 0.25);
+    background: rgba(196, 30, 58, 0.08);
+    transform: translateY(-1px);
 }
 
 .project-items {
@@ -97,20 +131,12 @@ canvas {
 }
 
 .project-items li + li {
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(226, 232, 240, 0.12);
 }
 
 .project-item {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-    grid-template-areas:
-        "title tags"
-        "desc  desc";
-    column-gap: 0.4em; /* tighter horizontal gap between title and tags */
-    row-gap: 0.25em;   /* small gap between header row and description */
+    display: block;
     padding: 0.85em 0.6em;
-    align-items: center;
     color: inherit;
     border-radius: 10px;
     position: relative; /* anchor for the hover popover */
@@ -118,16 +144,16 @@ canvas {
 }
 
 .project-item:hover {
-    color: #C41E3A;
-    background-color: rgba(196, 30, 58, 0.06);
+    color: #ffffff;
+    background-color: rgba(248, 113, 113, 0.1);
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
 }
 
 .project-title {
-    grid-area: title;
     font-weight: 600;
     display: block;
+    color: rgba(248, 250, 252, 0.96);
 }
 
 .project-ext-icon {
@@ -137,20 +163,18 @@ canvas {
 }
 
 .project-desc {
-    grid-area: desc;
     font-size: 0.95em;
-    color: rgba(0, 0, 0, 0.7);
+    color: rgba(226, 232, 240, 0.82);
     line-height: 1.45;
     margin-top: 0.1em;
 }
 
 .project-tags {
-    grid-area: tags;
+    margin-top: 0.35rem;
     font-size: 0.85em;
-    color: rgba(0, 0, 0, 0.55);
-    text-align: right;
-    white-space: nowrap;
-    justify-self: end;
+    color: rgba(226, 232, 240, 0.7);
+    text-align: left;
+    white-space: normal;
     display: block;
 }
 
@@ -208,7 +232,7 @@ canvas {
 }
 
 .icons a {
-    color: black;
+    color: rgba(248, 250, 252, 0.92);
     display: inline-block; /* Ensure transform applies correctly */
     font-size: 32px; /* Increased font size for larger icons */
     transition: transform 0.5s ease, color 0.5s ease; /* Smooth transition for transform and color */
@@ -221,11 +245,11 @@ canvas {
 
 a {
     text-decoration: none;
-    color: #C41E3A; /* Initial color for links */
+    color: #f87171; /* Link color */
 }
 
 a:hover {
-    color: #C41E3A; /* Keep the color consistent on hover for all links */
+    color: #fecaca;
 }
 
 /* FOOTER SECTION */
