@@ -14,7 +14,7 @@
   const config = {
     numChannels: 6,
     epochSeconds: 30,        // Standard 30-second sleep epoch
-    scrollSpeed: 0.8,        // Pixels per frame
+    scrollSpeed: 0.3,        // Pixels per frame
     lineWidth: 1.5,
     opacity: 0.18,
     verticalPadding: 0.08,
