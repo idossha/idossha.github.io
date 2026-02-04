@@ -1,56 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FM Receiver</title>
-    <link rel="stylesheet" href="../styling/common.css">
-    <link rel="stylesheet" href="../styling/project_page.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FM Receiver Project</title>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-724NR57445"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-724NR57445');
-    </script>
+  <link rel="stylesheet" href="../styling/common.css" />
+  <link rel="stylesheet" href="../styling/project_page.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-724NR57445"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-724NR57445');
+  </script>
 </head>
 <body class="project-page">
-    <main class="project-container">
-        <article class="project-card">
-            <div class="container">
-        <div class="media-viewer project-span-all">
-            <div class="page-lede-top">
-                <div>
-                    <h1 class="project-title">FM Receiver</h1>
-                    <p class="project-subtitle">Custom, low-cost FM receivers built from scratch.</p>
-                </div>
-                <a href="../index.html" class="home-button" aria-label="Back to homepage">
-                    <i class="fas fa-home" aria-hidden="true"></i>
-                </a>
-            </div>
-            <h2 class="media-title">Summary</h2>
-            <p class="media-description">Two low-cost FM receivers built from scratch. The PDF walks through design choices and build notes; videos show the receiver in action.</p>
+  <main class="project-container">
+    <article class="project-card">
+      <div class="page-lede-top">
+        <div>
+          <h1 class="project-title">FM Receiver Project</h1>
+          <p class="project-subtitle">Two Custom low-cost FM receivers I built at home.</p>
         </div>
-        <div class="text-viewer">
-            <iframe title="FM Receiver project documentation (PDF)" loading="lazy" src="../assets/projects/radio/Radio-Project.pdf#zoom=100"></iframe>
-            <p class="embed-fallback"><a href="../assets/projects/radio/Radio-Project.pdf">Open the PDF in a new tab</a></p>
-        </div>
-        <div class="media-viewer">
-            <h2 class="media-title">Build demos</h2>
-            <video id="mediaVideo1" controls preload="metadata" playsinline>
-                <source src="../assets/projects/radio/radio-1.mp4#t=0.1" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <video id="mediaVideo2" controls preload="metadata" playsinline>
-                <source src="../assets/projects/radio/radio-2.mp4#t=0.1" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-            </div>
-        </article>
-    </main>
+        <a href="../index.html" class="home-button" aria-label="Back to homepage">
+          <i class="fas fa-home" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <section id="inspiration">
+        <h2>Inspiration</h2>
+        <p>
+          Family reached out inquiring about the possibility of building a simple crude radio receiver.
+          This is an adaptation of <a href="https://educ8s.tv/arduino-fm-radio-project/" target="_blank" rel="noopener">Nick's work from educ8s.tv</a>.
+        </p>
+        <figure>
+          <video controls preload="metadata" playsinline>
+            <source src="../assets/projects/radio/radio-1.mp4#t=0.1" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+      </section>
+
+      <section id="conceptualization">
+        <h2>Conceptualization</h2>
+        <ul>
+          <li>Simple, small, 9V battery operated</li>
+          <li>Should seem like DIY device</li>
+          <li>Should receive FM signals and output good(ish) quality signal</li>
+        </ul>
+        <figure>
+          <img src="../assets/projects/radio/radio_schematic.png" alt="Circuit schematic for FM receiver" loading="lazy" />
+        </figure>
+      </section>
+
+      <section id="components">
+        <h2>Minimum Viable Product Requirements</h2>
+        <ul>
+          <li>Microcontroller (Arduino Nano works well)</li>
+          <li><a href="https://www.ebay.com/itm/310795359575" target="_blank" rel="noopener">FM Radio Module</a></li>
+          <li><a href="https://www.ebay.com/itm/400488314619" target="_blank" rel="noopener">Nokia 5110 LCD</a></li>
+          <li>10K Potentiometer &times; 2</li>
+          <li>Rotary Encoder</li>
+          <li><a href="https://www.ebay.com/itm/404836913275" target="_blank" rel="noopener">Audio Amplifier</a></li>
+          <li><a href="https://www.digikey.com/en/products/detail/cui-devices/CMS-402811-28SP/10821307" target="_blank" rel="noopener">3W Speaker</a></li>
+          <li>Breadboard / perfboard for prototyping</li>
+          <li><a href="https://www.digikey.com/en/products/detail/tensility-international-corp/10-00344/2350247" target="_blank" rel="noopener">Audio Cable</a></li>
+          <li>Jumper Wires</li>
+          <li>Solder station + Solder wire (not required but preferable)</li>
+          <li>Antenna</li>
+        </ul>
+        <figure>
+          <video controls preload="metadata" playsinline>
+            <source src="../assets/projects/radio/radio-2.mp4#t=0.1" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+      </section>
+
+      <section id="iterative">
+        <h2>Iterative Design</h2>
+        <p>Later improvements:</p>
+        <ul>
+          <li>Housing from 3D printed schematics</li>
+          <li>PCB design (?)</li>
+          <li>Software improvements for:
+            <ul>
+              <li>Station memory</li>
+              <li>Increase stability when sweeping through freq range</li>
+              <li>Reduce noise</li>
+            </ul>
+          </li>
+          <li>Miniaturization</li>
+        </ul>
+        <p>
+          Ideas for improvements: <a href="https://educ8s.tv/arduino-fm-radio-2/" target="_blank" rel="noopener">educ8s.tv/arduino-fm-radio-2</a>
+        </p>
+      </section>
+
+      <section id="dependencies">
+        <h2>Dependencies</h2>
+        <p>All Arduino related libraries should be moved to /path/Arduino/libraries/</p>
+        <ul>
+          <li><a href="https://github.com/mroger/TEA5767" target="_blank" rel="noopener">FM Radio Library</a></li>
+          <li><a href="http://www.rinkydinkelectronics.com/library.php?id=48" target="_blank" rel="noopener">Nokia 5110 Graph</a></li>
+        </ul>
+        <p>If you want to see the serial output of frequency vs voltage use a serial terminal like "CoolTerm" for Mac.</p>
+      </section>
+
+      <section id="references">
+        <h2>References</h2>
+        <ul>
+          <li><a href="https://github.com/idossha/radio-project" target="_blank" rel="noopener">Project GitHub Repository</a></li>
+          <li><a href="https://github.com/stm32duino" target="_blank" rel="noopener">stm32duino</a></li>
+        </ul>
+        <p>
+          If you want to work with Nucleos instead of Arduino, but want to utilize the classic Arduino IDE you follow the instructions here:
+          <a href="https://www.youtube.com/watch?v=yssEiMLGH90" target="_blank" rel="noopener">YouTube tutorial</a>
+        </p>
+      </section>
+    </article>
+  </main>
 </body>
 </html>

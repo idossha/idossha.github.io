@@ -1,52 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Force Sensor Project</title>
-    <link rel="stylesheet" href="../styling/common.css">
-    <link rel="stylesheet" href="../styling/project_page.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Force Sensitive Robotic Arm</title>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-724NR57445"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-724NR57445');
-    </script>
+  <link rel="stylesheet" href="../styling/common.css" />
+  <link rel="stylesheet" href="../styling/project_page.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-724NR57445"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-724NR57445');
+  </script>
 </head>
 <body class="project-page">
-    <main class="project-container">
-        <article class="project-card">
-            <div class="container">
-        <div class="media-viewer project-span-all">
-            <div class="page-lede-top">
-                <div>
-                    <h1 class="project-title">Force Sensor Project</h1>
-                    <p class="project-subtitle">Embedded force sensor for robotic assisted surgery.</p>
-                </div>
-                <a href="../index.html" class="home-button" aria-label="Back to homepage">
-                    <i class="fas fa-home" aria-hidden="true"></i>
-                </a>
-            </div>
-            <h2 class="media-title">Summary</h2>
-            <p class="media-description">Embedded force sensing for robotic-assisted surgery. The report (left) documents requirements, design decisions, prototyping, and evaluation. The demo video (right) shows the final build in operation.</p>
+  <main class="project-container">
+    <article class="project-card">
+      <div class="page-lede-top">
+        <div>
+          <h1 class="project-title">Force Sensitive Robotic Arm</h1>
+          <p class="project-subtitle">Sensor Design Project - BME 462, December 2023</p>
         </div>
-        <div class="text-viewer">
-            <iframe title="Force Sensor Project report (PDF)" loading="lazy" src="../assets/projects/robotic_arm/robotic_arm_final.pdf"></iframe>
-            <p class="embed-fallback"><a href="../assets/projects/robotic_arm/robotic_arm_final.pdf">Open the PDF in a new tab</a></p>
-        </div>
-        <div class="media-viewer">
-            <h2 class="media-title">Demo</h2>
-            <video controls preload="metadata" playsinline>
-                <source src="../assets/projects/robotic_arm/robotic_arm.mp4#t=0.1" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-            </div>
-        </article>
-    </main>
+        <a href="../index.html" class="home-button" aria-label="Back to homepage">
+          <i class="fas fa-home" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>
+          A force-sensitive robotic arm prototype designed to assist remote operators during robot-assisted surgeries by providing feedback on force applied to tissue. The project covers FDA classification, hardware and software design considerations, and verification/validation testing.
+        </p>
+      </section>
+
+      <section id="description">
+        <h2>Device Description</h2>
+        <p>
+          Robot-assisted surgeries have been gaining ground for the past few years. For nonautonomous systems, such as the da Vinci robot, a remote operator is in control of the system in a master/slave configuration. With such systems, there are clear advantages, like the use of miniature tools, stability, and precision of movement, but also clear issues that need to be addressed. One issue is that without proper feedback loop, these robotic arms cannot sense how much force is exerted on the tissue manipulated. Therefore, specific sensors must be mounted on those robots so that the operator can have a sense of the tool-tissue interaction in place.
+        </p>
+        <p>
+          The device could be considered both therapeutic and diagnostic depending on the nature of the operation. For the purposes of this report, the device is of a therapeutic nature as it is intended to assist remote surgeons in grasping action during minimally invasive surgeries. Based on the FDA database for biomedical devices classification, endoscopic robotic arms are classified under class II devices.
+        </p>
+      </section>
+
+      <section id="hardware">
+        <h2>Hardware Design</h2>
+        <p>
+          Physical Input → Force sensor (Topography 1: voltage divider; Topography 2: includes amplification and filtering, DC-DC conversion, inverting amplifier) → Microcontroller (STM32F303K8) with 3V Power management → Output: LEDs & Serial Monitor (UART)
+        </p>
+        <figure>
+          <img src="../assets/projects/robotic_arm/hardware_diagram.png" alt="Hardware block diagram showing sensor circuit topology" loading="lazy" />
+        </figure>
+      </section>
+
+      <section id="software">
+        <h2>Software Design</h2>
+        <p>
+          Initialize parameters → Setup updateLEDs function & Print status → main function (Sample A1 and converts to digital signal, Calls updateLEDs, Wait 100ms) → Updates LEDs + serial comm. monitor
+        </p>
+        <figure>
+          <img src="../assets/projects/robotic_arm/software_diagram.png" alt="Software block diagram showing control flow" loading="lazy" />
+        </figure>
+      </section>
+
+      <section id="validation">
+        <h2>Verification & Validation</h2>
+        <p>
+          Calibration results show Force vs Voltage Out: y = 0.9768x + 0.2353, R² = 0.9247, with a resolution of 0.97V/N. Given the R squared value, we can be confident the sensor gives accurate readings of exerted force within the calibrated range.
+        </p>
+        <figure>
+          <img src="../assets/projects/robotic_arm/force_voltage.png" alt="Force vs voltage calibration curve" loading="lazy" />
+        </figure>
+
+        <h3>Design Requirements Summary</h3>
+        <table>
+          <tr>
+            <th>Requirement</th>
+            <th>Status</th>
+          </tr>
+          <tr>
+            <td><strong>Safety</strong></td>
+            <td>This device is a minor extension that will be embedded in existing validated technology. The code and LEDs can be modified such that a certain threshold will elicit alarming feedback (e.g., RED LED).</td>
+          </tr>
+          <tr>
+            <td><strong>Accuracy</strong></td>
+            <td>From the validation process, the device worked with 92.5% accuracy and with great versatility across different components and sensing ranges.</td>
+          </tr>
+          <tr>
+            <td><strong>Feedback</strong></td>
+            <td>Visual feedback was successfully incorporated in two forms: LEDs of different colors and a serial PC communication.</td>
+          </tr>
+          <tr>
+            <td><strong>Storage</strong></td>
+            <td>Given the UART protocol, sensing data can easily be recorded for later analysis and comparison with surgical outcomes.</td>
+          </tr>
+        </table>
+        <p>
+          Based on the desired application and force typically exerted during retraction with grasping in general surgeries, the system is sensitive to forces in the range of 1-3N.
+        </p>
+      </section>
+
+      <section id="demo">
+        <h2>Demo</h2>
+        <figure>
+          <video controls preload="metadata" playsinline>
+            <source src="../assets/projects/robotic_arm/robotic_arm.mp4#t=0.1" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+      </section>
+
+      <section id="conclusion">
+        <h2>Conclusion</h2>
+        <p>
+          From testing and validation, these force sensors are great candidates for achieving high precision and reliable source of information with respect to forces exerted on objects. From the first mathematical approach to the LTspice simulation and physical testing, the system behaved as expected. Force was measured successfully, and the microcontroller produced expected and appropriate feedback.
+        </p>
+        <p>
+          Future work could address challenges with malleable objects and non-flat profiles where the sensor might not reflect the true force exerted on tissue. Further force sensors for different degrees of freedom could be incorporated to obtain more comprehensive data collection.
+        </p>
+      </section>
+
+      <section id="references">
+        <h2>References</h2>
+        <ol>
+          <li>N. Enayati, E. De Momi, and G. Ferrigno, "Haptics in Robot-Assisted Surgery: Challenges and Benefits," <em>IEEE Rev. Biomed. Eng.</em>, vol. 9, pp. 49–65, 2016.</li>
+          <li>A. K. Golahmadi, D. Z. Khan, G. P. Mylonas, and H. J. Marcus, "Tool-tissue forces in surgery: A systematic review," <em>Annals of Medicine & Surgery</em>, vol. 65, May 2021.</li>
+          <li>FDA Product Classification Database</li>
+          <li>C.-H. King et al., "Tactile Feedback Induces Reduced Grasping Force in Robot-Assisted Surgery," <em>IEEE Trans. Haptics</em>, vol. 2, no. 2, pp. 103–110, Apr. 2009.</li>
+          <li><a href="https://www.tekscan.com/force-sensors" target="_blank" rel="noopener">Tekscan Force Sensors</a></li>
+          <li><a href="https://www.interlinkelectronics.com/fsr-400" target="_blank" rel="noopener">Interlink Electronics FSR 400</a></li>
+        </ol>
+      </section>
+    </article>
+  </main>
 </body>
 </html>
