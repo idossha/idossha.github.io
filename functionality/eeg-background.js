@@ -14,7 +14,6 @@
   const config = {
     numChannels: 6,
     epochSeconds: 30,        // Standard 30-second sleep epoch
-    scrollSpeed: 0.3,        // Pixels per frame
     lineWidth: 1.5,
     opacity: 0.18,
     verticalPadding: 0.08,
@@ -32,6 +31,8 @@
   let offset = 0;
   let animationId;
   let pixelsPerSecond;
+  let lastTime = 0;
+  const targetScrollPixelsPerSecond = 20; // Consistent speed regardless of refresh rate
 
   function resize() {
     canvas.width = window.innerWidth;
@@ -130,7 +131,7 @@
     return value * modulation * amplitude;
   }
 
-  function draw() {
+  function draw(deltaTime) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     const width = canvas.width;
@@ -157,12 +158,16 @@
       ctx.stroke();
     });
 
-    // Scroll right to left
-    offset += config.scrollSpeed;
+    // Scroll right to left - time-based for consistent speed across refresh rates
+    offset += targetScrollPixelsPerSecond * deltaTime;
   }
 
-  function animate() {
-    draw();
+  function animate(currentTime) {
+    // Calculate delta time in seconds
+    const deltaTime = lastTime ? (currentTime - lastTime) / 1000 : 0;
+    lastTime = currentTime;
+
+    draw(deltaTime);
     animationId = requestAnimationFrame(animate);
   }
 
@@ -170,7 +175,8 @@
     if (document.hidden) {
       cancelAnimationFrame(animationId);
     } else {
-      animate();
+      lastTime = 0; // Reset to avoid jump when returning
+      animationId = requestAnimationFrame(animate);
     }
   }
 
@@ -178,5 +184,5 @@
   document.addEventListener('visibilitychange', handleVisibilityChange);
 
   resize();
-  animate();
+  animationId = requestAnimationFrame(animate);
 })();
