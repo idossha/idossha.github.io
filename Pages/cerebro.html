@@ -1,52 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cerebro</title>
-    <link rel="stylesheet" href="../styling/common.css">
-    <link rel="stylesheet" href="../styling/project_page.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cerebro</title>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-724NR57445"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-724NR57445');
-    </script>
+  <link rel="stylesheet" href="../styling/common.css" />
+  <link rel="stylesheet" href="../styling/project_page.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-724NR57445"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-724NR57445');
+  </script>
 </head>
 <body class="project-page">
-    <main class="project-container">
-        <article class="project-card">
-            <div class="container">
-        <div class="media-viewer project-span-all">
-            <div class="page-lede-top">
-                <div>
-                    <h1 class="project-title">Cerebro</h1>
-                    <p class="project-subtitle">3D print project with design documentation and timelapse.</p>
-                </div>
-                <a href="../index.html" class="home-button" aria-label="Back to homepage">
-                    <i class="fas fa-home" aria-hidden="true"></i>
-                </a>
-            </div>
-            <h2 class="media-title">Summary</h2>
-            <p class="media-description">3D printing workflow exploration in Bambu Studio (TPU vs PLA), with iterations on orientation, supports, and nozzle choices to improve print quality, efficiency, and cost.</p>
+  <main class="project-container">
+    <article class="project-card">
+      <div class="page-lede-top">
+        <div>
+          <h1 class="project-title">Cerebro</h1>
+          <p class="project-subtitle">A software-hardware solution for precise EEG electrode placement.</p>
         </div>
-        <div class="text-viewer">
-            <iframe title="Cerebro design documentation (PDF)" loading="lazy" src="../assets/projects/cerebro/3D_Print.pdf"></iframe>
-            <p class="embed-fallback"><a href="../assets/projects/cerebro/3D_Print.pdf">Open the PDF in a new tab</a></p>
-        </div>
-        <div class="media-viewer">
-            <h2 class="media-title">Timelapse</h2>
-            <video controls preload="metadata" playsinline>
-                <source src="../assets/projects/cerebro/3D_timelapse.mp4#t=0.1" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-            </div>
-        </article>
-    </main>
+        <a href="../index.html" class="home-button" aria-label="Back to homepage">
+          <i class="fas fa-home" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>
+          A software-hardware solution that gives users a straightforward, robust solution for accurate placement of electrodes on a subject's scalp. It is especially helpful when electrode positions for complex and sensitive paradigms were computationally optimized and require millimeter-resolution accuracy during placement, or repetitive placement across multiple sessions.
+        </p>
+        <figure>
+          <img src="../assets/projects/cerebro/Blender_illustration.png" alt="3D Blender illustration of the electrode placement system" loading="lazy" />
+        </figure>
+      </section>
+
+      <section id="process">
+        <h2>Process</h2>
+        <p>
+          Experimentation was done on the software end with different approaches when it came to GUI design, UI/UX, and interaction of user input. Further exploration was done when it came to print material using Bambu Studio (TPU vs PLA), with iterations on orientation, supports, and nozzle choices to improve print quality, efficiency, and cost.
+        </p>
+        <figure>
+          <img src="../assets/projects/cerebro/GUI.png" alt="Cerebro GUI interface screenshot" loading="lazy" />
+        </figure>
+      </section>
+
+      <section id="current-state">
+        <h2>Current State</h2>
+        <p>
+          Software is still in late stages of development and is currently closed source but can potentially be provided upon request. Prints are stable and can be done in one piece over three hours given sufficient print bed size.
+        </p>
+      </section>
+
+      <section id="timelapse">
+        <h2>Print Timelapse</h2>
+        <video controls preload="metadata" playsinline>
+          <source src="../assets/projects/cerebro/3D_timelapse.mp4#t=0.1" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </section>
+    </article>
+  </main>
 </body>
 </html>

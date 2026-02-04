@@ -364,6 +364,46 @@
     border-top: none;
 }
 
+/* Figures within sections (images, videos) */
+.project-page section figure {
+    margin: 1.25rem 0;
+    padding: 0;
+    max-width: 800px;
+}
+
+.project-page section figure img,
+.project-page section figure video {
+    width: 100%;
+    height: auto;
+    max-height: 55vh;
+    object-fit: contain;
+    display: block;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: rgba(2, 6, 23, 0.35);
+}
+
+.project-page section figure figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: rgba(226, 232, 240, 0.7);
+    font-style: italic;
+}
+
+/* Standalone video in sections */
+.project-page section > video {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    max-height: 55vh;
+    object-fit: contain;
+    display: block;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: rgba(2, 6, 23, 0.35);
+    margin: 1rem 0;
+}
+
 /* When there's only one content item after the intro, make it full width */
 .project-page .container > *:nth-child(2):last-child:not(.project-span-all) {
     grid-column: 1 / -1;
