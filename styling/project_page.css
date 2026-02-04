@@ -366,7 +366,7 @@
 
 /* Figures within sections (images, videos) */
 .project-page section figure {
-    margin: 1.25rem 0;
+    margin: 1.25rem auto;
     padding: 0;
     max-width: 800px;
 }
@@ -378,6 +378,7 @@
     max-height: 55vh;
     object-fit: contain;
     display: block;
+    margin: 0 auto;
     border-radius: 14px;
     border: 1px solid rgba(148, 163, 184, 0.18);
     background: rgba(2, 6, 23, 0.35);
