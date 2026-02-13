@@ -55,15 +55,30 @@
             <p class="media-description"><strong>Installation:</strong></p>
             <pre><code>pip install eegtopo</code></pre>
             <p class="media-description"><strong>Quick Start:</strong></p>
-            <pre><code>from eegtopo import run_cluster_analysis
+            <pre><code>
+import pandas as pd
+from eegtopo import TopographicAnalysis, run_cluster_analysis
 
-# Run one-shot analysis
+# Your data - just needs subject, channel, value, and condition columns
+df = pd.DataFrame({
+    'subject': ['sub-01', 'sub-01', 'sub-02', 'sub-02', ...],
+    'channel': ['E1', 'E1', 'E1', 'E1', ...],
+    'condition': ['pre', 'post', 'pre', 'post', ...],
+    'power': [1.2, 2.3, 1.1, 2.1, ...]
+})
+
+# Method 1: One-shot analysis
 results = run_cluster_analysis(
     df,
     condition_a='pre',
     condition_b='post',
     value_col='power',
-    plot=True
+    plot=True,
+    save_path='results.png'
+)
+
+print(f"Found {results['results'].n_sig_clusters} significant clusters")
+print(results['results'].summary())
 )</code></pre>
         </div>
         
