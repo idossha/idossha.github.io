@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Homelab: Tailscale + SSHFS</title>
+  <title>Homelab: Tailscale + Syncthing</title>
 
   <link rel="stylesheet" href="../styling/common.css" />
   <link rel="stylesheet" href="../styling/project_page.css" />
@@ -23,8 +23,8 @@
     <article class="project-card">
       <div class="page-lede-top">
         <div>
-          <h1 class="project-title">Homelab: Tailscale + SSHFS</h1>
-          <p class="project-subtitle">A stable, encrypted link between a home Linux server and a macOS laptop (no port-forwarding).</p>
+          <h1 class="project-title">Homelab: Tailscale + Syncthing</h1>
+          <p class="project-subtitle">Bidirectional file sync between a home Linux server and a macOS laptop over a private encrypted network.</p>
         </div>
         <a href="../index.html" class="home-button" aria-label="Back to homepage">
           <i class="fas fa-home" aria-hidden="true"></i>
@@ -33,23 +33,27 @@
       <section id="overview">
         <h2>Overview</h2>
         <p>
-          The goal was simple: access a Linux server at home from a macOS laptop reliably, even when networks change (coffee shop Wi‑Fi,
-          campus networks, CGNAT at home, etc.). We built it in two layers:
+          The goal: keep files in sync between a Raspberry Pi server at home and a MacBook, reliably, even when networks change
+          (coffee shop Wi-Fi, campus networks, university VPN, CGNAT at home). The setup has two layers:
         </p>
         <ul>
-          <li><strong>Tailscale</strong>: gives the laptop and the server a private, authenticated, encrypted network (WireGuard-based), so they can always reach each other.</li>
-          <li><strong>SSH + SSHFS</strong>: uses that stable network to log in securely and (optionally) mount a server directory on the Mac like a local folder.</li>
+          <li><strong>Tailscale</strong>: gives both machines a private, authenticated, encrypted network (WireGuard-based), so they can always reach each other.</li>
+          <li><strong>Syncthing</strong>: continuously syncs designated folders over that network. Files exist as true local copies on both machines&mdash;no mounts, no kernel extensions, no stale connections.</li>
         </ul>
 
         <div class="toc" aria-label="Table of contents">
           <strong>On this page</strong>
           <ul>
             <li><a href="#why">Why this approach</a></li>
+            <li><a href="#previous">Previous approach (SSHFS)</a></li>
             <li><a href="#architecture">Architecture</a></li>
             <li><a href="#prereqs">Prerequisites</a></li>
-            <li><a href="#setup-tailscale">Step 1 — Tailscale setup</a></li>
-            <li><a href="#setup-ssh">Step 2 — SSH hardening</a></li>
-            <li><a href="#setup-sshfs">Step 3 — SSHFS mount on macOS</a></li>
+            <li><a href="#setup-tailscale">Step 1 &mdash; Tailscale setup</a></li>
+            <li><a href="#setup-ssh">Step 2 &mdash; SSH hardening</a></li>
+            <li><a href="#setup-syncthing-mac">Step 3 &mdash; Syncthing on macOS</a></li>
+            <li><a href="#setup-syncthing-pi">Step 4 &mdash; Syncthing on the Pi</a></li>
+            <li><a href="#setup-pairing">Step 5 &mdash; Pairing devices and sharing folders</a></li>
+            <li><a href="#day-to-day">Day-to-day usage</a></li>
             <li><a href="#replicate">Replication checklist</a></li>
             <li><a href="#troubleshooting">Troubleshooting</a></li>
           </ul>
@@ -59,84 +63,96 @@
       <section id="why">
         <h2>Why this approach</h2>
         <ul>
-          <li><strong>Reliability</strong>: Tailscale handles NAT traversal and IP changes, so your “server is always there”.</li>
-          <li><strong>Security</strong>: no open inbound ports required; traffic is encrypted end-to-end; access is tied to identity.</li>
-          <li><strong>Convenience</strong>: SSHFS makes remote files feel local (Finder, editors, scripts) without copying back and forth.</li>
+          <li><strong>Reliability</strong>: Syncthing reconnects automatically after network changes. No stale mounts, no watchdog scripts.</li>
+          <li><strong>No kernel extensions</strong>: unlike SSHFS/macFUSE, Syncthing runs entirely in userspace.</li>
+          <li><strong>VPN resilience</strong>: using Tailscale IPs (not DNS names) ensures connectivity survives university VPN (GlobalProtect) disruptions.</li>
+          <li><strong>True local files</strong>: files exist on both machines. Editors, scripts, and Finder work normally even when offline.</li>
+          <li><strong>Bidirectional sync</strong>: changes on either side propagate to the other automatically.</li>
+          <li><strong>Security</strong>: all traffic is encrypted end-to-end via both Tailscale (WireGuard) and Syncthing (TLS).</li>
         </ul>
+      </section>
 
-        <div class="callout">
-          <strong>Important note</strong>: SSHFS is great for dev/config files and light workloads. For heavy I/O (large databases, lots of tiny files),
-          prefer running compute on the server or use <span class="inline-code">rsync</span>/<span class="inline-code">scp</span> for bulk transfers.
-        </div>
+      <section id="previous">
+        <h2>Previous approach (SSHFS)</h2>
+        <p>
+          The original setup used SSHFS + macFUSE to mount the Pi's storage as a local directory on the Mac, with a watchdog
+          script to detect and recover broken mounts. This was retired because:
+        </p>
+        <ul>
+          <li>macFUSE kernel extensions became increasingly problematic on modern macOS.</li>
+          <li>The university VPN (GlobalProtect) frequently disrupted Tailscale, causing the mount to go stale.</li>
+          <li>Recovery required manual intervention or a complex watchdog with exponential backoff.</li>
+          <li>Files weren't truly local&mdash;any network hiccup meant editors and scripts would hang.</li>
+        </ul>
       </section>
 
       <section id="architecture">
         <h2>Architecture</h2>
+        <pre><code>MacBook (~/homelab/)
+    |
+    |  Syncthing (port 22000)
+    |  over Tailscale private network
+    |
+Raspberry Pi (/media/idohaber/storage)
+
+Mac  Tailscale IP: (run `tailscale ip -4`)
+Pi   Tailscale IP: &lt;pi-tailscale-ip&gt;</code></pre>
         <p>
-          Once both devices are logged into the same tailnet, the Mac can reach the server via its Tailscale IP (typically <span class="inline-code">100.x.y.z</span>)
-          or a MagicDNS hostname (often something like <span class="inline-code">server-name.tailnet-xyz.ts.net</span>).
+          Both devices are on the same Tailscale network. Syncthing connects using Tailscale IPs directly,
+          bypassing DNS resolution issues caused by VPN interference.
         </p>
-        <pre><code>macOS laptop ──(Tailscale private network)──&gt; Linux server
-                 └── SSH (22) over tailnet
-                     └── SSHFS mount (remote folder appears local)</code></pre>
       </section>
 
       <section id="prereqs">
         <h2>Prerequisites</h2>
         <ul>
-          <li><strong>Home server</strong>: Linux machine with sudo access.</li>
-          <li><strong>Laptop</strong>: macOS with admin access.</li>
-          <li><strong>Accounts</strong>: a Tailscale account (and both devices authorized on the same tailnet).</li>
-          <li><strong>SSH keys</strong>: an SSH keypair on the Mac (recommended: Ed25519).</li>
+          <li><strong>Raspberry Pi</strong>: Linux server with sudo access and an external storage drive mounted.</li>
+          <li><strong>MacBook</strong>: macOS with Homebrew installed.</li>
+          <li><strong>Tailscale</strong>: both devices authorized on the same tailnet.</li>
+          <li><strong>SSH keys</strong>: an SSH keypair on the Mac for remote administration (recommended: Ed25519).</li>
         </ul>
-
         <h3>Generate an SSH key (macOS)</h3>
-        <pre><code>ssh-keygen -t ed25519 -a 64 -C "homelab-mac" </code></pre>
+        <pre><code>ssh-keygen -t ed25519 -a 64 -C "homelab-mac"</code></pre>
       </section>
 
       <section id="setup-tailscale">
-        <h2>Step 1 — Tailscale setup</h2>
+        <h2>Step 1 &mdash; Tailscale setup</h2>
 
-        <h3>Install on Linux server</h3>
-        <p>Install Tailscale using the official instructions for your distro, then authenticate.</p>
+        <h3>Install on the Pi</h3>
         <pre><code># After install:
 sudo tailscale up
 
-# Confirm it’s connected:
+# Confirm it's connected:
 tailscale status
 tailscale ip -4</code></pre>
 
         <h3>Install on macOS</h3>
-        <p>Install the Tailscale app on macOS and log into the same tailnet. Confirm you can reach the server.</p>
-        <pre><code># Quick connectivity check:
-ping &lt;server-tailscale-ip-or-magicdns-name&gt;
-ssh &lt;user&gt;@&lt;server-tailscale-ip-or-magicdns-name&gt;</code></pre>
+        <p>Install the Tailscale app on macOS and log into the same tailnet. Confirm connectivity:</p>
+        <pre><code>ping &lt;pi-tailscale-ip&gt;
+ssh &lt;user&gt;@&lt;pi-tailscale-ip&gt;</code></pre>
 
         <div class="callout">
-          <strong>Why this works</strong>: Tailscale gives both machines stable private addresses and handles NAT traversal, so you don’t have to expose
-          your home network with port forwarding.
+          <strong>Tip</strong>: Use the Tailscale IP (e.g. <span class="inline-code">&lt;pi-tailscale-ip&gt;</span>) rather than
+          MagicDNS names. This avoids DNS resolution failures when the university VPN is active.
         </div>
       </section>
 
       <section id="setup-ssh">
-        <h2>Step 2 — SSH hardening (server)</h2>
+        <h2>Step 2 &mdash; SSH hardening (Pi)</h2>
         <p>
-          The server should accept key-based logins and avoid password-based access where possible.
-          If you already have SSH set up, treat this as a checklist.
+          SSH is used for remote administration, not file sync (Syncthing handles that). Still worth hardening.
         </p>
 
         <h3>Ensure OpenSSH server is installed and running</h3>
-        <pre><code># Ubuntu/Debian:
-sudo apt-get update
+        <pre><code>sudo apt-get update
 sudo apt-get install -y openssh-server
 sudo systemctl enable --now ssh</code></pre>
 
-        <h3>Add your Mac’s public key to the server</h3>
+        <h3>Add your Mac's public key</h3>
         <pre><code># From macOS:
-ssh-copy-id &lt;user&gt;@&lt;server-tailscale-ip-or-magicdns-name&gt;</code></pre>
+ssh-copy-id &lt;user&gt;@&lt;pi-tailscale-ip&gt;</code></pre>
 
         <h3>Recommended sshd_config settings</h3>
-        <p>Edit <span class="inline-code">/etc/ssh/sshd_config</span> and consider:</p>
         <pre><code>PermitRootLogin no
 PasswordAuthentication no
 PubkeyAuthentication yes
@@ -145,59 +161,145 @@ KbdInteractiveAuthentication no</code></pre>
         <pre><code>sudo systemctl restart ssh</code></pre>
       </section>
 
-      <section id="setup-sshfs">
-        <h2>Step 3 — SSHFS mount on macOS</h2>
+      <section id="setup-syncthing-mac">
+        <h2>Step 3 &mdash; Syncthing on macOS</h2>
 
-        <h3>Install macFUSE + SSHFS</h3>
-        <p>SSHFS on macOS typically requires macFUSE. One common approach is Homebrew.</p>
-        <pre><code>brew install --cask macfuse
-brew install sshfs</code></pre>
+        <h3>Install and start</h3>
+        <pre><code># Install via Homebrew
+brew install syncthing
 
-        <h3>Create a mount point</h3>
-        <pre><code>mkdir -p ~/mnt/homelab</code></pre>
+# If using the dotfiles repo, stow the launchd plist
+cd ~/.dotfiles && stow syncthing
 
-        <h3>Mount a server directory</h3>
+# Load the service (runs on login, auto-restarts)
+launchctl load ~/Library/LaunchAgents/com.idohaber.syncthing.plist</code></pre>
+
+        <h3>Verify</h3>
+        <p>Open the Syncthing web UI:</p>
+        <pre><code>open http://localhost:8384</code></pre>
         <p>
-          Replace <span class="inline-code">&lt;server&gt;</span>, <span class="inline-code">&lt;user&gt;</span>, and <span class="inline-code">/path/on/server</span>.
+          The web UI should load. Note your <strong>Device ID</strong> (Actions &gt; Show ID)&mdash;you'll need it when pairing with the Pi.
         </p>
-        <pre><code>sshfs \
-  -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 \
-  -o IdentityFile=~/.ssh/id_ed25519 \
-  &lt;user&gt;@&lt;server&gt;:/path/on/server \
-  ~/mnt/homelab</code></pre>
 
-        <h3>Unmount</h3>
-        <pre><code>umount ~/mnt/homelab
-# If that fails on macOS:
-diskutil unmount force ~/mnt/homelab</code></pre>
+        <h3>Helper script</h3>
+        <p>A control script is included in the dotfiles at <span class="inline-code">bin/syncthing-ctl.sh</span>:</p>
+        <pre><code>syncthing-ctl.sh status    # Check if running, show device ID
+syncthing-ctl.sh start     # Load the launchd agent
+syncthing-ctl.sh stop      # Unload the launchd agent
+syncthing-ctl.sh restart   # Stop then start
+syncthing-ctl.sh open      # Open web UI in browser
+syncthing-ctl.sh log       # Tail the log file
+syncthing-ctl.sh setup-pi  # Print Pi setup instructions</code></pre>
+      </section>
+
+      <section id="setup-syncthing-pi">
+        <h2>Step 4 &mdash; Syncthing on the Pi</h2>
+
+        <h3>Install and enable</h3>
+        <pre><code>sudo apt update && sudo apt install -y syncthing
+sudo systemctl enable syncthing@idohaber
+sudo systemctl start syncthing@idohaber</code></pre>
+
+        <h3>Access the Pi's web UI</h3>
+        <p>
+          The Pi's Syncthing UI listens on localhost only, so access it via an SSH tunnel.
+          On the Mac, open a new terminal tab:
+        </p>
+        <pre><code>ssh -L 8385:localhost:8384 raspberrypi</code></pre>
+        <p>Then open <span class="inline-code">http://localhost:8385</span> in your Mac's browser. Port 8385 is used because 8384 is already taken by the Mac's Syncthing.</p>
+      </section>
+
+      <section id="setup-pairing">
+        <h2>Step 5 &mdash; Pairing devices and sharing folders</h2>
+
+        <h3>Exchange device IDs</h3>
+        <ol>
+          <li>Mac UI (<span class="inline-code">localhost:8384</span>): Actions &gt; Show ID &mdash; copy it.</li>
+          <li>Pi UI (<span class="inline-code">localhost:8385</span>): Actions &gt; Show ID &mdash; copy it.</li>
+        </ol>
+
+        <h3>Add devices</h3>
+        <p><strong>On the Mac UI:</strong></p>
+        <ol>
+          <li>Click "Add Remote Device".</li>
+          <li>Paste the Pi's device ID.</li>
+          <li>Set the address to <span class="inline-code">tcp://&lt;pi-tailscale-ip&gt;:22000</span> (Pi's Tailscale IP).</li>
+          <li>Save.</li>
+        </ol>
+        <p><strong>On the Pi UI:</strong></p>
+        <ol>
+          <li>Click "Add Remote Device" (or accept the pending request).</li>
+          <li>Paste the Mac's device ID.</li>
+          <li>Set the address to <span class="inline-code">tcp://&lt;mac-tailscale-ip&gt;:22000</span>.</li>
+          <li>Save.</li>
+        </ol>
+
+        <h3>Share a folder</h3>
+        <p><strong>On the Pi UI:</strong></p>
+        <ol>
+          <li>Click "Add Folder".</li>
+          <li>Set Folder Path to <span class="inline-code">/media/idohaber/storage</span>.</li>
+          <li>Under the Sharing tab, check the Mac device.</li>
+          <li>Save. Note the <strong>Folder ID</strong>&mdash;it must match on both sides.</li>
+        </ol>
+        <p><strong>On the Mac UI:</strong></p>
+        <ol>
+          <li>If a popup appears, accept and set the path. If not, add the folder manually:</li>
+          <li>Click "Add Folder".</li>
+          <li>Set the <strong>Folder ID</strong> to exactly match what the Pi shows.</li>
+          <li>Set Folder Path to <span class="inline-code">/Users/idohaber/homelab</span>.</li>
+          <li>Under the Sharing tab, check the Pi device.</li>
+          <li>Save.</li>
+        </ol>
+
+        <div class="callout">
+          <strong>Important</strong>: The Folder ID must be identical on both devices. This is what links them. The folder label can differ.
+        </div>
+      </section>
+
+      <section id="day-to-day">
+        <h2>Day-to-day usage</h2>
+        <p>Syncthing runs in the background on both machines. No manual intervention needed. Files placed in the sync folder on either machine appear on the other automatically.</p>
+        <pre><code># Check status
+syncthing-ctl.sh status
+
+# Open Mac web UI
+syncthing-ctl.sh open
+
+# Check logs
+syncthing-ctl.sh log
+
+# Access Pi web UI (when needed)
+ssh -L 8385:localhost:8384 raspberrypi
+# then open http://localhost:8385</code></pre>
       </section>
 
       <section id="replicate">
         <h2>Replication checklist</h2>
         <ol>
-          <li>Install Tailscale on server + Mac, log into same tailnet, verify ping/ssh over tailnet.</li>
-          <li>Enable SSH server on Linux and require key-based auth.</li>
-          <li>Copy Mac public key to the server and verify <span class="inline-code">ssh user@server</span> works without password prompts.</li>
-          <li>Install macFUSE + SSHFS on macOS.</li>
-          <li>Mount the desired server directory with <span class="inline-code">sshfs</span>.</li>
+          <li>Install Tailscale on both machines, log into the same tailnet, verify connectivity with ping/ssh.</li>
+          <li>Harden SSH on the server (key-based auth, no root login).</li>
+          <li>Install Syncthing on the Mac (<span class="inline-code">brew install syncthing</span>) and the Pi (<span class="inline-code">sudo apt install syncthing</span>).</li>
+          <li>Start the service on both (launchd on Mac, systemd on Pi).</li>
+          <li>Exchange device IDs via the web UIs, using Tailscale IPs as addresses.</li>
+          <li>Create and share a folder on the Pi, accept/create it on the Mac with matching Folder ID.</li>
+          <li>Test: drop a file on one side, confirm it appears on the other.</li>
         </ol>
-        <p class="meta">
-          If you want this to be “set-and-forget”, the next step is automounting on macOS (LaunchAgent) and adding a friendly SSH alias in
-          <span class="inline-code">~/.ssh/config</span>.
-        </p>
       </section>
 
       <section id="troubleshooting">
         <h2>Troubleshooting</h2>
         <ul>
-          <li><strong>Can’t ping/SSH the server</strong>: confirm both devices show “connected” in Tailscale and are in the same tailnet; check <span class="inline-code">tailscale status</span> on the server.</li>
-          <li><strong>SSH asks for password</strong>: your key may not be installed, permissions may be off, or password auth is still enabled server-side.</li>
-          <li><strong>SSHFS disconnects</strong>: use the reconnect/keepalive options shown above; consider mounting a less busy directory.</li>
-          <li><strong>macFUSE permissions prompts</strong>: approve the system extension in macOS settings if required, then reboot.</li>
+          <li><strong>Sync not working after VPN reconnect</strong>: Syncthing handles reconnection automatically. Give it a minute, then check <span class="inline-code">syncthing-ctl.sh status</span>.</li>
+          <li><strong>Devices show "Disconnected"</strong>: verify Tailscale is connected on both sides (<span class="inline-code">tailscale status</span>). Check that device addresses use Tailscale IPs.</li>
+          <li><strong>Mac service not running after reboot</strong>: run <span class="inline-code">syncthing-ctl.sh start</span>.</li>
+          <li><strong>Pi service not running</strong>: <span class="inline-code">sudo systemctl status syncthing@idohaber</span>, then restart if needed.</li>
+          <li><strong>Folder not syncing</strong>: ensure the Folder ID matches exactly on both devices. Check the Sharing tab on both sides.</li>
+          <li><strong>Conflict files</strong>: Syncthing creates <span class="inline-code">.sync-conflict-*</span> files when both sides change the same file simultaneously. Resolve manually.</li>
+          <li><strong>Can't reach Pi web UI</strong>: use the SSH tunnel method: <span class="inline-code">ssh -L 8385:localhost:8384 raspberrypi</span>, then open <span class="inline-code">http://localhost:8385</span>.</li>
         </ul>
       </section>
     </article>
   </main>
 </body>
 </html>
-
