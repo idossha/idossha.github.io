@@ -1,0 +1,14 @@
+[
+  {
+    "slug": "on-building-research-tools",
+    "title": "On building tools for other researchers",
+    "date": "2026-07-08",
+    "desc": "Why I keep ending up writing software instead of running experiments."
+  },
+  {
+    "slug": "eeg-preprocessing-checklist",
+    "title": "A minimal EEG preprocessing checklist",
+    "date": "2026-06-15",
+    "desc": "The steps I run before touching any analysis."
+  }
+]

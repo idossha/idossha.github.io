@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../styling/common.css">
     <link rel="stylesheet" href="../styling/project_page.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-724NR57445"></script>
@@ -23,7 +24,9 @@
             <div class="page-lede-top">
                 <div>
                     <h1 class="project-title">Resume</h1>
-                    <p class="project-subtitle">Current CV (PDF embed).</p>
+                    <p class="project-subtitle">
+                        <a href="../assets/projects/cv/resume_July2026.pdf" download>Download PDF ↓</a>
+                    </p>
                 </div>
                 <a href="../index.html" class="home-button" aria-label="Back to homepage">
                     <i class="fas fa-home" aria-hidden="true"></i>
@@ -31,12 +34,27 @@
             </div>
 
             <div class="container">
-                <div class="text-viewer project-span-all">
-                    <iframe title="Resume (PDF)" loading="lazy" src="../assets/projects/cv/resume_Feb26.pdf"></iframe>
-                    <p class="embed-fallback"><a href="../assets/projects/cv/resume_Feb26.pdf">Open the PDF in a new tab</a></p>
+                <div id="resume" class="markdown-body project-span-all">
+                    <p>Loading…</p>
                 </div>
             </div>
         </article>
     </main>
+
+    <script>
+      (async function () {
+        const el = document.getElementById("resume");
+        try {
+          const md = await fetch("../assets/projects/cv/resume.md").then(r => {
+            if (!r.ok) throw 0;
+            return r.text();
+          });
+          el.innerHTML = marked.parse(md);
+        } catch (e) {
+          el.innerHTML = '<p>Couldn’t load the resume. ' +
+            '<a href="../assets/projects/cv/resume_July2026.pdf">Open the PDF instead.</a></p>';
+        }
+      })();
+    </script>
 </body>
 </html>

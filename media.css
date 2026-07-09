@@ -1,0 +1,59 @@
+/* Light theming layer for the media pages (music / photos / records).
+   Loaded AFTER the original widget CSS so it only retouches the shell:
+   palette, typography, and the minimal top nav — the widgets keep their layout. */
+
+:root {
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --muted: #757575;
+  --line: #e6e6e6;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0e0e0e; --fg:#e8e8e8; --muted:#8a8a8a; --line:#262626; }
+}
+
+body {
+  background: var(--bg) !important;
+  color: var(--fg) !important;
+  font-family: var(--font) !important;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Minimal top nav shared with the rest of the prototype */
+nav.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+  padding: 2rem 1.5rem 0;
+  font-size: 0.9rem;
+}
+nav.top .name { font-weight: 600; }
+nav.top .name a { color: var(--fg); text-decoration: none; }
+nav.top .links a { margin-left: 1.25rem; color: var(--muted); text-decoration: none; }
+nav.top .links a:hover { color: var(--fg); }
+
+.page-head { max-width: 900px; margin: 0 auto 2rem; padding: 0 1.5rem; }
+.page-head h1 { font-size: 1.6rem; font-weight: 600; margin: 0 0 0.25rem; letter-spacing: -0.02em; }
+.page-head .sub { color: var(--muted); font-size: 0.95rem; }
+
+/* Quiet down heavy chrome the old stylesheets add */
+header { background: none !important; box-shadow: none !important; border: none !important; }
+footer { color: var(--muted) !important; font-size: 0.85rem; }
+/* footer copyright <p> declares its own color in the old sheets — retheme it */
+footer p { color: var(--muted) !important; }
+
+/* --- Records grid (records.html): retheme the hard-coded white cards --- */
+.record-card { background: var(--bg) !important; border-color: var(--line) !important; }
+.record-card:hover { border-color: var(--fg) !important; }
+.record-info h2 { color: var(--fg) !important; }
+.record-info p { color: var(--fg) !important; }
+.record-info .details { color: var(--muted) !important; }
+
+/* --- Photo gallery (photos.html): retheme the full-screen loader overlay --- */
+.page-loader { background: var(--bg) !important; }
+.loader-text { color: var(--fg) !important; }

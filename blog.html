@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Writing · Ido Haber</title>
+  <link rel="icon" type="image/png" href="/assets/misc/favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="wrap wide">
+    <nav class="top">
+      <span class="name"><a href="index.html" style="border:none;color:inherit;">Ido Haber</a></span>
+      <span class="links">
+        <a href="index.html">Home</a>
+        <a href="blog.html">Writing</a>
+        <a href="cv.html">CV</a>
+      </span>
+    </nav>
+
+    <h1>Writing</h1>
+    <p class="lead">Notes on research, tools, and things I'm figuring out.</p>
+
+    <ul class="post-list" id="list"></ul>
+
+    <footer>© 2026 Ido Haber</footer>
+  </main>
+
+  <script>
+    fetch("posts/posts.json")
+      .then(r => r.json())
+      .then(posts => {
+        posts.sort((a, b) => b.date.localeCompare(a.date));
+        document.getElementById("list").innerHTML = posts.map(p =>
+          '<li><a href="post.html?slug=' + p.slug + '">' +
+            '<span><span class="title">' + p.title + '</span>' +
+            '<span class="desc">' + (p.desc || "") + '</span></span>' +
+            '<span class="date">' + p.date + '</span>' +
+          '</a></li>'
+        ).join("");
+      })
+      .catch(() => {
+        document.getElementById("list").innerHTML =
+          "<li style='padding:1rem 0;color:var(--muted)'>No posts yet.</li>";
+      });
+  </script>
+</body>
+</html>

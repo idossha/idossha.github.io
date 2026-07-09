@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CV · Ido Haber</title>
+  <link rel="icon" type="image/png" href="/assets/misc/favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <main class="wrap wide">
+    <nav class="top">
+      <span class="name"><a href="index.html" style="border:none;color:inherit;">Ido Haber</a></span>
+      <span class="links">
+        <a href="index.html">Home</a>
+        <a href="blog.html">Writing</a>
+        <a href="cv.html">CV</a>
+      </span>
+    </nav>
+
+    <div class="cv-top">
+      <a class="back" href="index.html">← Home</a>
+      <a class="pdf-link" href="/assets/projects/cv/resume_July2026.pdf" download>Download PDF ↓</a>
+    </div>
+
+    <article class="cv" id="resume"><p class="lead">Loading…</p></article>
+
+    <footer>© 2026 Ido Haber</footer>
+  </main>
+
+  <script>
+    (async function () {
+      const el = document.getElementById("resume");
+      try {
+        marked.setOptions({ breaks: true });
+        const md = await fetch("/assets/projects/cv/resume.md").then(r => {
+          if (!r.ok) throw 0; return r.text();
+        });
+        el.innerHTML = marked.parse(md);
+      } catch (e) {
+        el.innerHTML = '<p class="lead">Couldn’t load the CV. ' +
+          '<a href="/assets/projects/cv/resume_July2026.pdf">Open the PDF instead.</a></p>';
+      }
+    })();
+  </script>
+</body>
+</html>

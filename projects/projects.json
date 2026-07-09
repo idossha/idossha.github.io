@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "cerebro",
+    "title": "Cerebro",
+    "tag": "Software · 3D Printing · EEG",
+    "desc": "A software–hardware solution for precise EEG electrode placement."
+  },
+  {
+    "slug": "eegtopo",
+    "title": "EEG Topographic Analysis",
+    "tag": "Python · MNE · Statistics",
+    "desc": "Python package for topographic mapping and cluster-based permutation testing."
+  },
+  {
+    "slug": "homelab",
+    "title": "Home Server — Tailscale + Syncthing",
+    "tag": "Homelab · Tailscale · Syncthing",
+    "desc": "Bidirectional file sync between a home Linux server and a macOS laptop."
+  },
+  {
+    "slug": "ecg",
+    "title": "Bioinstrumentation ECG",
+    "tag": "Sensors · Hardware · BME",
+    "desc": "ECG + pulse oximetry system design, testing, and results."
+  }
+]

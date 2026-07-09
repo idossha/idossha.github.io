@@ -1,7 +1,7 @@
 // records.js
 
 // Path to your CSV file (relative to current page: Pages/records.html)
-const CSV_URL = "../assets/records/idohaber-collection-20241208-1829.csv";
+const CSV_URL = "/assets/records/idohaber-collection-20241208-1829.csv";
 
 // Image base: root-relative on http(s), relative when opening as file://
 function getRecordsImgBase() {

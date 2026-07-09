@@ -269,6 +269,53 @@
     background: rgba(2, 6, 23, 0.35);
 }
 
+.project-page .markdown-body {
+    padding: 1.75rem 2rem;
+    border-radius: 18px;
+    border: 1px solid rgba(226, 232, 240, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+    line-height: 1.6;
+}
+
+.project-page .markdown-body h1 {
+    margin: 0 0 0.35rem;
+    font-size: 1.9rem;
+}
+
+.project-page .markdown-body h2 {
+    margin: 2rem 0 0.75rem;
+    padding-bottom: 0.35rem;
+    font-size: 1.25rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.project-page .markdown-body h2:first-of-type {
+    margin-top: 1.25rem;
+}
+
+.project-page .markdown-body p {
+    margin: 0.5rem 0;
+}
+
+.project-page .markdown-body ul,
+.project-page .markdown-body ol {
+    margin: 0.5rem 0 0.75rem;
+    padding-left: 1.4rem;
+}
+
+.project-page .markdown-body li {
+    margin: 0.3rem 0;
+}
+
+.project-page .markdown-body a {
+    color: #7cc4ff;
+}
+
+.project-page .markdown-body strong {
+    color: inherit;
+}
+
 .project-page .media-viewer {
     padding: 1rem 1rem;
 }

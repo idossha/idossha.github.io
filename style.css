@@ -1,0 +1,269 @@
+/* ---------- Minimal prototype stylesheet ---------- */
+
+:root {
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --muted: #757575;
+  --line: #e6e6e6;
+  --accent: #1a1a1a;
+  --maxw: 640px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0e0e;
+    --fg: #e8e8e8;
+    --muted: #8a8a8a;
+    --line: #262626;
+    --accent: #ffffff;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 5rem 1.5rem 6rem;
+}
+
+.wrap.wide { max-width: calc(var(--maxw) * 1.3); }
+
+/* ---------- Master–detail layout ---------- */
+.layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3.5rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  transition: gap .35s ease;
+}
+/* flex-grow 0 keeps it capped at 640 and centered on wide screens;
+   flex-shrink 1 + min-width 0 lets it shrink below 640 on phones (no h-overflow) */
+.layout .wrap { margin: 0; flex: 0 1 var(--maxw); min-width: 0; }
+
+.detail {
+  flex: 0 0 0;
+  width: 0;
+  max-width: 728px;
+  opacity: 0;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  /* hidden when closed so its controls leave the tab order + a11y tree */
+  visibility: hidden;
+  transition: flex-basis .35s ease, width .35s ease, opacity .25s ease, visibility 0s linear .35s;
+}
+body.detail-open .detail {
+  flex: 0 1 728px;
+  width: 728px;
+  opacity: 1;
+  visibility: visible;
+  border-left: 1px solid var(--line);
+  transition: flex-basis .35s ease, width .35s ease, opacity .25s ease, visibility 0s;
+}
+/* an inner element does the scrolling, so the close button (in .detail) is never faded */
+.detail-scroll {
+  max-height: 100vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 5rem 1.5rem 6rem;
+}
+.detail-close {
+  position: absolute;
+  top: 3.5rem; right: 1rem;
+  z-index: 2;                       /* stay above the scrolling content */
+  display: flex; align-items: center; justify-content: center;
+  width: 2.1rem; height: 2.1rem; padding: 0;
+  background: none; border: none; border-radius: 50%;
+  font-size: 1.4rem; line-height: 1;
+  color: var(--muted); cursor: pointer;
+  transition: color .15s ease, background-color .15s ease;
+}
+.detail-close:hover { color: var(--fg); background: var(--line); }
+.detail-close:focus { outline: none; }                                  /* no ring on mouse/auto-focus */
+.detail-close:focus-visible { color: var(--fg); box-shadow: 0 0 0 2px var(--muted); }  /* keyboard ring */
+.detail-body h1 { font-size: 1.7rem; margin-bottom: 0.5rem; }
+.detail-body .meta { color: var(--muted); font-family: var(--mono); font-size: 0.85rem; margin-bottom: 2rem; }
+.detail-body p, .detail-body li { line-height: 1.75; }
+.detail-body code {
+  font-family: var(--mono); font-size: 0.85em;
+  background: var(--line); padding: 0.1em 0.35em; border-radius: 4px;
+}
+.detail-body pre {
+  background: var(--line); padding: 1rem; border-radius: 6px;
+  overflow-x: auto; font-size: 0.85rem;
+}
+.detail-body pre code { background: none; padding: 0; }
+.detail-body img { max-width: 100%; height: auto; border-radius: 6px; margin: 0.5rem 0; }
+.detail-body h2 { font-size: 1.05rem; margin: 2rem 0 0.75rem; }
+.detail-body ul, .detail-body ol { padding-left: 1.2rem; }
+.detail-body li { margin-bottom: 0.4rem; }
+.detail-body blockquote {
+  margin: 1.25rem 0; padding-left: 1rem;
+  border-left: 2px solid var(--line); color: var(--muted);
+}
+
+/* On narrow screens the detail panel overlays full-screen */
+@media (max-width: 1240px) {
+  body.detail-open .detail {
+    position: fixed; inset: 0; z-index: 50;
+    width: 100%; max-width: 100%; flex-basis: 100%;
+    background: var(--bg); border-left: none;
+    margin: 0 auto;
+  }
+  .detail-scroll { padding: 4rem 1.5rem 6rem; }
+  .detail-body { max-width: var(--maxw); margin: 0 auto; }
+  .detail-close { right: 1.2rem; }
+}
+
+/* ---------- Scrollable list ---------- */
+.post-list.scroll {
+  max-height: 320px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* ---------- Fade-edge scroll: no visible bar, soft fade at the scrolled edge ---------- */
+/* --fade-top / --fade-bottom are toggled between 0 and the fade size by JS,
+   depending on whether there is more content above / below the viewport. */
+.fade-scroll {
+  scrollbar-width: none;              /* Firefox: hide bar */
+  -webkit-mask-image: linear-gradient(to bottom,
+    transparent 0, #000 var(--fade-top, 0px),
+    #000 calc(100% - var(--fade-bottom, 0px)), transparent 100%);
+          mask-image: linear-gradient(to bottom,
+    transparent 0, #000 var(--fade-top, 0px),
+    #000 calc(100% - var(--fade-bottom, 0px)), transparent 100%);
+}
+.fade-scroll::-webkit-scrollbar { width: 0; height: 0; }   /* WebKit: hide bar */
+
+/* Embedded widget (e.g. music player) inside the detail panel */
+.panel-embed {
+  width: 100%;
+  height: 460px;
+  border: none;
+  display: block;
+  margin-top: 1.5rem;
+}
+
+/* ---------- Top nav ---------- */
+nav.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4rem;
+  font-size: 0.9rem;
+}
+nav.top .name { font-weight: 600; letter-spacing: 0; }
+nav.top .links a {
+  margin-left: 1.25rem;
+  color: var(--muted);
+}
+nav.top .links a:hover { color: var(--fg); }
+
+/* ---------- Typography ---------- */
+h1 { font-size: 1.6rem; font-weight: 600; margin: 0 0 0.4rem; letter-spacing: -0.02em; }
+h2 { font-size: 1.05rem; font-weight: 600; margin: 3.5rem 0 1rem; }
+p  { margin: 0 0 1.1rem; }
+
+a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--line); transition: border-color .15s; }
+a:hover { border-color: var(--fg); }
+nav.top a, .icons a, .post-list a { border-bottom: none; }
+
+.lead { color: var(--muted); margin-bottom: 2.5rem; }
+
+/* ---------- Intro ---------- */
+.intro { display: flex; align-items: center; gap: 1.1rem; margin-bottom: 2rem; }
+.intro img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+.intro .role { color: var(--muted); font-size: 0.95rem; }
+
+/* ---------- Social icons ---------- */
+.icons { display: flex; gap: 1.1rem; list-style: none; padding: 0; margin: 1.5rem 0 0; }
+.icons a { color: var(--muted); font-size: 1.1rem; }
+.icons a:hover { color: var(--fg); }
+
+/* ---------- Lists (projects + posts) ---------- */
+.post-list { list-style: none; padding: 0; margin: 0; }
+.post-list li { border-bottom: 1px solid var(--line); }
+.post-list li:first-child { border-top: 1px solid var(--line); }
+.post-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.85rem 0;
+}
+.post-list a > span:first-child { display: flex; flex-direction: column; min-width: 0; }
+.post-list a:hover .title { text-decoration: underline; text-underline-offset: 2px; }
+.post-list .title { font-weight: 500; }
+.post-list .desc { color: var(--muted); font-size: 0.9rem; margin-top: 0.15rem; font-weight: 400; }
+.post-list .date { color: var(--muted); font-size: 0.85rem; font-family: var(--mono); white-space: nowrap; }
+.post-list .ext { font-size: 0.75rem; color: var(--muted); }
+
+/* Project list: title and tag grouped on the left, description below */
+.worklist a { justify-content: flex-start; }
+.worklist .titlerow { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.2rem 0.6rem; }
+.worklist .tag {
+  color: var(--muted); font-family: var(--mono);
+  font-size: 0.76rem; letter-spacing: 0; white-space: nowrap;
+}
+
+/* ---------- Article (blog post) ---------- */
+article { }
+article .meta { color: var(--muted); font-family: var(--mono); font-size: 0.85rem; margin-bottom: 2.5rem; }
+article h1 { font-size: 1.9rem; margin-bottom: 0.6rem; line-height: 1.25; }
+article p, article li { line-height: 1.75; }
+article blockquote {
+  margin: 1.5rem 0; padding-left: 1rem;
+  border-left: 2px solid var(--line); color: var(--muted);
+}
+article code {
+  font-family: var(--mono); font-size: 0.85em;
+  background: var(--line); padding: 0.1em 0.35em; border-radius: 4px;
+}
+article img { max-width: 100%; border-radius: 6px; }
+
+.back { display: inline-block; margin-bottom: 3rem; color: var(--muted); font-size: 0.9rem; }
+
+/* ---------- CV page ---------- */
+.cv-top {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 2.5rem;
+}
+.cv-top .back { margin-bottom: 0; }
+.pdf-link { font-size: 0.9rem; }
+.cv h1 { font-size: 1.9rem; margin-bottom: 0.4rem; }
+.cv h1 + p { color: var(--muted); }           /* the role/tagline line under the name */
+.cv h2 {
+  font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 600;
+  margin: 2.5rem 0 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--line);
+}
+.cv h3 { font-size: 1rem; font-weight: 600; margin: 1.4rem 0 0.3rem; }
+.cv p { margin: 0 0 0.9rem; }
+.cv ul { padding-left: 1.1rem; margin: 0.4rem 0 1rem; }
+.cv li { line-height: 1.6; margin-bottom: 0.3rem; }
+
+footer {
+  margin-top: 5rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 0.85rem;
+}

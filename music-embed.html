@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+      :root {
+        --bg: #ffffff; --fg: #1a1a1a; --muted: #757575; --line: #e6e6e6;
+        --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root { --bg:#0e0e0e; --fg:#e8e8e8; --muted:#8a8a8a; --line:#262626; }
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { background: transparent; color: var(--fg); font-family: var(--font); }
+
+      .player { display: flex; flex-direction: column; align-items: center; gap: 1.25rem; padding: 1rem 0; }
+
+      .cover { position: relative; width: 150px; height: 150px; }
+      .cover img {
+        width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+        border: 1px solid var(--line);
+        animation: spin 4s linear infinite; animation-play-state: paused;
+      }
+      .cover::after {
+        content: ''; position: absolute; top: 50%; left: 50%;
+        width: 16px; height: 16px; border-radius: 50%;
+        background: var(--bg); border: 1px solid var(--line);
+        transform: translate(-50%, -50%);
+      }
+      .music-container.play .cover img { animation-play-state: running; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+
+      .info { text-align: center; }
+      .info h4 { font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
+      .info p { color: var(--muted); font-size: 0.85rem; margin-top: 0.25rem; }
+
+      .progress-container {
+        position: relative; width: 100%; height: 5px;
+        background: var(--line); border-radius: 3px; cursor: pointer; margin-top: 1.25rem;
+      }
+      .progress { height: 100%; width: 0; background: var(--fg); border-radius: 3px; transition: width .1s linear; }
+      #current-time, #duration {
+        position: absolute; top: -18px; font-size: 11px; color: var(--muted);
+        font-family: ui-monospace, Menlo, monospace;
+      }
+      #current-time { left: 0; }
+      #duration { right: 0; }
+
+      .navigation { display: flex; align-items: center; gap: 1.5rem; }
+      .action-btn {
+        background: none; border: none; cursor: pointer;
+        color: var(--muted); font-size: 1.1rem; transition: color .15s, transform .15s;
+      }
+      .action-btn:hover { color: var(--fg); }
+      .action-btn:active { transform: scale(0.9); }
+      .action-btn-big {
+        width: 48px; height: 48px; border-radius: 50%;
+        border: 1px solid var(--line); color: var(--fg); font-size: 1rem;
+        display: flex; align-items: center; justify-content: center;
+      }
+      .action-btn-big:hover { background: var(--fg); color: var(--bg); }
+    </style>
+</head>
+<body>
+    <div class="player music-container">
+        <div class="cover img-container">
+            <img src="" alt="cover" id="cover">
+        </div>
+        <div class="info music-info">
+            <h4 id="title"></h4>
+            <p id="description"></p>
+        </div>
+        <div class="progress-container">
+            <span id="current-time">0:00</span>
+            <div class="progress"></div>
+            <span id="duration">0:00</span>
+        </div>
+        <audio src="" id="audio"></audio>
+        <div class="navigation">
+            <button id="prev" class="action-btn" aria-label="Previous track"><i class="fas fa-backward" aria-hidden="true"></i></button>
+            <button id="play" class="action-btn action-btn-big" aria-label="Play"><i class="fas fa-play" aria-hidden="true"></i></button>
+            <button id="next" class="action-btn" aria-label="Next track"><i class="fas fa-forward" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <script src="/functionality/music_player.js"></script>
+</body>
+</html>
