@@ -6,7 +6,7 @@ Why: prevents layout shift/jitter by allowing the page to reserve the correct
 aspect ratio before each image loads.
 
 Outputs:
-  - ../functionality/photo_dims.json
+  - ../data/photo-dims.json
 
 No third-party deps (parses JPEG/PNG headers directly).
 """
@@ -96,21 +96,21 @@ def image_size(path: Path) -> Tuple[int, int]:
 
 def main() -> None:
     repo_root = Path(__file__).resolve().parents[1]
-    html_path = repo_root / "Pages" / "photo_page.html"
-    out_path = repo_root / "functionality" / "photo_dims.json"
+    html_path = repo_root / "photos.html"
+    out_path = repo_root / "data" / "photo-dims.json"
 
     html = html_path.read_text(encoding="utf-8")
 
-    # Match src attributes that point into ../assets/photos/...
+    # Match src attributes that point into /assets/photos/...
     srcs = re.findall(r'<img[^>]+src="([^"]+)"', html, flags=re.IGNORECASE)
-    srcs = [s for s in srcs if s.startswith("../assets/photos/")]
+    srcs = [s for s in srcs if s.startswith("/assets/photos/")]
 
     dims: Dict[str, Tuple[int, int]] = {}
     missing = []
 
     for src in srcs:
-        # Convert ../assets/... to filesystem path
-        rel = src.replace("../", "")
+        # Convert /assets/... to filesystem path
+        rel = src.lstrip("/")
         img_path = repo_root / rel
         if not img_path.exists():
             missing.append(src)

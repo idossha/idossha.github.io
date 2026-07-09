@@ -1,4 +1,4 @@
-// records_search.js
+// Records page: live search with suggestions and a detail modal.
 
 const searchBar = document.getElementById('search-bar');
 const suggestions = document.getElementById('suggestions');

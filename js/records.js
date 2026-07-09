@@ -1,12 +1,11 @@
-// records.js
+// Records page: load the Discogs collection CSV and render the grid.
 
-// Path to your CSV file (relative to current page: Pages/records.html)
 const CSV_URL = "/assets/records/idohaber-collection-20241208-1829.csv";
 
 // Image base: root-relative on http(s), relative when opening as file://
 function getRecordsImgBase() {
   if (window.location.protocol === "file:") {
-    return "../assets/records/imgs/";
+    return "assets/records/imgs/";
   }
   return "/assets/records/imgs/";
 }

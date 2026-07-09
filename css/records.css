@@ -1,0 +1,153 @@
+/* Records page: vinyl collection grid + search + detail modal.
+   Self-contained — shares the site palette with css/style.css. */
+
+:root {
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --muted: #757575;
+  --line: #e6e6e6;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0e0e0e; --fg:#e8e8e8; --muted:#8a8a8a; --line:#262626; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Top nav (shared shell) ---------- */
+nav.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+  padding: 2rem 1.5rem 0;
+  font-size: 0.9rem;
+}
+nav.top .name { font-weight: 600; }
+nav.top .name a { color: var(--fg); text-decoration: none; }
+nav.top .links a { margin-left: 1.25rem; color: var(--muted); text-decoration: none; }
+nav.top .links a:hover { color: var(--fg); }
+
+#record-count {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  font-size: 14px;
+  margin: 0;
+  color: var(--muted);
+}
+
+/* ---------- Page header ---------- */
+.page-head { max-width: 900px; margin: 0 auto 2rem; padding: 0 1.5rem; }
+.page-head h1 { font-size: 1.6rem; font-weight: 600; margin: 0 0 0.25rem; letter-spacing: -0.02em; }
+.page-head .sub { color: var(--muted); font-size: 0.95rem; }
+
+/* ---------- Search ---------- */
+.search-bar-container {
+  max-width: 900px;
+  margin: 0 auto 1.5rem;
+  padding: 0 1.5rem;
+  position: relative;
+}
+#search-bar {
+  padding: 10px;
+  width: 220px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+}
+#suggestions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  position: absolute;
+  width: 220px;
+  display: none;
+  z-index: 1000;
+}
+
+/* ---------- Collection grid ---------- */
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.record-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 0.5s ease, transform 0.5s ease, border-color 0.5s ease;
+}
+.record-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px) scale(1.03);
+  border-color: var(--fg);
+}
+.record-card img { width: 100%; height: auto; }
+
+.record-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.record-info h2 { font-size: 16px; margin: 0 0 5px; color: var(--fg); }
+.record-info p { margin: 0 0 5px; font-size: 14px; color: var(--fg); }
+.record-info .details { font-size: 12px; color: var(--muted); }
+
+/* ---------- Detail modal ---------- */
+#modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+#record-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg);
+  color: var(--fg);
+  padding: 20px;
+  border: 1px solid var(--line);
+  z-index: 999;
+  min-width: 300px;
+  border-radius: 8px;
+}
+#close-modal {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--fg);
+}
+
+/* ---------- Footer ---------- */
+footer { color: var(--muted); font-size: 0.85rem; }
+footer p { color: var(--muted); }

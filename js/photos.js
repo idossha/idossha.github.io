@@ -7,7 +7,7 @@ var photoDims = null;
 
 function loadPhotoDims() {
     // Optional: used to reserve correct aspect ratio before loading.
-    var url = new URL("../functionality/photo_dims.json", document.baseURI);
+    var url = new URL("data/photo-dims.json", document.baseURI);
     return fetch(url)
         .then(function(res) {
             if (!res.ok) {

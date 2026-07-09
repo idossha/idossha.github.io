@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CV · Ido Haber</title>
   <link rel="icon" type="image/png" href="/assets/misc/favicon.png" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+  <script src="js/cv.js" defer></script>
 </head>
 <body>
   <main class="wrap wide">
@@ -29,20 +30,5 @@
     <footer>© 2026 Ido Haber</footer>
   </main>
 
-  <script>
-    (async function () {
-      const el = document.getElementById("resume");
-      try {
-        marked.setOptions({ breaks: true });
-        const md = await fetch("/assets/projects/cv/resume.md").then(r => {
-          if (!r.ok) throw 0; return r.text();
-        });
-        el.innerHTML = marked.parse(md);
-      } catch (e) {
-        el.innerHTML = '<p class="lead">Couldn’t load the CV. ' +
-          '<a href="/assets/projects/cv/resume_July2026.pdf">Open the PDF instead.</a></p>';
-      }
-    })();
-  </script>
 </body>
 </html>
