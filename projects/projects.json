@@ -22,26 +22,26 @@
   {
     "slug": "radio",
     "title": "Radio",
-    "tag": "Hardware · RF",
-    "desc": "Placeholder — describe the radio project here."
+    "tag": "Hardware · Arduino · RF",
+    "desc": "An Arduino-based FM radio receiver, designed in KiCad and built as a prototype."
   },
   {
     "slug": "posters",
     "title": "Posters",
     "tag": "Research · Design",
-    "desc": "Placeholder — collected research posters and presentations."
+    "desc": "Research posters and presentations, including SLEEP 2026."
   },
   {
     "slug": "robotic-arm",
     "title": "Robotic Arm",
-    "tag": "Robotics · Hardware",
-    "desc": "Placeholder — describe the robotic arm project here."
+    "tag": "Sensors · Hardware · BME",
+    "desc": "A force-sensitive robotic arm for feedback during robot-assisted surgery."
   },
   {
     "slug": "bme550",
     "title": "BME 550",
-    "tag": "BME · Coursework",
-    "desc": "Placeholder — describe the BME 550 project here."
+    "tag": "Microfluidics · Neuro · BME",
+    "desc": "A microfluidic device for studying axon networks in a biomimetic Alzheimer milieu."
   },
   {
     "slug": "ecg",

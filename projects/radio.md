@@ -1,14 +1,17 @@
 # Radio
 
-_Placeholder — describe the radio project here._
+An Arduino-based FM radio receiver, designed in KiCad and built as a working
+prototype.
 
-## Overview
+## Design
 
-_Write the project overview._
+The radio is built around an Arduino Nano microcontroller driving an FM receiver
+module. A rotary encoder with a push switch handles tuning and selection, an LCD
+screen displays station and status, and a potentiometer sets the volume. The
+demodulated audio is driven through a power amplifier stage into a speaker, with a
+wire antenna feeding the FM module. The whole system runs off a single 5 V rail.
 
-## Schematic
-
-![Radio schematic](/assets/projects/radio/radio_schematic.png)
+![Radio schematic (KiCad)](/assets/projects/radio/radio_schematic.png)
 
 ## Demo
 
