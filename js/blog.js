@@ -1,6 +1,6 @@
 // Writing index: render the post list from posts/posts.json, newest first.
 
-fetch("posts/posts.json")
+fetch("posts/posts.json", { cache: "no-cache" })
   .then(r => r.json())
   .then(posts => {
     posts.sort((a, b) => b.date.localeCompare(a.date));

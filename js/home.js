@@ -33,7 +33,7 @@ attachFade(workList);
 // External entries (with an `href`) open in a new tab; the rest open in-panel.
 function loadProjectMeta() {
   if (projectMeta.length) return Promise.resolve(projectMeta);
-  return fetch("projects/projects.json")
+  return fetch("projects/projects.json", { cache: "no-cache" })
     .then(r => r.json())
     .then(data => { projectMeta = data; return data; });
 }
