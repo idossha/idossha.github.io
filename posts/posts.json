@@ -1,14 +1,13 @@
 [
   {
-    "slug": "on-building-research-tools",
-    "title": "On building tools for other researchers",
-    "date": "2026-07-08",
+    "slug": "on-building-a-home-server",
+    "title": "how to set up a home server for convenient file sharing",
+    "date": "2026-08-03",
     "desc": "Why I keep ending up writing software instead of running experiments."
   },
-  {
-    "slug": "eeg-preprocessing-checklist",
-    "title": "A minimal EEG preprocessing checklist",
-    "date": "2026-06-15",
-    "desc": "The steps I run before touching any analysis."
+    "slug": "nvim-editor",
+    "title": "Why VIM is more impotant than ever before",
+    "date": "2026-08-03",
+    "desc": "My presonal journey to learn NVIM."
   }
 ]
