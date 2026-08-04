@@ -26,7 +26,36 @@ function attachFade(el) {
   return u;
 }
 const detailFade = attachFade(detailScroll);
-attachFade(document.getElementById("work"));
+const workList = document.getElementById("work");
+attachFade(workList);
+
+// Load project metadata once, then render the "Selected work" list from it.
+// External entries (with an `href`) open in a new tab; the rest open in-panel.
+function loadProjectMeta() {
+  if (projectMeta.length) return Promise.resolve(projectMeta);
+  return fetch("projects/projects.json")
+    .then(r => r.json())
+    .then(data => { projectMeta = data; return data; });
+}
+
+function renderWorkList(projects) {
+  workList.innerHTML = projects.map(p => {
+    const ext = p.href
+      ? ' <i class="fa-solid fa-arrow-up-right-from-square ext"></i>'
+      : "";
+    const attrs = p.href
+      ? 'href="' + p.href + '" target="_blank" rel="noopener"'
+      : 'href="?project=' + p.slug + '" data-project="' + p.slug + '"';
+    return '<li><a ' + attrs + '>' +
+      '<span>' +
+        '<span class="titlerow"><span class="title">' + p.title + ext +
+          '</span><span class="tag">' + (p.tag || "") + '</span></span>' +
+        '<span class="desc">' + (p.desc || "") + '</span>' +
+      '</span></a></li>';
+  }).join("");
+}
+
+loadProjectMeta().then(renderWorkList).catch(() => {});
 
 // Don't let the browser restore a stale scroll position on deep-link/reload
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';

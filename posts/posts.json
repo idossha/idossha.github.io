@@ -5,9 +5,22 @@
     "date": "2026-08-03",
     "desc": "Why I keep ending up writing software instead of running experiments."
   },
+  {
     "slug": "nvim-editor",
     "title": "Why VIM is more impotant than ever before",
     "date": "2026-08-03",
     "desc": "My presonal journey to learn NVIM."
+  },
+  {
+    "slug": "bme602",
+    "title": "BME 602",
+    "date": "2026-08-03",
+    "desc": "Placeholder — notes for BME 602."
+  },
+  {
+    "slug": "zoo400",
+    "title": "ZOO 400",
+    "date": "2026-08-03",
+    "desc": "Placeholder — notes for ZOO 400."
   }
 ]

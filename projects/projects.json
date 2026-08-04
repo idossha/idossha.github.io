@@ -1,21 +1,47 @@
 [
   {
+    "slug": "ti-toolbox",
+    "title": "TI-Toolbox",
+    "tag": "Neuro · Python",
+    "desc": "Open-source software published in Brain Stimulation.",
+    "href": "https://idossha.github.io/TI-Toolbox/"
+  },
+  {
     "slug": "cerebro",
     "title": "Cerebro",
     "tag": "Software · 3D Printing · EEG",
     "desc": "A software–hardware solution for precise EEG electrode placement."
   },
   {
-    "slug": "eegtopo",
-    "title": "EEG Topographic Analysis",
-    "tag": "Python · MNE · Statistics",
-    "desc": "Python package for topographic mapping and cluster-based permutation testing."
+    "slug": "fast-ica",
+    "title": "Fast ICA",
+    "tag": "MATLAB · EEG",
+    "desc": "High-throughput ICA pipeline for EEG.",
+    "href": "https://github.com/idossha/fast_ICA"
   },
   {
-    "slug": "homelab",
-    "title": "Home Server — Tailscale + Syncthing",
-    "tag": "Homelab · Tailscale · Syncthing",
-    "desc": "Bidirectional file sync between a home Linux server and a macOS laptop."
+    "slug": "radio",
+    "title": "Radio",
+    "tag": "Hardware · RF",
+    "desc": "Placeholder — describe the radio project here."
+  },
+  {
+    "slug": "posters",
+    "title": "Posters",
+    "tag": "Research · Design",
+    "desc": "Placeholder — collected research posters and presentations."
+  },
+  {
+    "slug": "robotic-arm",
+    "title": "Robotic Arm",
+    "tag": "Robotics · Hardware",
+    "desc": "Placeholder — describe the robotic arm project here."
+  },
+  {
+    "slug": "bme550",
+    "title": "BME 550",
+    "tag": "BME · Coursework",
+    "desc": "Placeholder — describe the BME 550 project here."
   },
   {
     "slug": "ecg",
